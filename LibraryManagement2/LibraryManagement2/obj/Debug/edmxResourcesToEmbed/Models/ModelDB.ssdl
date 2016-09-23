@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="libraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cooperative">
+    <Key>
+      <PropertyRef Name="IDCooperative" />
+    </Key>
+    <Property Name="IDCooperative" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="IDManager" />
+    </Key>
+    <Property Name="IDManager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCooperative" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ManagerPassword" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Resources">
+    <Key>
+      <PropertyRef Name="IDResources" />
+    </Key>
+    <Property Name="IDResources" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDLanguage" Type="int" Nullable="false" />
+    <Property Name="TextName" Type="varchar" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="IDSettings" />
+    </Key>
+    <Property Name="IDSettings" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDLanguage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="IDStudent" />
+    </Key>
+    <Property Name="IDStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="StudentPassword" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Manager__IDCoope__173876EA">
+    <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
+    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperative">
+        <PropertyRef Name="IDCooperative" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="IDCooperative" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="libraryManagementModelStoreContainer">
+    <EntitySet Name="Cooperative" EntityType="Self.Cooperative" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Manager__IDCoope__173876EA" Association="Self.FK__Manager__IDCoope__173876EA">
+      <End Role="Cooperative" EntitySet="Cooperative" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

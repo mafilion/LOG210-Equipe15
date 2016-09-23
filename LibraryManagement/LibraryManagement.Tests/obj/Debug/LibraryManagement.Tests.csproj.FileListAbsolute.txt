@@ -69,3 +69,4 @@ c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\Lib
 c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.csprojResolveAssemblyReference.cache
 c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.dll
 c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.csprojResolveAssemblyReference.cache

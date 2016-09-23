@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="libraryManagementModelStoreContainer" CdmEntityContainer="libraryManagementEntities">
+    <EntitySetMapping Name="Cooperative">
+      <EntityTypeMapping TypeName="libraryManagementModel.Cooperative">
+        <MappingFragment StoreEntitySet="Cooperative">
+          <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manager">
+      <EntityTypeMapping TypeName="libraryManagementModel.Manager">
+        <MappingFragment StoreEntitySet="Manager">
+          <ScalarProperty Name="IDManager" ColumnName="IDManager" />
+          <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ManagerPassword" ColumnName="ManagerPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resources">
+      <EntityTypeMapping TypeName="libraryManagementModel.Resources">
+        <MappingFragment StoreEntitySet="Resources">
+          <ScalarProperty Name="IDResources" ColumnName="IDResources" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="TextName" ColumnName="TextName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="libraryManagementModel.Settings">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="libraryManagementModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

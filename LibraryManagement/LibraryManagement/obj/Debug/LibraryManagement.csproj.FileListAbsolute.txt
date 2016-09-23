@@ -99,3 +99,4 @@ c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\Lib
 c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csprojResolveAssemblyReference.cache
 c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.dll
 c:\users\utilisateur\documents\visual studio 2015\Projects\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csprojResolveAssemblyReference.cache
