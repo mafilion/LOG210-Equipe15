@@ -1,4 +1,4 @@
-/* Table Configuration de l'application */
+﻿/* Table Configuration de l'application */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_NAME = 'Settings'))
@@ -13,7 +13,7 @@ BEGIN
 END
 
 
-/* Table pour Compte �tudiant */
+/* Table pour Compte ﾉtudiant */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_NAME = 'Student'))
@@ -25,8 +25,36 @@ BEGIN
 		LastName VARCHAR (100) NOT NULL,
 		Email VARCHAR(150) NOT NULL,
 		PhoneNumber VARCHAR(12) NOT NULL,
-		StudentPassword VARCHAR(25)
+		StudentPassword VARCHAR(25) NOT NULL
 	);
+END
+
+/*Table pour la coopérative*/
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'Cooperative'))
+BEGIN
+	CREATE TABLE Cooperative
+	(
+		IDCooperative INT PRIMARY KEY IDENTITY(1,1),
+		Name VARCHAR(100) NOT NULL,
+	);
+
+END
+
+/*Table pour la coopérative*/
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'Manager'))
+BEGIN
+	CREATE TABLE Manager(
+		IDManager INT PRIMARY KEY IDENTITY(1,1),
+		IDCooperative INT FOREIGN KEY REFERENCES Cooperative(IDCooperative),   
+		FirstName VARCHAR(100) NOT NULL,
+		LastName VARCHAR(100) NOT NULL,
+		Email VARCHAR(150) NOT NULL,
+		ManagerPassword VARCHAR(25) NOT NULL
+	)
 END
 
 /* Table pour les traductions dans l'application */
@@ -71,7 +99,7 @@ BEGIN
 	VALUES(2,'Supprimer','Delete')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(1,'Retour','Retour � la page pr�c�dente')
+	VALUES(1,'Retour','Retour ・la page pr馗馘ente')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Retour','Back to the last page')
@@ -89,8 +117,47 @@ BEGIN
 	VALUES(2,'Connexion','Log in')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(1,'Deconnexion','D�connexion')
+	VALUES(1,'Deconnexion','D馗onnexion')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Deconnexion','Log out')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Nom', 'Nom')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Nom','Last Name')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Prenom', 'Prénom')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Nom','First Name')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Courriel', 'Adresse courriel')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Courriel','Email Address')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Etudiant', 'Étudiant')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Etudiant','Student')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Telephone', 'Numero de téléphone')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Telephone','Phone Number')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Gestionnaire', 'Gestionnaire')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Gestionnaire','Manager')
+
+
+
 END
