@@ -40,12 +40,12 @@ BEGIN
 		Name VARCHAR(100) NOT NULL,
 		NoStreet VARCHAR(10),
 		Street VARCHAR(100),
-		PostalCode VACHAR(10)
+		PostalCode VARCHAR(10)
 	);
 
 END
 
-/*Table pour la coopérative*/
+/*Table pour la Manager */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_NAME = 'Manager'))
