@@ -13,7 +13,7 @@ BEGIN
 END
 
 
-/* Table pour Compte ﾉtudiant */
+/* Table pour Compte étudiant */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_NAME = 'Student'))
@@ -99,7 +99,7 @@ BEGIN
 	VALUES(2,'Supprimer','Delete')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(1,'Retour','Retour ・la page pr馗馘ente')
+	VALUES(1,'Retour','Retour ・la page précédente')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Retour','Back to the last page')
@@ -117,7 +117,7 @@ BEGIN
 	VALUES(2,'Connexion','Log in')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(1,'Deconnexion','D馗onnexion')
+	VALUES(1,'Deconnexion','Déonnexion')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Deconnexion','Log out')
