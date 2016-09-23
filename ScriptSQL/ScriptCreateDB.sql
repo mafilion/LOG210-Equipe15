@@ -38,6 +38,9 @@ BEGIN
 	(
 		IDCooperative INT PRIMARY KEY IDENTITY(1,1),
 		Name VARCHAR(100) NOT NULL,
+		NoStreet VARCHAR(10),
+		Street VARCHAR(100),
+		PostalCode VACHAR(10)
 	);
 
 END
