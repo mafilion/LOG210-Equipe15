@@ -135,7 +135,7 @@ BEGIN
 	VALUES(1,'Prenom', 'Prénom')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(2,'Nom','First Name')
+	VALUES(2,'Prenom','First Name')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(1,'Courriel', 'Adresse courriel')
@@ -160,6 +160,12 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Gestionnaire','Manager')
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'MotDePasse','Mot de passe')
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'MotDePasse','Password')
 
 
 

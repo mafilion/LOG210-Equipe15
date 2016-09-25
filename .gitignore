@@ -2,3 +2,5 @@ LibraryManagement2/LibraryManagement2/Web.config
 LibraryManagement2/LibraryManagement2/Models/ModelDB.edmx
 LibraryManagement2/LibraryManagement2/Models/ModelDB.Designer.cs
 LibraryManagement2/LibraryManagement2/Models/ModelDB.Context.cs
+*.dll
+LibraryManagement2/LibraryManagement2.Tests/bin/Debug/ApplicationInsights.config
