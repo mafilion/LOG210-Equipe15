@@ -6,6 +6,9 @@
     </Key>
     <Property Name="IDCooperative" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NoStreet" Type="varchar" MaxLength="10" />
+    <Property Name="Street" Type="varchar" MaxLength="100" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>
@@ -45,7 +48,7 @@
     <Property Name="PhoneNumber" Type="varchar" MaxLength="12" Nullable="false" />
     <Property Name="StudentPassword" Type="varchar" MaxLength="25" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Manager__IDCoope__173876EA">
+  <Association Name="FK__Manager__IDCoope__30F848ED">
     <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
     <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
     <ReferentialConstraint>
@@ -63,7 +66,7 @@
     <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Manager__IDCoope__173876EA" Association="Self.FK__Manager__IDCoope__173876EA">
+    <AssociationSet Name="FK__Manager__IDCoope__30F848ED" Association="Self.FK__Manager__IDCoope__30F848ED">
       <End Role="Cooperative" EntitySet="Cooperative" />
       <End Role="Manager" EntitySet="Manager" />
     </AssociationSet>

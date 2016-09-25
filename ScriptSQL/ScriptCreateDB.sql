@@ -167,6 +167,9 @@ BEGIN
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'MotDePasse','Password')
 
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Langues','EN')
 
-
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Langues','FR')
 END
