@@ -6,6 +6,9 @@
     </Key>
     <Property Name="IDCooperative" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NoStreet" Type="varchar" MaxLength="10" />
+    <Property Name="Street" Type="varchar" MaxLength="100" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>

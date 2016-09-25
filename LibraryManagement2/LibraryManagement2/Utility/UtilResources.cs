@@ -23,15 +23,15 @@ namespace LibraryManagement2.Utils
         {
             switch (language)
             {
-                case "Fr" :
+                case "Fr":
                     IDLanguage = 1;
-                break;
+                    break;
                 case "En":
                     IDLanguage = 2;
-                break;
+                    break;
                 default:
                     IDLanguage = 1;
-                break;
+                    break;
             }
             Settings config = db.Settings.Single();
             config.IDLanguage = IDLanguage;
@@ -39,7 +39,7 @@ namespace LibraryManagement2.Utils
             db.SaveChanges();
         }
 
-  
+
         public static string GetLabel(string label)
         {
             Resources text = db.Resources.Where(c => c.TextName.Contains(label) && c.IDLanguage == IDLanguage).Single();
@@ -48,6 +48,6 @@ namespace LibraryManagement2.Utils
             else
                 return label;
         }
-        
+
     }
 }

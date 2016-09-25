@@ -7,6 +7,9 @@
     <Property Name="IDCooperative" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Manager" Relationship="Self.FK__Manager__IDCoope__173876EA" FromRole="Cooperative" ToRole="Manager" />
+    <Property Name="NoStreet" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>

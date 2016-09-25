@@ -4,6 +4,9 @@
     <EntitySetMapping Name="Cooperative">
       <EntityTypeMapping TypeName="libraryManagementModel.Cooperative">
         <MappingFragment StoreEntitySet="Cooperative">
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="NoStreet" ColumnName="NoStreet" />
           <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
