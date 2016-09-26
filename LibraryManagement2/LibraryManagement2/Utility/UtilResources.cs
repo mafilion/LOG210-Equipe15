@@ -9,29 +9,30 @@ namespace LibraryManagement2.Utils
 {
     public static class UtilResources
     {
-        private static libraryManagementEntities db = new libraryManagementEntities();
         private static int IDLanguage;
 
         public static void CreateInstance()
         {
             //Aller le chercher en BD et le set
+            libraryManagementEntities db = new libraryManagementEntities();
             Settings config = db.Settings.Single();
             IDLanguage = config.IDLanguage;
         }
 
         public static void ChangeLanguage(string language)
         {
+            libraryManagementEntities db = new libraryManagementEntities();
             switch (language)
             {
-                case "Fr":
+                case "Fr" :
                     IDLanguage = 1;
-                    break;
+                break;
                 case "En":
                     IDLanguage = 2;
-                    break;
+                break;
                 default:
                     IDLanguage = 1;
-                    break;
+                break;
             }
             Settings config = db.Settings.Single();
             config.IDLanguage = IDLanguage;
@@ -39,15 +40,32 @@ namespace LibraryManagement2.Utils
             db.SaveChanges();
         }
 
+        public static void ChangeLanguageTwo()
+        {
+            libraryManagementEntities db = new libraryManagementEntities();
+            Settings config = db.Settings.Single();
+            if (config.IDLanguage == 1)
+            {
+                IDLanguage = 2;
+            }
+            else
+            {
+                IDLanguage = 1;
+            }
+            config.IDLanguage = IDLanguage;
+            db.Entry(config).State = EntityState.Modified;
+            db.SaveChanges();
+        }
 
         public static string GetLabel(string label)
         {
-            Resources text = db.Resources.Where(c => c.TextName.Contains(label) && c.IDLanguage == IDLanguage).Single();
+            libraryManagementEntities db = new libraryManagementEntities();
+            Resources text = db.Resources.Where(c => c.TextName == label && c.IDLanguage == IDLanguage).Single();
             if (text.Description != null && text.Description != "")
                 return text.Description;
             else
                 return label;
         }
-
+        
     }
 }

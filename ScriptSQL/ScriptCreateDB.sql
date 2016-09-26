@@ -40,7 +40,8 @@ BEGIN
 		Name VARCHAR(100) NOT NULL,
 		NoStreet VARCHAR(10),
 		Street VARCHAR(100),
-		PostalCode VARCHAR(10)
+		PostalCode VARCHAR(10),
+		City VARCHAR(10)
 	);
 
 END
@@ -135,7 +136,7 @@ BEGIN
 	VALUES(1,'Prenom', 'Prénom')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(2,'Nom','First Name')
+	VALUES(2,'Prenom','First Name')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(1,'Courriel', 'Adresse courriel')
@@ -160,7 +161,16 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Gestionnaire','Manager')
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'MotDePasse','Mot de passe')
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'MotDePasse','Password')
 
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Langues','EN')
 
-
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Langues','FR')
 END

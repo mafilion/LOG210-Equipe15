@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using LibraryManagement2.Utils;
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -16,7 +17,9 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink(@UtilResources.GetLabel("Nouveau Compte"), "Index", "Students")</li>
+        <li>@Html.ActionLink(@UtilResources.GetLabel("Gestionnaire"), "Create", "Managers")</li>
+        <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a href="#">@UtilResources.GetLabel("Langues")</a></li>
     </ul>
 }

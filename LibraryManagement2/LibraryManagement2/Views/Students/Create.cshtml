@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>@UtilResources.GetLabel("Nouveau Compte")</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Student</h4>
+        <h4>@UtilResources.GetLabel("Etudiant")</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FirstName, @UtilResources.GetLabel("Prenom"), htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LastName, @UtilResources.GetLabel("Nom"), htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Email, @UtilResources.GetLabel("Courriel"), htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PhoneNumber, @UtilResources.GetLabel("Telephone"), htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StudentPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StudentPassword, @UtilResources.GetLabel("MotDePasse"), htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StudentPassword, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StudentPassword, "", new { @class = "text-danger" })
