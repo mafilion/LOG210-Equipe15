@@ -102,7 +102,7 @@ BEGIN
 	VALUES(2,'Supprimer','Delete')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
-	VALUES(1,'Retour','Retour ・la page précédente')
+	VALUES(1,'Retour','Retour à la page précédente')
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Retour','Back to the last page')
@@ -172,4 +172,10 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Langues','FR')
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Creer','Créer')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Creer','Create')
 END

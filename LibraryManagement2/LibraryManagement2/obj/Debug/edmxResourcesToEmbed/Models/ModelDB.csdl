@@ -23,15 +23,6 @@
     <Property Name="ManagerPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Cooperative" Relationship="Self.FK__Manager__IDCoope__173876EA" FromRole="Manager" ToRole="Cooperative" />
   </EntityType>
-  <EntityType Name="Resources">
-    <Key>
-      <PropertyRef Name="IDResources" />
-    </Key>
-    <Property Name="IDResources" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDLanguage" Type="Int32" Nullable="false" />
-    <Property Name="TextName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
   <EntityType Name="Settings">
     <Key>
       <PropertyRef Name="IDSettings" />
@@ -65,12 +56,21 @@
   <EntityContainer Name="libraryManagementEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Cooperative" EntityType="Self.Cooperative" />
     <EntitySet Name="Manager" EntityType="Self.Manager" />
-    <EntitySet Name="Resources" EntityType="Self.Resources" />
     <EntitySet Name="Settings" EntityType="Self.Settings" />
     <EntitySet Name="Student" EntityType="Self.Student" />
     <AssociationSet Name="FK__Manager__IDCoope__173876EA" Association="Self.FK__Manager__IDCoope__173876EA">
       <End Role="Cooperative" EntitySet="Cooperative" />
       <End Role="Manager" EntitySet="Manager" />
     </AssociationSet>
+    <EntitySet Name="Resources" EntityType="libraryManagementModel.Resources" />
   </EntityContainer>
+  <EntityType Name="Resources">
+    <Key>
+      <PropertyRef Name="IDResources" />
+    </Key>
+    <Property Name="IDResources" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDLanguage" Type="Int32" Nullable="false" />
+    <Property Name="TextName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

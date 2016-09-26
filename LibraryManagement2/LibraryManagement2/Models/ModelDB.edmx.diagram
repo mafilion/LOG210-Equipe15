@@ -7,10 +7,10 @@
       <Diagram DiagramId="8c1f44957aeb4ee89b3043b908c4611f" Name="Diagram1">
         <EntityTypeShape EntityType="libraryManagementModel.Cooperative" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="libraryManagementModel.Manager" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="libraryManagementModel.Resources" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="libraryManagementModel.Settings" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="libraryManagementModel.Student" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="libraryManagementModel.FK__Manager__IDCoope__173876EA" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="libraryManagementModel.Resources" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

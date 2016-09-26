@@ -11,12 +11,18 @@
 
 <style type="text/css">
     Select {
-    background-color:#101010;
+    background-color:#222222;
     color: darkgray;
     Border: none;
     text-align: center;
     text-decoration: none;
+    line-height: 1.2;
+
     }
+
+    Select:hover { 
+    color: White;
+}
 </style>
 
 @if (Request.IsAuthenticated)
@@ -36,7 +42,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><br />@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts"})</li>
+        <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts" })</a></li>
         <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
         @Html.Hidden("StudentsNewAccount", Url.Action("Index", "Students"));

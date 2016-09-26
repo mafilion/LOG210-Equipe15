@@ -24,16 +24,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Resources">
-      <EntityTypeMapping TypeName="libraryManagementModel.Resources">
-        <MappingFragment StoreEntitySet="Resources">
-          <ScalarProperty Name="IDResources" ColumnName="IDResources" />
-          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
-          <ScalarProperty Name="TextName" ColumnName="TextName" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Settings">
       <EntityTypeMapping TypeName="libraryManagementModel.Settings">
         <MappingFragment StoreEntitySet="Settings">
@@ -51,6 +41,16 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resources">
+      <EntityTypeMapping TypeName="libraryManagementModel.Resources">
+        <MappingFragment StoreEntitySet="Resources">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TextName" ColumnName="TextName" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="IDResources" ColumnName="IDResources" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
