@@ -9,6 +9,16 @@
     };
 }
 
+<style type="text/css">
+    Select {
+    background-color:#101010;
+    color: darkgray;
+    Border: none;
+    text-align: center;
+    text-decoration: none;
+    }
+</style>
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -26,7 +36,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><br />@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts" })</li>
+        <li><br />@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts"})</li>
         <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
         @Html.Hidden("StudentsNewAccount", Url.Action("Index", "Students"));
