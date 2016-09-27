@@ -4,6 +4,26 @@
     ViewBag.Title = "Create";
 }
 
+<script type="text/javascript">
+   function passwordMatch() {
+       var pass1 = document.getElementById("StudentPassword").value;
+       var pass2 = document.getElementById("password2").value;
+    var ok = true;
+    if (pass1 != pass2) {
+        alert("Passwords Do not match");
+        document.getElementById("StudentPassword").style.borderColor = "#E34234";
+        document.getElementById("").style.borderColor = "#E34234";
+        ok = false;
+
+    }
+    else {
+        alert("Création du compte complété!");
+    }
+    return ok;
+}
+
+</script>
+
 <h2>@UtilResources.GetLabel("Nouveau Compte")</h2>
 
 
@@ -16,7 +36,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, @UtilResources.GetLabel("Prenom"), htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FirstName, @UtilResources.GetLabel("Prenom"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
@@ -24,7 +44,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastName, @UtilResources.GetLabel("Nom"), htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LastName, @UtilResources.GetLabel("Nom"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
@@ -32,7 +52,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, @UtilResources.GetLabel("Courriel"), htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Email, @UtilResources.GetLabel("Courriel"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -40,7 +60,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PhoneNumber, @UtilResources.GetLabel("Telephone"), htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PhoneNumber, @UtilResources.GetLabel("Telephone"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
@@ -48,16 +68,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StudentPassword, @UtilResources.GetLabel("MotDePasse"), htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StudentPassword, @UtilResources.GetLabel("MotDePasse"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.StudentPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.PasswordFor(model => model.StudentPassword, new { htmlAttributes = new { @class = "form-control", id= "password1", name = "password1" } })
                 @Html.ValidationMessageFor(model => model.StudentPassword, "", new { @class = "text-danger" })
+     
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("ConfirmMotDePasse"), htmlAttributes: new { @class = "control-label col-md-2", required="required" })
+            <div class="col-md-10">
+                <input type="password" id="password2" name="password2" class="form-control">
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@UtilResources.GetLabel("Creer")" class="btn btn-default" />
+                <input type="submit" value="@UtilResources.GetLabel("Creer")" class="btn btn-default" onclick="passwordMatch()"/>
             </div>
         </div>
     </div>
@@ -66,6 +94,10 @@
 <div>
     @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
 </div>
+
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

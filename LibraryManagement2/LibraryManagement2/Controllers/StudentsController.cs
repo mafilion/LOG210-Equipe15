@@ -18,9 +18,11 @@ namespace LibraryManagement2.Controllers
         // GET: Students
         public ActionResult Index()
         {
+            var studentn = db.Student.Include(m => m.Email);
             return View(db.Student.ToList());
         }
 
+        
         // GET: Students/Details/5
         public ActionResult Details(int? id)
         {
@@ -49,6 +51,7 @@ namespace LibraryManagement2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IDStudent,FirstName,LastName,Email,PhoneNumber,StudentPassword")] Student student)
         {
+     
             if (ModelState.IsValid)
             {
                 db.Student.Add(student);
@@ -123,6 +126,37 @@ namespace LibraryManagement2.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        // Valide si les informations entrés par l'utilisateur sont corrects
+        public bool validForm(StudentViewModels student)
+        {
+            bool valid = true;
+
+            //validation si les mots de passes sont pareils
+            if (Request.Form["password1"] == null || Request.Form["password2"] == null || (Request.Form["password2"] != Request.Form["password1"]))
+            {
+                valid = false;
+            }
+            /*
+            //validation si la cooprative existe déjà dans la base de données
+            if (db.Student.Any(o => o.FirstName == student.))
+            {
+                valid = false;
+            }
+
+            //validation pour le courriel
+            try
+            {
+                MailAddress m = new MailAddress(managerCoop.manager.Email);
+            }
+            catch (FormatException)
+            {
+                valid = false;
+            }
+            */
+
+            return valid;
         }
     }
 }
