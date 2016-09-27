@@ -25,6 +25,7 @@ namespace LibraryManagement2.Models
         public string NoStreet { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
+        public string City { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Manager> Manager { get; set; }

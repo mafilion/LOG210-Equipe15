@@ -40,7 +40,8 @@ BEGIN
 		Name VARCHAR(100) NOT NULL,
 		NoStreet VARCHAR(10),
 		Street VARCHAR(100),
-		PostalCode VARCHAR(10)
+		PostalCode VARCHAR(10),
+		City VARCHAR(100)
 	);
 
 END
@@ -178,4 +179,35 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Creer','Create')
+
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'NoRue', 'Numéro de rue')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'NoRue','Street number')
+	
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Rue', 'Rue')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Rue','Street')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'Ville', 'Ville')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'Ville','City')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'CodePostal', 'Code Postal')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'CodePostal','Postal Code')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(1,'CoopInfo', 'Information en rapport avec la coopérative')
+
+	INSERT INTO Resources (IDLanguage,TextName,Description)
+	VALUES(2,'CoopInfo','Cooperative information')
 END
