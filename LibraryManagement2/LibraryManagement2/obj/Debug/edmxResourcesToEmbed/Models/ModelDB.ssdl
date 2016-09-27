@@ -9,6 +9,7 @@
     <Property Name="NoStreet" Type="varchar" MaxLength="10" />
     <Property Name="Street" Type="varchar" MaxLength="100" />
     <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>

@@ -60,8 +60,8 @@ namespace LibraryManagement2.Utils
         public static string GetLabel(string label)
         {
             libraryManagementEntities db = new libraryManagementEntities();
-            Resources text = db.Resources.Where(c => c.TextName == label && c.IDLanguage == IDLanguage).Single();
-            if (text.Description != null && text.Description != "")
+            Resources text = db.Resources.Where(c => c.TextName == label && c.IDLanguage == IDLanguage).FirstOrDefault();
+            if (text != null)
                 return text.Description;
             else
                 return label;

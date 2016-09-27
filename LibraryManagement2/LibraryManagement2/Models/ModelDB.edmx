@@ -14,6 +14,7 @@
           <Property Name="NoStreet" Type="varchar" MaxLength="10" />
           <Property Name="Street" Type="varchar" MaxLength="100" />
           <Property Name="PostalCode" Type="varchar" MaxLength="10" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -90,6 +91,7 @@
           <Property Name="NoStreet" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -162,6 +164,7 @@
           <EntitySetMapping Name="Cooperative">
             <EntityTypeMapping TypeName="libraryManagementModel.Cooperative">
               <MappingFragment StoreEntitySet="Cooperative">
+                <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="NoStreet" ColumnName="NoStreet" />

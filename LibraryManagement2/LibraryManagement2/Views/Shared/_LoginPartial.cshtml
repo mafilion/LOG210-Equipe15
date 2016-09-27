@@ -1,5 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
 @using LibraryManagement2.Utils;
+
+@{
+    List<SelectListItem> selectList = new List<SelectListItem>()
+    {
+        new SelectListItem() {Text=UtilResources.GetLabel("Etudiant"), Value="Students"},
+        new SelectListItem() {Text=UtilResources.GetLabel("Gestionnaire"), Value="Managers" }
+    };
+}
+
+<style type="text/css">
+    Select {
+    background-color:#101010;
+    color: darkgray;
+    Border: none;
+    text-align: center;
+    text-decoration: none;
+    }
+</style>
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -17,9 +36,28 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink(@UtilResources.GetLabel("Nouveau Compte"), "Index", "Students")</li>
-        <li>@Html.ActionLink(@UtilResources.GetLabel("Gestionnaire"), "Create", "Managers")</li>
+        <li><br />@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts"})</li>
         <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        <li><a href="#">@UtilResources.GetLabel("Langues")</a></li>
+        <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
+        @Html.Hidden("StudentsNewAccount", Url.Action("Index", "Students"));
+        @Html.Hidden("ManagersNewAccount", Url.Action("Index", "Managers"));
     </ul>
 }
+
+<script type="text/javascript">
+$(document).ready(function (){
+    $('#newAccounts').change(function () {
+        switch ($(this).val()) {
+            case "Students":
+                var url = $("#StudentsNewAccount").val();
+                location.href = url;
+                break;
+            case "Managers":
+                var url = $("#ManagersNewAccount").val();
+                location.href = url;
+                break;
+            default:
+        }
+    });
+});
+</script>
