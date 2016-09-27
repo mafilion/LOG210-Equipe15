@@ -210,4 +210,12 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'CoopInfo','Cooperative information')
+	
+	INSERT INTO Ressources (IDLanguage, TextName, Description)
+	VALUES(1,'ConfirmMotDePasse', 'Confirmation du mot de passe')
+	
+	INSERT INTO Ressources (IDLanguage, TextName, Description)
+	VALUES(2,'ConfirmMotDePasse', 'Confirm your password')
+	
+	
 END

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LibraryManagement2.Models;
 using System.Net.Mail;
+using LibraryManagement2.Utils;
 
 namespace LibraryManagement2.Controllers
 {
@@ -57,7 +58,8 @@ namespace LibraryManagement2.Controllers
                 db.SaveChanges();
 
                 managerCoop.manager.IDCooperative = managerCoop.cooperative.IDCooperative;
-                managerCoop.manager.ManagerPassword = Request.Form["password1"];
+                managerCoop.manager.ManagerPassword = UtilResources.EncryptPassword(Request.Form["password1"]);
+
                 db.Manager.Add(managerCoop.manager);
                 db.SaveChanges();
 
