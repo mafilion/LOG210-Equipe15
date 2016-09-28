@@ -141,7 +141,7 @@ namespace LibraryManagement2.Controllers
             bool valid = true;
 
             //validation si les mots de passes sont pareils
-            if (Request.Form["password1"] == null || Request.Form["password2"] == null || (Request.Form["password2"] != Request.Form["password1"]))
+            if (Request.Form["password1"] == "" || Request.Form["password2"] == "" || (Request.Form["password2"] != Request.Form["password1"]))
             {
                 valid = false;
             }
