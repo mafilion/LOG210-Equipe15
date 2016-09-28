@@ -54,16 +54,24 @@ namespace LibraryManagement2.Controllers
         {
             if (ModelState.IsValid && validForm(managerCoop))
             {
-                db.Cooperative.Add(managerCoop.cooperative);
-                db.SaveChanges();
-
-                managerCoop.manager.IDCooperative = managerCoop.cooperative.IDCooperative;
+                // Si la coopérative existe, on ne l'ajoute pas en BD
+                if (managerCoop.manager.IDCooperative == 0 || managerCoop.manager.IDCooperative == null)
+                {
+                    db.Cooperative.Add(managerCoop.cooperative);
+                    db.SaveChanges();
+                    managerCoop.manager.IDCooperative = managerCoop.cooperative.IDCooperative;
+                }
+                
                 managerCoop.manager.ManagerPassword = UtilResources.EncryptPassword(Request.Form["password1"]);
 
                 db.Manager.Add(managerCoop.manager);
                 db.SaveChanges();
 
                 return RedirectToAction("Index","Home");
+            }
+            if(!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", UtilResources.GetLabel("Tous les champs doivent contenir une valeur"));
             }
             return View(managerCoop);
         }
@@ -144,12 +152,21 @@ namespace LibraryManagement2.Controllers
             if (Request.Form["password1"] == "" || Request.Form["password2"] == "" || (Request.Form["password2"] != Request.Form["password1"]))
             {
                 valid = false;
+                ModelState.AddModelError("", UtilResources.GetLabel("Les mots de passe ne correspondent pas"));
             }
 
-            //validation si la cooprative existe déjà dans la base de données
+            //validation si la cooperative existe déjà dans la base de données
             if(db.Cooperative.Any(o => o.Name == managerCoop.cooperative.Name))
             {
-                valid = false;
+                //Met à jour les données de la coopérative
+                Cooperative temp = db.Cooperative.Where(o => o.Name == managerCoop.cooperative.Name).First();
+                managerCoop.manager.IDCooperative = temp.IDCooperative;
+                temp.NoStreet = managerCoop.cooperative.NoStreet;
+                temp.Street = managerCoop.cooperative.Street;
+                temp.PostalCode = managerCoop.cooperative.PostalCode;
+                temp.City = managerCoop.cooperative.City;
+                db.Entry(temp).State = EntityState.Modified;
+                db.SaveChanges();
             }
 
             //validation pour le courriel
@@ -159,7 +176,15 @@ namespace LibraryManagement2.Controllers
             }
             catch (FormatException)
             {
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
                 valid = false;
+            }
+
+            // On regarde si l'email est déjà en BD
+            if (db.Manager.Any(o => o.Email == managerCoop.manager.Email))
+            {
+                valid = false;
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel est déjà utilisé"));
             }
 
             return valid;

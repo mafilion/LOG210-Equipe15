@@ -5,34 +5,13 @@
     ViewBag.Title = "Create";
 }
 
-<script type="text/javascript">
-    /* TO DO:
-        DONE - Le ViewModel n'est pas nécéssaire gab en avait besoin vu qu'il avait besoin d'accéder à la table Gestionnaire et Coopérative ce qui n'est pas ton cas.
-        DONE Validation De password (que ta commencé)
-        DONE Validation De téléphone
-        DONE TODO Validation de courriel
-        DONE La validation devrait être fait dans le contrôleur regarde du côté de gab il la fait
-        Pour ce qui est de comment afficher les validations voici un lien pour t'aider
-        http://stackoverflow.com/questions/20141102/mvc-4-return-error-message-from-controller-show-in-view
-        Petit conseil fait un input qui va être afficher seulement si il y a une erreur dans acomercialHtml.ValidationMessage("Error")
-        et met lerreur dans sa value et met un css avec texte rouge pour afficher l'erreur.
-
-        Autres
-        Je t'ai ajouté l'encryptage dans ton create il manque juste à lié le bon champ dedans.
-    */
-
-</script>
-
 <h2>@UtilResources.GetLabel("Nouveau Compte") @UtilResources.GetLabel("Etudiant")</h2>
-
-
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>@UtilResources.GetLabel("Etudiant")</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

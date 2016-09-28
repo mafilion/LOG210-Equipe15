@@ -180,7 +180,6 @@ BEGIN
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(2,'Creer','Create')
 
-	
 	INSERT INTO Resources (IDLanguage,TextName,Description)
 	VALUES(1,'NoRue', 'Numéro de rue')
 
@@ -216,12 +215,34 @@ BEGIN
 	
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'ConfirmMotDePasse', 'Password Confirmation')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Les mots de passe ne correspondent pas', 'Les mots de passe ne correspondent pas')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Les mots de passe ne correspondent pas', 'The password are not the same')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
-	VALUES(1,'Creer', 'Créer')
+	VALUES(1,'Numéro de téléphone doit être sous le format: xxx-xxx-xxxx', 'Numéro de téléphone doit être sous le format: xxx-xxx-xxxx')
 	
 	INSERT INTO Resources (IDLanguage, TextName, Description)
-	VALUES(2,'Creer', 'Create')
+	VALUES(2,'Numéro de téléphone doit être sous le format: xxx-xxx-xxxx', 'The telephone number have to follow the format: xxx-xxx-xxxx')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'L''adresse courriel n''est pas valide', 'L''adresse courriel n''est pas valide')
 	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'L''adresse courriel n''est pas valide','The email is not in a valid format')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'L''adresse courriel est déjà utilisé', 'L''adresse courriel est déjà utilisé')
 	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'L''adresse courriel est déjà utilisé','The email has already been used')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Tous les champs doivent contenir une valeur', 'Tous les champs doivent contenir une valeur')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Tous les champs doivent contenir une valeur','All field are required')
 END

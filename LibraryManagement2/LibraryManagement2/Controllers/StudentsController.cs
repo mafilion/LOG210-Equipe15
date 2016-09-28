@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using LibraryManagement2.Models;
 using LibraryManagement2.Utils;
 using System.Text.RegularExpressions;
-
+using System.Net.Mail;
 
 namespace LibraryManagement2.Controllers
 {
@@ -63,7 +63,10 @@ namespace LibraryManagement2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index","Home");
             }
-            //Ajouter les erreurs ici 
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", UtilResources.GetLabel("Tous les champs doivent contenir une valeur"));
+            }
             return View(student);
         }
 
@@ -142,7 +145,7 @@ namespace LibraryManagement2.Controllers
             if (Request.Form["password1"] == null || Request.Form["password2"] == null || (Request.Form["password2"] != Request.Form["password1"]))
             {
                 valid = false;
-                ModelState.AddModelError("", "Les mots de passe ne correspondent pas");
+                ModelState.AddModelError("", UtilResources.GetLabel("Les mots de passe ne correspondent pas"));
             }
             
 
@@ -159,46 +162,49 @@ namespace LibraryManagement2.Controllers
             }else
             {
                 valid = false;
-                ModelState.AddModelError("","Numéro de téléphone doit être sous le format: 444-555-6666");
+                ModelState.AddModelError("",UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
             }
 
 
             // Email validation
            
             string strEmail = Request.Form["Email"];
-             /*
-              
-            re1 = @"\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)";
+            /*
 
-            r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            m = r.Match(strIn);
-            if (m.Success)
+           re1 = @"\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)";
+
+           r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+           m = r.Match(strIn);
+           if (m.Success)
+           {
+               String int1 = m.Groups[1].ToString();
+               Console.Write("(" + int1.ToString() + ")" + "\n");
+           }
+           else
+           {
+               valid = false;
+               ModelState.AddModelError("", "L'adresse courriel n'est pas valide.");
+           }
+           */
+
+            //validation pour le courriel
+            try
             {
-                String int1 = m.Groups[1].ToString();
-                Console.Write("(" + int1.ToString() + ")" + "\n");
+                MailAddress mail = new MailAddress(strEmail);
             }
-            else
+            catch (FormatException)
             {
+                ModelState.AddModelError("",UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
                 valid = false;
-                ModelState.AddModelError("", "L'adresse courriel n'est pas valide.");
             }
-            */
+
             // On regarde si l'email est déjà en BD
-            if(db.Student.Any(o => o.Email == strEmail))
+            if (db.Student.Any(o => o.Email == strEmail))
             {
                 valid = false;
-                ModelState.AddModelError("", "L'adresse courriel est déjà utilisé.");
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel est déjà utilisé"));
             }
-
-
-
-
             return valid;
-
-
-
-
-
         }
     }
 }

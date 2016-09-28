@@ -16,7 +16,7 @@ namespace LibraryManagement2.Utils
         {
             //Aller le chercher en BD et le set
             libraryManagementEntities db = new libraryManagementEntities();
-            Settings config = db.Settings.Single();
+            Settings config = db.Settings.Single(); //Si plante ici mettre à jour la connexion du ModelDB!
             IDLanguage = config.IDLanguage;
         }
 
