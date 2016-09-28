@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LibraryManagement2.Models;
+using LibraryManagement2.Utils;
+using System.Text.RegularExpressions;
 
 
 namespace LibraryManagement2.Controllers
@@ -18,10 +20,9 @@ namespace LibraryManagement2.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var studentn = db.Student.Include(m => m.Email);
+            var student = db.Student.Include(m => m.Email);
             return View(db.Student.ToList());
         }
-
         
         // GET: Students/Details/5
         public ActionResult Details(int? id)
@@ -41,6 +42,7 @@ namespace LibraryManagement2.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+        
             return View();
         }
 
@@ -52,13 +54,16 @@ namespace LibraryManagement2.Controllers
         public ActionResult Create([Bind(Include = "IDStudent,FirstName,LastName,Email,PhoneNumber,StudentPassword")] Student student)
         {
      
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && validForm())
             {
+                student.StudentPassword = UtilResources.EncryptPassword(Request.Form["password1"]);
+
+            
                 db.Student.Add(student);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
-
+            //Ajouter les erreurs ici 
             return View(student);
         }
 
@@ -129,7 +134,7 @@ namespace LibraryManagement2.Controllers
         }
 
         // Valide si les informations entrés par l'utilisateur sont corrects
-        public bool validForm(StudentViewModels student)
+        public bool validForm()
         {
             bool valid = true;
 
@@ -137,26 +142,63 @@ namespace LibraryManagement2.Controllers
             if (Request.Form["password1"] == null || Request.Form["password2"] == null || (Request.Form["password2"] != Request.Form["password1"]))
             {
                 valid = false;
+                ModelState.AddModelError("", "Les mots de passe ne correspondent pas");
             }
-            /*
-            //validation si la cooprative existe déjà dans la base de données
-            if (db.Student.Any(o => o.FirstName == student.))
+            
+
+            // Numero Telephone validation
+            string strIn = Request.Form["PhoneNumber"];
+            string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // RegEx du numero de telephone
+
+            Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            Match m = r.Match(strIn);
+            if (m.Success)
+            {
+                String int1 = m.Groups[1].ToString();
+                Console.Write("(" + int1.ToString() + ")" + "\n");
+            }else
             {
                 valid = false;
+                ModelState.AddModelError("","Numéro de téléphone doit être sous le format: 444-555-6666");
             }
 
-            //validation pour le courriel
-            try
+
+            // Email validation
+           
+            string strEmail = Request.Form["Email"];
+             /*
+              
+            re1 = @"\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)";
+
+            r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            m = r.Match(strIn);
+            if (m.Success)
             {
-                MailAddress m = new MailAddress(managerCoop.manager.Email);
+                String int1 = m.Groups[1].ToString();
+                Console.Write("(" + int1.ToString() + ")" + "\n");
             }
-            catch (FormatException)
+            else
             {
                 valid = false;
+                ModelState.AddModelError("", "L'adresse courriel n'est pas valide.");
             }
             */
+            // On regarde si l'email est déjà en BD
+            if(db.Student.Any(o => o.Email == strEmail))
+            {
+                valid = false;
+                ModelState.AddModelError("", "L'adresse courriel est déjà utilisé.");
+            }
+
+
+
 
             return valid;
+
+
+
+
+
         }
     }
 }
