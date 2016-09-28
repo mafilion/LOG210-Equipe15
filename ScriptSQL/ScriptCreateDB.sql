@@ -217,10 +217,10 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'ConfirmMotDePasse', 'Password Confirmation')
 
-	INSERT INTO Ressources (IDLanguage, TextName, Description)
+	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(1,'Creer', 'Créer')
 	
-	INSERT INTO Ressources (IDLanguage, TextName, Description)
+	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Creer', 'Create')
 	
 	
