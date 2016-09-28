@@ -170,11 +170,19 @@ namespace LibraryManagement2.Controllers
             }
 
             //validation pour le courriel
-            try
+            if (managerCoop.manager.Email != "" || managerCoop.manager.Email != null)
             {
-                MailAddress m = new MailAddress(managerCoop.manager.Email);
+                try
+                {
+                    MailAddress mail = new MailAddress(managerCoop.manager.Email);
+                }
+                catch (FormatException)
+                {
+                    ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
+                    valid = false;
+                }
             }
-            catch (FormatException)
+            else
             {
                 ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
                 valid = false;

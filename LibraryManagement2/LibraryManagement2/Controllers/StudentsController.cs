@@ -188,13 +188,21 @@ namespace LibraryManagement2.Controllers
            */
 
             //validation pour le courriel
-            try
+            if (strEmail != "" || strEmail != null)
             {
-                MailAddress mail = new MailAddress(strEmail);
+                try
+                {
+                    MailAddress mail = new MailAddress(strEmail);
+                }
+                catch (FormatException)
+                {
+                    ModelState.AddModelError("",UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
+                    valid = false;
+                }
             }
-            catch (FormatException)
+            else
             {
-                ModelState.AddModelError("",UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
                 valid = false;
             }
 
