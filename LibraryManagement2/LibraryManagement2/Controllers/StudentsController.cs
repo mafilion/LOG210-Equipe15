@@ -142,27 +142,13 @@ namespace LibraryManagement2.Controllers
             if (Request.Form["password1"] == null || Request.Form["password2"] == null || (Request.Form["password2"] != Request.Form["password1"]))
             {
                 valid = false;
+                ModelState.AddModelError("", "Les mots de passe ne correspondent pas");
             }
-
-
-            // Numero Telephone validation
-            /*
-            try
-            {
-                string strIn = Request.Form["PhoneNumber"];
-                Regex.IsMatch(strIn,
-                    @"^[1 - 9]\d$",
-                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
-            } catch (RegexMatchTimeoutException)
-            {
-                valid = false;
-                
-            }
-            */
+            
 
             // Numero Telephone validation
             string strIn = Request.Form["PhoneNumber"];
-            string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // Integer Number
+            string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // RegEx du numero de telephone
 
             Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             Match m = r.Match(strIn);
@@ -173,6 +159,35 @@ namespace LibraryManagement2.Controllers
             }else
             {
                 valid = false;
+                ModelState.AddModelError("","Numéro de téléphone doit être sous le format: 444-555-6666");
+            }
+
+
+            // Email validation
+           
+            string strEmail = Request.Form["Email"];
+             /*
+              
+            re1 = @"\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)";
+
+            r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            m = r.Match(strIn);
+            if (m.Success)
+            {
+                String int1 = m.Groups[1].ToString();
+                Console.Write("(" + int1.ToString() + ")" + "\n");
+            }
+            else
+            {
+                valid = false;
+                ModelState.AddModelError("", "L'adresse courriel n'est pas valide.");
+            }
+            */
+            // On regarde si l'email est déjà en BD
+            if(db.Student.Any(o => o.Email == strEmail))
+            {
+                valid = false;
+                ModelState.AddModelError("", "L'adresse courriel est déjà utilisé.");
             }
 
 
