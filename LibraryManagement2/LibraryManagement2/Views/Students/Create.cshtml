@@ -1,15 +1,16 @@
 ﻿@model LibraryManagement2.Models.Student
 @using LibraryManagement2.Utils;
+@using System.Text.RegularExpressions;
 @{
     ViewBag.Title = "Create";
 }
 
 <script type="text/javascript">
     /* TO DO:
-        Le ViewModel n'est pas nécéssaire gab en avait besoin vu qu'il avait besoin d'accéder à la table Gestionnaire et Coopérative ce qui n'est pas ton cas.
-        Validation De password (que ta commencé)
-        Validation De téléphone
-        Validation de courriel
+        DONE - Le ViewModel n'est pas nécéssaire gab en avait besoin vu qu'il avait besoin d'accéder à la table Gestionnaire et Coopérative ce qui n'est pas ton cas.
+        DONE Validation De password (que ta commencé)
+        DONE Validation De téléphone
+        TODO Validation de courriel
         La validation devrait être fait dans le contrôleur regarde du côté de gab il la fait
         Pour ce qui est de comment afficher les validations voici un lien pour t'aider
         http://stackoverflow.com/questions/20141102/mvc-4-return-error-message-from-controller-show-in-view
@@ -17,25 +18,8 @@
         et met lerreur dans sa value et met un css avec texte rouge pour afficher l'erreur.
 
         Autres
-        Ton champ mot de passe n'a pas la même apparence que l'ai autres. Gab ma dit qu'il avait fait un tweak pour contourner sa je te laisse regarder.
         Je t'ai ajouté l'encryptage dans ton create il manque juste à lié le bon champ dedans.
     */
-   function passwordMatch() {
-       var pass1 = document.getElementById("StudentPassword").value;
-       var pass2 = document.getElementById("password2").value;
-    var ok = true;
-    if (pass1 != pass2) {
-        alert("Passwords Do not match");
-        document.getElementById("StudentPassword").style.borderColor = "#E34234";
-        document.getElementById("").style.borderColor = "#E34234";
-        ok = false;
-
-    }
-    else {
-        alert("Création du compte complété!");
-    }
-    return ok;
-}
 
 </script>
 
@@ -85,9 +69,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StudentPassword, @UtilResources.GetLabel("MotDePasse")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.StudentPassword, new { htmlAttributes = new { @class = "form-control", id= "password1", name = "password1" } })
-                @Html.ValidationMessageFor(model => model.StudentPassword, "", new { @class = "text-danger" })
-     
+                <input type="password" id="password1" name="password1" class="form-control"> 
             </div>
         </div>
 

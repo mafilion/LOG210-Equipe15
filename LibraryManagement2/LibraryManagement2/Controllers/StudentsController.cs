@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LibraryManagement2.Models;
 using LibraryManagement2.Utils;
+using System.Text.RegularExpressions;
 
 
 namespace LibraryManagement2.Controllers
@@ -19,10 +20,9 @@ namespace LibraryManagement2.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var studentn = db.Student.Include(m => m.Email);
+            var student = db.Student.Include(m => m.Email);
             return View(db.Student.ToList());
         }
-
         
         // GET: Students/Details/5
         public ActionResult Details(int? id)
@@ -42,6 +42,7 @@ namespace LibraryManagement2.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+        
             return View();
         }
 
@@ -53,9 +54,11 @@ namespace LibraryManagement2.Controllers
         public ActionResult Create([Bind(Include = "IDStudent,FirstName,LastName,Email,PhoneNumber,StudentPassword")] Student student)
         {
      
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && validForm())
             {
-                //student.StudentPassword = UtilResources.EncryptPassword(Request.Form["password1"]);
+                student.StudentPassword = UtilResources.EncryptPassword(Request.Form["password1"]);
+
+            
                 db.Student.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index","Home");
@@ -131,7 +134,7 @@ namespace LibraryManagement2.Controllers
         }
 
         // Valide si les informations entrés par l'utilisateur sont corrects
-        public bool validForm(StudentViewModels student)
+        public bool validForm()
         {
             bool valid = true;
 
@@ -140,25 +143,47 @@ namespace LibraryManagement2.Controllers
             {
                 valid = false;
             }
-            /*
-            //validation si la cooprative existe déjà dans la base de données
-            if (db.Student.Any(o => o.FirstName == student.))
-            {
-                valid = false;
-            }
 
-            //validation pour le courriel
+
+            // Numero Telephone validation
+            /*
             try
             {
-                MailAddress m = new MailAddress(managerCoop.manager.Email);
-            }
-            catch (FormatException)
+                string strIn = Request.Form["PhoneNumber"];
+                Regex.IsMatch(strIn,
+                    @"^[1 - 9]\d$",
+                    RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            } catch (RegexMatchTimeoutException)
             {
                 valid = false;
+                
             }
             */
 
+            // Numero Telephone validation
+            string strIn = Request.Form["PhoneNumber"];
+            string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // Integer Number
+
+            Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            Match m = r.Match(strIn);
+            if (m.Success)
+            {
+                String int1 = m.Groups[1].ToString();
+                Console.Write("(" + int1.ToString() + ")" + "\n");
+            }else
+            {
+                valid = false;
+            }
+
+
+
+
             return valid;
+
+
+
+
+
         }
     }
 }
