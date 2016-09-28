@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LibraryManagement2.Models;
+using LibraryManagement2.Utils;
 
 
 namespace LibraryManagement2.Controllers
@@ -54,11 +55,12 @@ namespace LibraryManagement2.Controllers
      
             if (ModelState.IsValid)
             {
+                //student.StudentPassword = UtilResources.EncryptPassword(Request.Form["password1"]);
                 db.Student.Add(student);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
-
+            //Ajouter les erreurs ici 
             return View(student);
         }
 

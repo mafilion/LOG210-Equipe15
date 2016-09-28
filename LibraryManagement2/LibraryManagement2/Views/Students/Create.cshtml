@@ -5,6 +5,21 @@
 }
 
 <script type="text/javascript">
+    /* TO DO:
+        Le ViewModel n'est pas nécéssaire gab en avait besoin vu qu'il avait besoin d'accéder à la table Gestionnaire et Coopérative ce qui n'est pas ton cas.
+        Validation De password (que ta commencé)
+        Validation De téléphone
+        Validation de courriel
+        La validation devrait être fait dans le contrôleur regarde du côté de gab il la fait
+        Pour ce qui est de comment afficher les validations voici un lien pour t'aider
+        http://stackoverflow.com/questions/20141102/mvc-4-return-error-message-from-controller-show-in-view
+        Petit conseil fait un input qui va être afficher seulement si il y a une erreur dans acomercialHtml.ValidationMessage("Error")
+        et met lerreur dans sa value et met un css avec texte rouge pour afficher l'erreur.
+
+        Autres
+        Ton champ mot de passe n'a pas la même apparence que l'ai autres. Gab ma dit qu'il avait fait un tweak pour contourner sa je te laisse regarder.
+        Je t'ai ajouté l'encryptage dans ton create il manque juste à lié le bon champ dedans.
+    */
    function passwordMatch() {
        var pass1 = document.getElementById("StudentPassword").value;
        var pass2 = document.getElementById("password2").value;
@@ -24,7 +39,7 @@
 
 </script>
 
-<h2>@UtilResources.GetLabel("Nouveau Compte")</h2>
+<h2>@UtilResources.GetLabel("Nouveau Compte") @UtilResources.GetLabel("Etudiant")</h2>
 
 
 @using (Html.BeginForm()) 
@@ -36,7 +51,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, @UtilResources.GetLabel("Prenom"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            @Html.LabelFor(model => model.FirstName, @UtilResources.GetLabel("Prenom")+" :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
@@ -44,7 +59,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastName, @UtilResources.GetLabel("Nom"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            @Html.LabelFor(model => model.LastName, @UtilResources.GetLabel("Nom")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
@@ -52,7 +67,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, @UtilResources.GetLabel("Courriel"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            @Html.LabelFor(model => model.Email, @UtilResources.GetLabel("Courriel")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -60,7 +75,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PhoneNumber, @UtilResources.GetLabel("Telephone"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            @Html.LabelFor(model => model.PhoneNumber, @UtilResources.GetLabel("Telephone")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
@@ -68,7 +83,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StudentPassword, @UtilResources.GetLabel("MotDePasse"), htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            @Html.LabelFor(model => model.StudentPassword, @UtilResources.GetLabel("MotDePasse")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
             <div class="col-md-10">
                 @Html.PasswordFor(model => model.StudentPassword, new { htmlAttributes = new { @class = "form-control", id= "password1", name = "password1" } })
                 @Html.ValidationMessageFor(model => model.StudentPassword, "", new { @class = "text-danger" })
@@ -77,7 +92,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label(@UtilResources.GetLabel("ConfirmMotDePasse"), htmlAttributes: new { @class = "control-label col-md-2", required="required" })
+            @Html.Label(@UtilResources.GetLabel("ConfirmMotDePasse")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required="required" })
             <div class="col-md-10">
                 <input type="password" id="password2" name="password2" class="form-control">
             </div>
@@ -92,7 +107,7 @@
 }
 
 <div>
-    @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
+    @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index","Home")
 </div>
 
 

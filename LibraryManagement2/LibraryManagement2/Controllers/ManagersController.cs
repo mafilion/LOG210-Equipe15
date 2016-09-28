@@ -63,7 +63,7 @@ namespace LibraryManagement2.Controllers
                 db.Manager.Add(managerCoop.manager);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             return View(managerCoop);
         }
