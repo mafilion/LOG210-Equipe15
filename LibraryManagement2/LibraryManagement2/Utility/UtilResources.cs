@@ -12,7 +12,6 @@ namespace LibraryManagement2.Utils
     public static class UtilResources
     {
         private static int IDLanguage;
-
         public static void CreateInstance()
         {
             //Aller le chercher en BD et le set

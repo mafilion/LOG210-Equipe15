@@ -25,7 +25,7 @@ BEGIN
 		LastName VARCHAR (100) NOT NULL,
 		Email VARCHAR(150) NOT NULL,
 		PhoneNumber VARCHAR(12) NOT NULL,
-		StudentPassword VARCHAR(50) NOT NULL
+		StudentPassword VARCHAR(1000) NOT NULL
 	);
 END
 
@@ -57,7 +57,7 @@ BEGIN
 		FirstName VARCHAR(100) NOT NULL,
 		LastName VARCHAR(100) NOT NULL,
 		Email VARCHAR(150) NOT NULL,
-		ManagerPassword VARCHAR(50) NOT NULL
+		ManagerPassword VARCHAR(1000) NOT NULL
 	)
 END
 
@@ -216,6 +216,12 @@ BEGIN
 	
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'ConfirmMotDePasse', 'Password Confirmation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Creer', 'Créer')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Creer', 'Create')
 	
 	
 END

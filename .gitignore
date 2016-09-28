@@ -14,8 +14,3 @@ LibraryManagement2/LibraryManagement2/Views/Managers/Create.cshtml
 LibraryManagement2/.vs/config/applicationhost.config
 LibraryManagement2/LibraryManagement2/obj/Debug/TempPE/Models.ModelDB.Designer.cs.dll
 LibraryManagement2/LibraryManagement2/obj/Debug/LibraryManagement2.dll
-LibraryManagement2/LibraryManagement2/Web.config
-*.ssdl
-LibraryManagement2/LibraryManagement2/obj/Debug/edmxResourcesToEmbed/Models/ModelDB.ssdl
-LibraryManagement2/LibraryManagement2/Web.config
-LibraryManagement2/packages/Microsoft.AspNet.WebApi.Core.5.2.3/Content/web.config.transform

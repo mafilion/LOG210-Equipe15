@@ -54,7 +54,7 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="StudentPassword" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Manager__IDCoope__534D60F1">
+        <Association Name="FK__Manager__IDCoope__5BE2A6F2">
           <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
           <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -72,7 +72,7 @@
           <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Manager__IDCoope__534D60F1" Association="Self.FK__Manager__IDCoope__534D60F1">
+          <AssociationSet Name="FK__Manager__IDCoope__5BE2A6F2" Association="Self.FK__Manager__IDCoope__5BE2A6F2">
             <End Role="Cooperative" EntitySet="Cooperative" />
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
