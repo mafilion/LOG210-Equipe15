@@ -147,47 +147,40 @@ namespace LibraryManagement2.Controllers
                 valid = false;
                 ModelState.AddModelError("", UtilResources.GetLabel("Les mots de passe ne correspondent pas"));
             }
-            
+
 
             // Numero Telephone validation
-            string strIn = Request.Form["PhoneNumber"];
-            string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // RegEx du numero de telephone
+            // L'utilisateur à le choix de ne pas écrire son # de téléphone 
+            if (Request.Form["PhoneNumber"] != "")
+            {
+                // À l'aide des Regular Expression, on regarde si le numéro de téléphone est du bon format. 
+                string strIn = Request.Form["PhoneNumber"];
+                string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // RegEx du numero de telephone
 
-            Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            Match m = r.Match(strIn);
-            if (m.Success)
-            {
-                String int1 = m.Groups[1].ToString();
-                Console.Write("(" + int1.ToString() + ")" + "\n");
-            }else
-            {
-                valid = false;
-                ModelState.AddModelError("",UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
+                Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Match m = r.Match(strIn);
+                if (m.Success)
+                {
+                    String int1 = m.Groups[1].ToString();
+                    Console.Write("(" + int1.ToString() + ")" + "\n");
+
+                    // On doit également vérifier si le numéro n'est pas déjà dans la base de donnée
+                    if (db.Student.Any(o => o.PhoneNumber == strIn))
+                    {
+                        valid = false;
+                        ModelState.AddModelError("", UtilResources.GetLabel("Ce numéro de téléphone est déjà utilisé"));
+                    }
+                }
+                else
+                {
+                    valid = false;
+                    ModelState.AddModelError("", UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
+                }
             }
 
-
             // Email validation
-           
             string strEmail = Request.Form["Email"];
-            /*
 
-           re1 = @"\w + ([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)";
-
-           r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-           m = r.Match(strIn);
-           if (m.Success)
-           {
-               String int1 = m.Groups[1].ToString();
-               Console.Write("(" + int1.ToString() + ")" + "\n");
-           }
-           else
-           {
-               valid = false;
-               ModelState.AddModelError("", "L'adresse courriel n'est pas valide.");
-           }
-           */
-
-            //validation pour le courriel
             if (strEmail != "" || strEmail != null)
             {
                 try

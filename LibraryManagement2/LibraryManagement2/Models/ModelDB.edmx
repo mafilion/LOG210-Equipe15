@@ -25,7 +25,7 @@
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="ManagerPassword" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ManagerPassword" Type="varchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="Resources">
           <Key>
@@ -51,10 +51,10 @@
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="StudentPassword" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="12" />
+          <Property Name="StudentPassword" Type="varchar" MaxLength="1000" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Manager__IDCoope__5BE2A6F2">
+        <Association Name="FK__Manager__IDCoope__17036CC0">
           <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
           <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -72,7 +72,7 @@
           <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Manager__IDCoope__5BE2A6F2" Association="Self.FK__Manager__IDCoope__5BE2A6F2">
+          <AssociationSet Name="FK__Manager__IDCoope__17036CC0" Association="Self.FK__Manager__IDCoope__17036CC0">
             <End Role="Cooperative" EntitySet="Cooperative" />
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
@@ -102,7 +102,7 @@
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ManagerPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ManagerPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cooperative" Relationship="Self.FK__Manager__IDCoope__173876EA" FromRole="Manager" ToRole="Cooperative" />
         </EntityType>
         <EntityType Name="Settings">
@@ -120,8 +120,8 @@
           <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="StudentPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="FK__Manager__IDCoope__173876EA">
           <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />

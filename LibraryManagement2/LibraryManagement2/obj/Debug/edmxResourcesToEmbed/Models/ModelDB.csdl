@@ -21,7 +21,7 @@
     <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ManagerPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ManagerPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Cooperative" Relationship="Self.FK__Manager__IDCoope__173876EA" FromRole="Manager" ToRole="Cooperative" />
   </EntityType>
   <EntityType Name="Settings">
@@ -39,8 +39,8 @@
     <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="StudentPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <Association Name="FK__Manager__IDCoope__173876EA">
     <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />

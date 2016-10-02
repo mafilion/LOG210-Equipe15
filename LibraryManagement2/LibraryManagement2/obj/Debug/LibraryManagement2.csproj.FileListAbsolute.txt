@@ -249,3 +249,4 @@ C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManage
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2\bin\System.Net.Http.Formatting.xml
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2\bin\System.Web.Http.xml
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2\bin\System.Web.Http.WebHost.xml
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2\obj\Debug\LibraryManagement2.csprojResolveAssemblyReference.cache

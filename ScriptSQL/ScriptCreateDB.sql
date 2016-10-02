@@ -24,7 +24,7 @@ BEGIN
 		FirstName VARCHAR(100) NOT NULL,
 		LastName VARCHAR (100) NOT NULL,
 		Email VARCHAR(150) NOT NULL,
-		PhoneNumber VARCHAR(12) NOT NULL,
+		PhoneNumber VARCHAR(12),
 		StudentPassword VARCHAR(1000) NOT NULL
 	);
 END
@@ -245,4 +245,11 @@ BEGIN
 	
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Tous les champs doivent contenir une valeur','All field are required')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Ce numéro de téléphone est déjà utilisé','Ce numéro de téléphone est déjà utilisé')
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Ce numéro de téléphone est déjà utilisé','This phone number is already being used')
+
+	
 END
