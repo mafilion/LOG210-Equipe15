@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement2", "LibraryManagement2\LibraryManagement2.csproj", "{91D617FE-924F-49F2-8CAE-FDFA9C5C2F2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement", "LibraryManagement2\LibraryManagement.csproj", "{91D617FE-924F-49F2-8CAE-FDFA9C5C2F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement2.Tests", "LibraryManagement2.Tests\LibraryManagement2.Tests.csproj", "{C6155994-FAA8-4FD7-A9BE-4F53548CA74C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagement.Tests", "LibraryManagement2.Tests\LibraryManagement.Tests.csproj", "{C6155994-FAA8-4FD7-A9BE-4F53548CA74C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

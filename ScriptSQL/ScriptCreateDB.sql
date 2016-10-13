@@ -248,10 +248,75 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(1,'Ce numéro de téléphone est déjà utilisé','Ce numéro de téléphone est déjà utilisé')
+
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Ce numéro de téléphone est déjà utilisé','This phone number is already being used')
 
-	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Ajouter un livre','Ajouter un livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Ajouter un livre','Add a new book')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Nouveau livre','Nouveau Livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Nouveau livre','New Book')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Numero ISBN','Numéro ISBN')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Numero ISBN','ISBN Number')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Numero EAN','Numéro EAN(Code-barres)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Numero EAN','EAN Number(Barcode)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Numero UPC','Numéro UPC(Code-barres)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Numero UPC','UPC Number(Barcode)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Titre','Titre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Titre','Title')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Nombre de pages','Nombre de pages')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Nombre de pages','Number of pages')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Prix neuf','Prix(Neuf)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Prix neuf','Price(New)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'État du livre','État du livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'État du livre','Book status')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Auteurs','Auteurs')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Auteurs','Author')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Auteur','Auteur')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Auteur','Author')
 END
 
 /*Table pour les états de livres*/

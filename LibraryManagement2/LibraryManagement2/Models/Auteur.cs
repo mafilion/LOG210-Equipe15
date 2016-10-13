@@ -12,13 +12,19 @@ namespace LibraryManagement2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class Auteur
     {
-        public int IDStudent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Auteur()
+        {
+            this.LivresAuteurs = new HashSet<LivresAuteurs>();
+        }
+    
+        public int IDAuteur { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string StudentPassword { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LivresAuteurs> LivresAuteurs { get; set; }
     }
 }

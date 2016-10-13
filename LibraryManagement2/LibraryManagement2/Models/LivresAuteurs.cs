@@ -12,13 +12,13 @@ namespace LibraryManagement2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class LivresAuteurs
     {
-        public int IDStudent { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string StudentPassword { get; set; }
+        public int IDLivresAuteurs { get; set; }
+        public int IDAuteur { get; set; }
+        public int IDLivre { get; set; }
+    
+        public virtual Auteur Auteur { get; set; }
+        public virtual Livre Livre { get; set; }
     }
 }

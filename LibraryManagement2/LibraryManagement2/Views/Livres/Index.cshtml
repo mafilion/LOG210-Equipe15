@@ -1,0 +1,63 @@
+﻿@model IEnumerable<LibraryManagement2.Models.Livre>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.noISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noEAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noUPC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nbPages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EtatLivre.Description)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.noISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noEAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noUPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nbPages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EtatLivre.Description)
+        </td>
+    </tr>
+}
+
+</table>

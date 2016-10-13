@@ -92,9 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibraryManagement2\LibraryManagement2.csproj">
+    <ProjectReference Include="..\LibraryManagement2\LibraryManagement.csproj">
       <Project>{91D617FE-924F-49F2-8CAE-FDFA9C5C2F2D}</Project>
-      <Name>LibraryManagement2</Name>
+      <Name>LibraryManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

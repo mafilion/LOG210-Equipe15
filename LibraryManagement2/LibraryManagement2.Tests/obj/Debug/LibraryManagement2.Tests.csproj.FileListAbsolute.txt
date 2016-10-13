@@ -111,3 +111,4 @@ C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManage
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2.Tests\obj\Debug\LibraryManagement2.Tests.csprojResolveAssemblyReference.cache
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2.Tests\obj\Debug\LibraryManagement2.Tests.dll
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2.Tests\obj\Debug\LibraryManagement2.Tests.pdb
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement2\LibraryManagement2.Tests\bin\Debug\fr\EntityFramework.resources.dll

@@ -12,22 +12,25 @@ namespace LibraryManagement2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cooperative
+    public partial class Livre
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cooperative()
+        public Livre()
         {
-            this.Manager = new HashSet<Manager>();
+            this.LivresAuteurs = new HashSet<LivresAuteurs>();
         }
     
-        public int IDCooperative { get; set; }
-        public string Name { get; set; }
-        public string NoStreet { get; set; }
-        public string Street { get; set; }
-        public string PostalCode { get; set; }
-        public string City { get; set; }
+        public int IDLivre { get; set; }
+        public string noISBN { get; set; }
+        public string noEAN { get; set; }
+        public string noUPC { get; set; }
+        public string Titre { get; set; }
+        public int nbPages { get; set; }
+        public double prix { get; set; }
+        public int IDEtatLivre { get; set; }
     
+        public virtual EtatLivre EtatLivre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manager> Manager { get; set; }
+        public virtual ICollection<LivresAuteurs> LivresAuteurs { get; set; }
     }
 }
