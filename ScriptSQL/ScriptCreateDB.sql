@@ -253,3 +253,65 @@ BEGIN
 
 	
 END
+
+/*Table pour les états de livres*/
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'EtatLivre'))
+BEGIN
+	CREATE TABLE EtatLivre(
+		IDEtatLivre INT PRIMARY KEY IDENTITY(1,1),
+		Description VARCHAR(MAX) NOT NULL,
+		PourcentagePrix float NOT NULL
+	)
+	/* Insertion des États */
+	INSERT INTO EtatLivre(Description,PourcentagePrix) VALUES ('Comme neuf',0.75);
+	INSERT INTO EtatLivre(Description,PourcentagePrix) VALUES ('Quelques pages pliés, utilisation d’un marqueur',0.50);
+	INSERT INTO EtatLivre(Description,PourcentagePrix) VALUES ('Livre très utilisé, pages plié, couverture endommagés',0.25);
+END
+
+
+/*Table pour les auteurs des livres*/
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'Auteur'))
+BEGIN
+	CREATE TABLE Auteur(
+		IDAuteur INT PRIMARY KEY IDENTITY(1,1),
+		FirstName VARCHAR(100) NOT NULL,
+		LastName VARCHAR(100) NOT NULL,
+	)
+END
+
+
+/*Table pour les livres ajouté par les étudiants */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'Livre'))
+BEGIN
+	CREATE TABLE Livre(
+		IDLivre INT PRIMARY KEY IDENTITY(1,1),
+		noISBN VARCHAR(50),
+		noEAN VARCHAR(50),
+		noUPC VARCHAR(50),
+		Titre varchar(300) NOT NULL,
+		nbPages int NOT NULL,
+		prix float NOT NULL,
+		IDEtatLivre INT FOREIGN KEY REFERENCES EtatLivre(IDEtatLivre) NOT NULL
+	)
+	CREATE UNIQUE NONCLUSTERED INDEX idxISBN on dbo.Livre(noISBN) WHERE noISBN IS NOT NULL;
+	CREATE UNIQUE NONCLUSTERED INDEX idxEAN on dbo.Livre(noEAN) WHERE noEAN IS NOT NULL;
+	CREATE UNIQUE NONCLUSTERED INDEX idxUPC on dbo.Livre(noUPC) WHERE noUPC IS NOT NULL;
+END
+
+/* Table pour la liaison Livre/Auteurs */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'LivresAuteurs'))
+BEGIN
+	CREATE TABLE LivresAuteurs(
+		IDLivresAuteurs INT PRIMARY KEY IDENTITY(1,1),
+		IDAuteur INT FOREIGN KEY REFERENCES Auteur(IDAuteur) NOT NULL,
+		IDLivre INT FOREIGN KEY REFERENCES Livre(IDLivre) NOT NULL
+	)
+END
