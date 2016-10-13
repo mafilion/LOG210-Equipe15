@@ -317,6 +317,30 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Auteur','Author')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Rechercher Livre','Rechercher un Livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Rechercher Livre','Search a Book')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Rechercher','Rechercher')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Rechercher','Search')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Numero ISBN/EAN/UPC','Numéro ISBN/EAN/UPC')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Numero ISBN/EAN/UPC','ISBN/EAN/UPC Number')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information du livre','Information du Livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information du livre','Book Information')
 END
 
 /*Table pour les états de livres*/
