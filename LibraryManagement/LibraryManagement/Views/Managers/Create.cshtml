@@ -1,0 +1,110 @@
+﻿@model LibraryManagement2.Models.ManagersCooperativesViewModels
+@using LibraryManagement2.Utils;
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@UtilResources.GetLabel("Nouveau Compte") @UtilResources.GetLabel("Gestionnaire")</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.manager.FirstName, @UtilResources.GetLabel("Prenom")+ " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.manager.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.manager.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.manager.LastName, @UtilResources.GetLabel("Nom") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.manager.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.manager.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.manager.Email, @UtilResources.GetLabel("Courriel") + " :",  htmlAttributes: new { @class = "control-label col-md-2", required="required"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.manager.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.manager.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.manager.ManagerPassword, @UtilResources.GetLabel("MotDePasse") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                <input type="password" id="password1" name="password1" class="form-control"> 
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("ConfirmMotDePasse") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                <input type="password" id="password2" name="password2" class="form-control"> 
+            </div>
+        </div>
+        <hr>
+        <h4>@UtilResources.GetLabel("CoopInfo")</h4>
+        <div class="form-group">
+            @Html.LabelFor(model => model.cooperative.Name, @UtilResources.GetLabel("Nom") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cooperative.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cooperative.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cooperative.NoStreet, @UtilResources.GetLabel("NoRue") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cooperative.NoStreet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cooperative.NoStreet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cooperative.Street, @UtilResources.GetLabel("Rue") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cooperative.Street, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cooperative.Street, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cooperative.City, @UtilResources.GetLabel("Ville") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cooperative.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cooperative.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cooperative.PostalCode,@UtilResources.GetLabel("CodePostal") + " :", htmlAttributes: new { @class = "control-label col-md-2", required = "required" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cooperative.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cooperative.PostalCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@UtilResources.GetLabel("Creer")" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index","Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

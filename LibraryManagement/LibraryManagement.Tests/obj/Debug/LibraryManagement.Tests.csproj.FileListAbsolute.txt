@@ -1,0 +1,1 @@
+C:\Users\marca\Documents\Visual Studio 2015\Projects\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.csprojResolveAssemblyReference.cache

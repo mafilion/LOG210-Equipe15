@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNet.Identity
+@using LibraryManagement2.Utils;
+
+@{
+    List<SelectListItem> selectList = new List<SelectListItem>()
+    {
+        new SelectListItem() {Text=UtilResources.GetLabel("Etudiant"), Value="Students"},
+        new SelectListItem() {Text=UtilResources.GetLabel("Gestionnaire"), Value="Managers" }
+    };
+}
+
+<style type="text/css">
+    Select {
+    background-color:#222222;
+    color: darkgray;
+    Border: none;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1.2;
+
+    }
+
+    Select:hover { 
+    color: White;
+}
+</style>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts" })</a></li>
+        <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
+        @Html.Hidden("StudentsNewAccount", Url.Action("Create", "Students"));
+        @Html.Hidden("ManagersNewAccount", Url.Action("Create", "Managers"));
+    </ul>
+}
+
+<script type="text/javascript">
+$(document).ready(function (){
+    $('#newAccounts').change(function () {
+        switch ($(this).val()) {
+            case "Students":
+                var url = $("#StudentsNewAccount").val();
+                location.href = url;
+                break;
+            case "Managers":
+                var url = $("#ManagersNewAccount").val();
+                location.href = url;
+                break;
+            default:
+        }
+    });
+});
+</script>
