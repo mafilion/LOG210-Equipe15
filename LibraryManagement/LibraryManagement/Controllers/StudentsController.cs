@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using LibraryManagement2.Models;
-using LibraryManagement2.Utils;
+using LibraryManagement.Models;
+using LibraryManagement.Utils;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
 using LibraryManagement.Models;
 
-namespace LibraryManagement2.Controllers
+namespace LibraryManagement.Controllers
 {
     public class StudentsController : Controller
     {

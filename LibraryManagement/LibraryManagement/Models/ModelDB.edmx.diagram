@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8c1f44957aeb4ee89b3043b908c4611f" Name="Diagram1">
-        <EntityTypeShape EntityType="libraryManagementModel.Cooperative" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="libraryManagementModel.Manager" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="libraryManagementModel.Settings" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="libraryManagementModel.Student" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="libraryManagementModel.FK__Manager__IDCoope__173876EA" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="libraryManagementModel.Resources" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="libraryManagementModel.Auteur" Width="1.5" PointX="9.625" PointY="5.5" />
-        <EntityTypeShape EntityType="libraryManagementModel.EtatLivre" Width="1.5" PointX="7.375" PointY="1.5" />
-        <EntityTypeShape EntityType="libraryManagementModel.Livre" Width="1.5" PointX="9.625" PointY="1" />
-        <EntityTypeShape EntityType="libraryManagementModel.LivresAuteurs" Width="1.5" PointX="11.875" PointY="1.5" />
-        <AssociationConnector Association="libraryManagementModel.FK__LivresAut__IDAut__3A81B327" />
-        <AssociationConnector Association="libraryManagementModel.FK__Livre__IDEtatLiv__37A5467C" />
-        <AssociationConnector Association="libraryManagementModel.FK__LivresAut__IDLiv__3B75D760" />
+      <Diagram DiagramId="98fecaa7ad414aadbadaa6a886c9c835" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryManagementModel.Auteur" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.EtatLivre" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Livre" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.LivresAuteurs" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Manager" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="LibraryManagementModel.FK__LivresAut__IDAut__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Manager__IDCoope__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Livre__IDEtatLiv__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementModel.FK__LivresAut__IDLiv__3B75D760" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

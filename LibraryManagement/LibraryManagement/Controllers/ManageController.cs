@@ -7,9 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LibraryManagement;
-using LibraryManagement2.Models;
+using LibraryManagement.Models;
 
-namespace LibraryManagement2.Controllers
+namespace LibraryManagement.Controllers
 {
     [Authorize]
     public class ManageController : Controller

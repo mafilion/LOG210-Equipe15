@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using LibraryManagement2.Models;
+using LibraryManagement.Models;
 using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace LibraryManagement2.Utils
+namespace LibraryManagement.Utils
 {
     public static class UtilResources
     {

@@ -8,10 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using LibraryManagement2.Models;
+using LibraryManagement.Models;
 using LibraryManagement;
 
-namespace LibraryManagement2.Controllers
+namespace LibraryManagement.Controllers
 {
     [Authorize]
     public class AccountController : Controller

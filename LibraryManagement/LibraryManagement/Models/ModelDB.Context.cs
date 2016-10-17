@@ -7,13 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LibraryManagement2.Models
+namespace LibraryManagement.Models
 {
-    using LibraryManagement.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class libraryManagementEntities : DbContext
     {
         public libraryManagementEntities()
@@ -26,14 +25,14 @@ namespace LibraryManagement2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cooperative> Cooperative { get; set; }
-        public virtual DbSet<Manager> Manager { get; set; }
-        public virtual DbSet<Settings> Settings { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<Resources> Resources { get; set; }
         public virtual DbSet<Auteur> Auteur { get; set; }
+        public virtual DbSet<Cooperative> Cooperative { get; set; }
         public virtual DbSet<EtatLivre> EtatLivre { get; set; }
         public virtual DbSet<Livre> Livre { get; set; }
         public virtual DbSet<LivresAuteurs> LivresAuteurs { get; set; }
+        public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<Resources> Resources { get; set; }
+        public virtual DbSet<Settings> Settings { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
     }
 }

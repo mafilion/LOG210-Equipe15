@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LibraryManagement2.Controllers
+namespace LibraryManagement.Controllers
 {
     public class HomeController : Controller
     {

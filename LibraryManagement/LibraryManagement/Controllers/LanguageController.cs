@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LibraryManagement2.Utils;
+using LibraryManagement.Utils;
 
-namespace LibraryManagement2.Controllers
+namespace LibraryManagement.Controllers
 {
     public class LanguageController : Controller
     {

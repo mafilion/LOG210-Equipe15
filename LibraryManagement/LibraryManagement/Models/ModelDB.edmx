@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="libraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Auteur">
           <Key>
             <PropertyRef Name="IDAuteur" />
@@ -139,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="libraryManagementModelStoreContainer">
+        <EntityContainer Name="LibraryManagementModelStoreContainer">
           <EntitySet Name="Auteur" EntityType="Self.Auteur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cooperative" EntityType="Self.Cooperative" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EtatLivre" EntityType="Self.EtatLivre" Schema="dbo" store:Type="Tables" />
@@ -166,21 +166,65 @@
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="libraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auteur">
+          <Key>
+            <PropertyRef Name="IDAuteur" />
+          </Key>
+          <Property Name="IDAuteur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LivresAuteurs" Relationship="Self.FK__LivresAut__IDAut__3A81B327" FromRole="Auteur" ToRole="LivresAuteurs" />
+        </EntityType>
         <EntityType Name="Cooperative">
           <Key>
             <PropertyRef Name="IDCooperative" />
           </Key>
           <Property Name="IDCooperative" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Manager" Relationship="Self.FK__Manager__IDCoope__173876EA" FromRole="Cooperative" ToRole="Manager" />
           <Property Name="NoStreet" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK__Manager__IDCoope__2A4B4B5E" FromRole="Cooperative" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="EtatLivre">
+          <Key>
+            <PropertyRef Name="IDEtatLivre" />
+          </Key>
+          <Property Name="IDEtatLivre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PourcentagePrix" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Livre" Relationship="Self.FK__Livre__IDEtatLiv__37A5467C" FromRole="EtatLivre" ToRole="Livre" />
+        </EntityType>
+        <EntityType Name="Livre">
+          <Key>
+            <PropertyRef Name="IDLivre" />
+          </Key>
+          <Property Name="IDLivre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="noISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="noEAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="noUPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Titre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nbPages" Type="Int32" Nullable="false" />
+          <Property Name="prix" Type="Double" Nullable="false" />
+          <Property Name="IDEtatLivre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EtatLivre" Relationship="Self.FK__Livre__IDEtatLiv__37A5467C" FromRole="Livre" ToRole="EtatLivre" />
+          <NavigationProperty Name="LivresAuteurs" Relationship="Self.FK__LivresAut__IDLiv__3B75D760" FromRole="Livre" ToRole="LivresAuteurs" />
+        </EntityType>
+        <EntityType Name="LivresAuteurs">
+          <Key>
+            <PropertyRef Name="IDLivresAuteurs" />
+          </Key>
+          <Property Name="IDLivresAuteurs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDAuteur" Type="Int32" Nullable="false" />
+          <Property Name="IDLivre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Auteur" Relationship="Self.FK__LivresAut__IDAut__3A81B327" FromRole="LivresAuteurs" ToRole="Auteur" />
+          <NavigationProperty Name="Livre" Relationship="Self.FK__LivresAut__IDLiv__3B75D760" FromRole="LivresAuteurs" ToRole="Livre" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -192,7 +236,16 @@
           <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ManagerPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Cooperative" Relationship="Self.FK__Manager__IDCoope__173876EA" FromRole="Manager" ToRole="Cooperative" />
+          <NavigationProperty Name="Cooperative" Relationship="Self.FK__Manager__IDCoope__2A4B4B5E" FromRole="Manager" ToRole="Cooperative" />
+        </EntityType>
+        <EntityType Name="Resources">
+          <Key>
+            <PropertyRef Name="IDResources" />
+          </Key>
+          <Property Name="IDResources" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDLanguage" Type="Int32" Nullable="false" />
+          <Property Name="TextName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Settings">
           <Key>
@@ -212,7 +265,19 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Manager__IDCoope__173876EA">
+        <Association Name="FK__LivresAut__IDAut__3A81B327">
+          <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
+          <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auteur">
+              <PropertyRef Name="IDAuteur" />
+            </Principal>
+            <Dependent Role="LivresAuteurs">
+              <PropertyRef Name="IDAuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Manager__IDCoope__2A4B4B5E">
           <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
           <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,100 +289,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="libraryManagementEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cooperative" EntityType="Self.Cooperative" />
-          <EntitySet Name="Manager" EntityType="Self.Manager" />
-          <EntitySet Name="Settings" EntityType="Self.Settings" />
-          <EntitySet Name="Student" EntityType="Self.Student" />
-          <AssociationSet Name="FK__Manager__IDCoope__173876EA" Association="Self.FK__Manager__IDCoope__173876EA">
-            <End Role="Cooperative" EntitySet="Cooperative" />
-            <End Role="Manager" EntitySet="Manager" />
-          </AssociationSet>
-          <EntitySet Name="Resources" EntityType="libraryManagementModel.Resources" />
-          <EntitySet Name="Auteur" EntityType="libraryManagementModel.Auteur" />
-          <EntitySet Name="EtatLivre" EntityType="libraryManagementModel.EtatLivre" />
-          <EntitySet Name="Livre" EntityType="libraryManagementModel.Livre" />
-          <EntitySet Name="LivresAuteurs" EntityType="libraryManagementModel.LivresAuteurs" />
-          <AssociationSet Name="FK__LivresAut__IDAut__3A81B327" Association="libraryManagementModel.FK__LivresAut__IDAut__3A81B327">
-            <End Role="Auteur" EntitySet="Auteur" />
-            <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Livre__IDEtatLiv__37A5467C" Association="libraryManagementModel.FK__Livre__IDEtatLiv__37A5467C">
-            <End Role="EtatLivre" EntitySet="EtatLivre" />
-            <End Role="Livre" EntitySet="Livre" />
-          </AssociationSet>
-          <AssociationSet Name="FK__LivresAut__IDLiv__3B75D760" Association="libraryManagementModel.FK__LivresAut__IDLiv__3B75D760">
-            <End Role="Livre" EntitySet="Livre" />
-            <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Resources">
-          <Key>
-            <PropertyRef Name="IDResources" />
-          </Key>
-          <Property Name="IDResources" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDLanguage" Type="Int32" Nullable="false" />
-          <Property Name="TextName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Auteur">
-          <Key>
-            <PropertyRef Name="IDAuteur" />
-          </Key>
-          <Property Name="IDAuteur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="LivresAuteurs" Relationship="libraryManagementModel.FK__LivresAut__IDAut__3A81B327" FromRole="Auteur" ToRole="LivresAuteurs" />
-        </EntityType>
-        <EntityType Name="EtatLivre">
-          <Key>
-            <PropertyRef Name="IDEtatLivre" />
-          </Key>
-          <Property Name="IDEtatLivre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PourcentagePrix" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Livre" Relationship="libraryManagementModel.FK__Livre__IDEtatLiv__37A5467C" FromRole="EtatLivre" ToRole="Livre" />
-        </EntityType>
-        <EntityType Name="Livre">
-          <Key>
-            <PropertyRef Name="IDLivre" />
-          </Key>
-          <Property Name="IDLivre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="noISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="noEAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="noUPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Titre" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="nbPages" Type="Int32" Nullable="false" />
-          <Property Name="prix" Type="Double" Nullable="false" />
-          <Property Name="IDEtatLivre" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EtatLivre" Relationship="libraryManagementModel.FK__Livre__IDEtatLiv__37A5467C" FromRole="Livre" ToRole="EtatLivre" />
-          <NavigationProperty Name="LivresAuteurs" Relationship="libraryManagementModel.FK__LivresAut__IDLiv__3B75D760" FromRole="Livre" ToRole="LivresAuteurs" />
-        </EntityType>
-        <EntityType Name="LivresAuteurs">
-          <Key>
-            <PropertyRef Name="IDLivresAuteurs" />
-          </Key>
-          <Property Name="IDLivresAuteurs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDAuteur" Type="Int32" Nullable="false" />
-          <Property Name="IDLivre" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Auteur" Relationship="libraryManagementModel.FK__LivresAut__IDAut__3A81B327" FromRole="LivresAuteurs" ToRole="Auteur" />
-          <NavigationProperty Name="Livre" Relationship="libraryManagementModel.FK__LivresAut__IDLiv__3B75D760" FromRole="LivresAuteurs" ToRole="Livre" />
-        </EntityType>
-        <Association Name="FK__LivresAut__IDAut__3A81B327">
-          <End Type="libraryManagementModel.Auteur" Role="Auteur" Multiplicity="1" />
-          <End Type="libraryManagementModel.LivresAuteurs" Role="LivresAuteurs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Auteur">
-              <PropertyRef Name="IDAuteur" />
-            </Principal>
-            <Dependent Role="LivresAuteurs">
-              <PropertyRef Name="IDAuteur" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Livre__IDEtatLiv__37A5467C">
-          <End Type="libraryManagementModel.EtatLivre" Role="EtatLivre" Multiplicity="1" />
-          <End Type="libraryManagementModel.Livre" Role="Livre" Multiplicity="*" />
+          <End Role="EtatLivre" Type="Self.EtatLivre" Multiplicity="1" />
+          <End Role="Livre" Type="Self.Livre" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EtatLivre">
               <PropertyRef Name="IDEtatLivre" />
@@ -328,8 +302,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__LivresAut__IDLiv__3B75D760">
-          <End Type="libraryManagementModel.Livre" Role="Livre" Multiplicity="1" />
-          <End Type="libraryManagementModel.LivresAuteurs" Role="LivresAuteurs" Multiplicity="*" />
+          <End Role="Livre" Type="Self.Livre" Multiplicity="1" />
+          <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Livre">
               <PropertyRef Name="IDLivre" />
@@ -339,26 +313,94 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="libraryManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auteur" EntityType="Self.Auteur" />
+          <EntitySet Name="Cooperative" EntityType="Self.Cooperative" />
+          <EntitySet Name="EtatLivre" EntityType="Self.EtatLivre" />
+          <EntitySet Name="Livre" EntityType="Self.Livre" />
+          <EntitySet Name="LivresAuteurs" EntityType="Self.LivresAuteurs" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="Resources" EntityType="Self.Resources" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <AssociationSet Name="FK__LivresAut__IDAut__3A81B327" Association="Self.FK__LivresAut__IDAut__3A81B327">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Manager__IDCoope__2A4B4B5E" Association="Self.FK__Manager__IDCoope__2A4B4B5E">
+            <End Role="Cooperative" EntitySet="Cooperative" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Livre__IDEtatLiv__37A5467C" Association="Self.FK__Livre__IDEtatLiv__37A5467C">
+            <End Role="EtatLivre" EntitySet="EtatLivre" />
+            <End Role="Livre" EntitySet="Livre" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LivresAut__IDLiv__3B75D760" Association="Self.FK__LivresAut__IDLiv__3B75D760">
+            <End Role="Livre" EntitySet="Livre" />
+            <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="libraryManagementModelStoreContainer" CdmEntityContainer="libraryManagementEntities">
+        <EntityContainerMapping StorageEntityContainer="LibraryManagementModelStoreContainer" CdmEntityContainer="libraryManagementEntities">
+          <EntitySetMapping Name="Auteur">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Auteur">
+              <MappingFragment StoreEntitySet="Auteur">
+                <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cooperative">
-            <EntityTypeMapping TypeName="libraryManagementModel.Cooperative">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Cooperative">
               <MappingFragment StoreEntitySet="Cooperative">
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="NoStreet" ColumnName="NoStreet" />
                 <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NoStreet" ColumnName="NoStreet" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EtatLivre">
+            <EntityTypeMapping TypeName="LibraryManagementModel.EtatLivre">
+              <MappingFragment StoreEntitySet="EtatLivre">
+                <ScalarProperty Name="IDEtatLivre" ColumnName="IDEtatLivre" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PourcentagePrix" ColumnName="PourcentagePrix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Livre">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Livre">
+              <MappingFragment StoreEntitySet="Livre">
+                <ScalarProperty Name="IDLivre" ColumnName="IDLivre" />
+                <ScalarProperty Name="noISBN" ColumnName="noISBN" />
+                <ScalarProperty Name="noEAN" ColumnName="noEAN" />
+                <ScalarProperty Name="noUPC" ColumnName="noUPC" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="nbPages" ColumnName="nbPages" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="IDEtatLivre" ColumnName="IDEtatLivre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LivresAuteurs">
+            <EntityTypeMapping TypeName="LibraryManagementModel.LivresAuteurs">
+              <MappingFragment StoreEntitySet="LivresAuteurs">
+                <ScalarProperty Name="IDLivresAuteurs" ColumnName="IDLivresAuteurs" />
+                <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
+                <ScalarProperty Name="IDLivre" ColumnName="IDLivre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manager">
-            <EntityTypeMapping TypeName="libraryManagementModel.Manager">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Manager">
               <MappingFragment StoreEntitySet="Manager">
                 <ScalarProperty Name="IDManager" ColumnName="IDManager" />
                 <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
@@ -369,8 +411,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Resources">
+              <MappingFragment StoreEntitySet="Resources">
+                <ScalarProperty Name="IDResources" ColumnName="IDResources" />
+                <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+                <ScalarProperty Name="TextName" ColumnName="TextName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Settings">
-            <EntityTypeMapping TypeName="libraryManagementModel.Settings">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
               <MappingFragment StoreEntitySet="Settings">
                 <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
                 <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
@@ -378,7 +430,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student">
-            <EntityTypeMapping TypeName="libraryManagementModel.Student">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Student">
               <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -386,57 +438,6 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Resources">
-            <EntityTypeMapping TypeName="libraryManagementModel.Resources">
-              <MappingFragment StoreEntitySet="Resources">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="TextName" ColumnName="TextName" />
-                <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
-                <ScalarProperty Name="IDResources" ColumnName="IDResources" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Auteur">
-            <EntityTypeMapping TypeName="libraryManagementModel.Auteur">
-              <MappingFragment StoreEntitySet="Auteur">
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EtatLivre">
-            <EntityTypeMapping TypeName="libraryManagementModel.EtatLivre">
-              <MappingFragment StoreEntitySet="EtatLivre">
-                <ScalarProperty Name="PourcentagePrix" ColumnName="PourcentagePrix" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IDEtatLivre" ColumnName="IDEtatLivre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Livre">
-            <EntityTypeMapping TypeName="libraryManagementModel.Livre">
-              <MappingFragment StoreEntitySet="Livre">
-                <ScalarProperty Name="IDEtatLivre" ColumnName="IDEtatLivre" />
-                <ScalarProperty Name="prix" ColumnName="prix" />
-                <ScalarProperty Name="nbPages" ColumnName="nbPages" />
-                <ScalarProperty Name="Titre" ColumnName="Titre" />
-                <ScalarProperty Name="noUPC" ColumnName="noUPC" />
-                <ScalarProperty Name="noEAN" ColumnName="noEAN" />
-                <ScalarProperty Name="noISBN" ColumnName="noISBN" />
-                <ScalarProperty Name="IDLivre" ColumnName="IDLivre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LivresAuteurs">
-            <EntityTypeMapping TypeName="libraryManagementModel.LivresAuteurs">
-              <MappingFragment StoreEntitySet="LivresAuteurs">
-                <ScalarProperty Name="IDLivre" ColumnName="IDLivre" />
-                <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
-                <ScalarProperty Name="IDLivresAuteurs" ColumnName="IDLivresAuteurs" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -457,7 +458,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

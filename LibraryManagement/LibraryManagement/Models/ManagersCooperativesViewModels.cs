@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace LibraryManagement2.Models
+namespace LibraryManagement.Models
 {
     public class ManagersCooperativesViewModels
     {

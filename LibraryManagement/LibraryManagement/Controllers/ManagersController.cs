@@ -8,10 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Mail;
 using LibraryManagement.Models;
-using LibraryManagement2.Utils;
-using LibraryManagement2.Models;
+using LibraryManagement.Utils;
+using LibraryManagement.Models;
 
-namespace LibraryManagement2.Controllers
+namespace LibraryManagement.Controllers
 {
     public class ManagersController : Controller
     {

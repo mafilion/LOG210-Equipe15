@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using LibraryManagement.Models;
-using LibraryManagement2.Models;
+using LibraryManagement.Models;
 
 namespace LibraryManagement
 {
