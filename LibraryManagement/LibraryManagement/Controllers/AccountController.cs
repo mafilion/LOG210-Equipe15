@@ -10,6 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LibraryManagement.Models;
 using LibraryManagement;
+using System.Data;
+using LibraryManagement.Utils;
+using System.Text.RegularExpressions;
 
 namespace LibraryManagement.Controllers
 {
@@ -73,6 +76,69 @@ namespace LibraryManagement.Controllers
             {
                 return View(model);
             }
+
+            // Création de la connexion avec la BD
+            libraryManagementEntities db = new libraryManagementEntities();
+            string email;
+            string firstname;
+            string password;
+
+            // À l'aide des Regular Expression, on regarde si le numéro de téléphone est du bon format. 
+            string strIn = model.Email;
+            string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // RegEx du numero de telephone
+
+            Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            Match m = r.Match(strIn);
+            if (m.Success)
+            {
+                // on commence par regardé si l'adresse est trouvé en BD
+                if (db.Student.Any(o => o.PhoneNumber == model.Email))
+                {
+
+                    // On select le student dans la BD
+                    Student student = db.Student.Single(o => o.PhoneNumber == model.Email);
+
+                    // puis on compare les 2 password
+                    password = UtilResources.EncryptPassword(model.Password);
+
+                    if (password == student.StudentPassword)
+                    {
+                        firstname = student.FirstName;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Le numéro de téléphone et le mot de passe ne correspondent pas");
+                    }
+                }
+            }
+
+            // on commence par regardé si l'adresse est trouvé en BD
+            if (db.Student.Any(o => o.Email == model.Email))
+            {
+               
+                // On select le student dans la BD
+                Student student = db.Student.Single(o => o.Email == model.Email);
+
+                // puis on compare les 2 password
+                password = UtilResources.EncryptPassword(model.Password);
+
+                if (password == student.StudentPassword)
+                {
+                    firstname = student.FirstName;
+                }
+                else
+                {
+                    ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                }
+            }
+            else // On on ne trouve pas le email
+            {
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+
+            }
+
+            
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
