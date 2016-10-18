@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using LibraryManagement.Models;
 using Google.Apis.Books.v1;
 using Google.Apis.Services;
+using Google.Apis.Books.v1.Data;
 
 namespace LibraryManagement.Controllers
 {
@@ -49,32 +50,51 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
+        public ActionResult CreateBook( Livre livres)
+        {
+            Console.WriteLine(livres.Titre);
+
+            return View(livres);
+        }
+
+        [HttpPost]
         [ActionName("SearchBooks")]
-        public ActionResult SearchBooks(string Number)
+        public async System.Threading.Tasks.Task<ActionResult> SearchBooks(string Number)
         {
             System.Diagnostics.Debug.WriteLine("Je suis dans la méthode!!!");
             System.Diagnostics.Debug.WriteLine("Nombre: " + Number);
+            Livre livre = new Livre();
+            Volume volume = new Volume();
 
             //Recherche dans la BD si le livre existe (avec le Number sur le ISBN/EAN/UPC
             if (db.Livre.Any(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number))
             {
-                Livre temp = db.Livre.Where(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number).First();
+                livre = db.Livre.Where(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number).First();
             }
             else
             {
                 //Recherche dans l'api
                 //SOURCE installation API https://xinyustudio.wordpress.com/2014/12/18/google-book-search-in-c-a-step-by-step-walk-through-tutorial/
                 //À tester
-                var result =  service.Volumes.List(Number).ExecuteAsync();
+                var result = await service.Volumes.List(Number).ExecuteAsync();
                 if (result != null)
                 {
-                    var item = result;
+                    volume = result.Items.FirstOrDefault();
                 }
 
+                if (volume != null)
+                {
+                    livre.Titre = volume.VolumeInfo.Title;
+                    livre.nbPages = (int)volume.VolumeInfo.PageCount;
+                    livre.prix = (double)volume.SaleInfo.RetailPrice.Amount;
+                    livre.noISBN = volume.VolumeInfo.IndustryIdentifiers[0].Identifier;
+                    //auteur
+
+                }
 
             }
             //Récupérer les informations et les retourner en json
-            return Json("number", JsonRequestBehavior.AllowGet);
+            return Json(livre, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
@@ -89,7 +109,7 @@ namespace LibraryManagement.Controllers
        public static BooksService service = new BooksService(
        new BaseClientService.Initializer
        {
-           ApplicationName = "ISBNBookSearch",
+           ApplicationName = "librarymanagement2",
            ApiKey = "AIzaSyAhY2jOLfkBn5i3lSUISaTkbgWTPex8xzA",
        });
     }
