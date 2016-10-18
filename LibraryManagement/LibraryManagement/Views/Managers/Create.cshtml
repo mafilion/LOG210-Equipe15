@@ -5,9 +5,9 @@
 }
 
 <h2>@UtilResources.GetLabel("Nouveau Compte") @UtilResources.GetLabel("Gestionnaire")</h2>
+<script src="@Url.Content("~/Scripts/managers.js")" type="text/javascript"></script>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Managers", FormMethod.Post, new { onsubmit = "return isValidForm();" }))
 {
     @Html.AntiForgeryToken()
     

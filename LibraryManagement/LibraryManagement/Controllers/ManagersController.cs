@@ -177,7 +177,7 @@ namespace LibraryManagement.Controllers
                 {
                     MailAddress mail = new MailAddress(managerCoop.manager.Email);
                 }
-                catch (FormatException)
+                catch (Exception)
                 {
                     ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
                     valid = false;

@@ -1,5 +1,7 @@
 ﻿@model LibraryManagement.Models.LivresAuteursViewModel
 @using LibraryManagement.Utils;
+
+<script src="@Url.Content("~/Scripts/livre.js")" type="text/javascript"></script>
 <h2>@UtilResources.GetLabel("Nouveau Livre")</h2>
 
     @Html.AntiForgeryToken()
@@ -12,7 +14,7 @@
             <div class="col-md-10">
                 <input type="text" id="NumLivre" name="NumLivre" class="form-control">
                 <br />
-                <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default">@UtilResources.GetLabel("Rechercher")</button>
+                <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
                 <!-- Faire un event Javascript (Avec un Call AJAX à une méthode du controlleur qui va effectuer la recherche et retourner les informations en json)-->
                 <!-- Au succès de la réception, Update les champs précisé en bas-->
                 <!-- Si il y a des values dans l'un des champs, popup confirmation qu'il souhaite réinitialiser les informations du livre (si il n'a pas cliqué sur ajouter le livre ne sera pas ajouté)-->

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LibraryManagement.Models;
+using Google.Apis.Books.v1;
+using Google.Apis.Services;
 
 namespace LibraryManagement.Controllers
 {
@@ -50,10 +52,29 @@ namespace LibraryManagement.Controllers
         [ActionName("SearchBooks")]
         public ActionResult SearchBooks(string Number)
         {
+            System.Diagnostics.Debug.WriteLine("Je suis dans la méthode!!!");
+            System.Diagnostics.Debug.WriteLine("Nombre: " + Number);
+
             //Recherche dans la BD si le livre existe (avec le Number sur le ISBN/EAN/UPC
-            //Recherche dans l'api
+            if (db.Livre.Any(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number))
+            {
+                Livre temp = db.Livre.Where(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number).First();
+            }
+            else
+            {
+                //Recherche dans l'api
+                //SOURCE installation API https://xinyustudio.wordpress.com/2014/12/18/google-book-search-in-c-a-step-by-step-walk-through-tutorial/
+                //À tester
+                var result =  service.Volumes.List(Number).ExecuteAsync();
+                if (result != null)
+                {
+                    var item = result;
+                }
+
+
+            }
             //Récupérer les informations et les retourner en json
-            return View();
+            return Json("number", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
@@ -64,5 +85,12 @@ namespace LibraryManagement.Controllers
             }
             base.Dispose(disposing);
         }
+
+       public static BooksService service = new BooksService(
+       new BaseClientService.Initializer
+       {
+           ApplicationName = "ISBNBookSearch",
+           ApiKey = "AIzaSyAhY2jOLfkBn5i3lSUISaTkbgWTPex8xzA",
+       });
     }
 }
