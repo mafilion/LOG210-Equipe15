@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="LibraryManagementModelStoreContainer" CdmEntityContainer="libraryManagementEntities">
-    <EntitySetMapping Name="Auteur">
-      <EntityTypeMapping TypeName="LibraryManagementModel.Auteur">
-        <MappingFragment StoreEntitySet="Auteur">
-          <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Cooperative">
       <EntityTypeMapping TypeName="LibraryManagementModel.Cooperative">
         <MappingFragment StoreEntitySet="Cooperative">
@@ -93,6 +84,14 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Auteur">
+      <EntityTypeMapping TypeName="LibraryManagementModel.Auteur">
+        <MappingFragment StoreEntitySet="Auteur">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

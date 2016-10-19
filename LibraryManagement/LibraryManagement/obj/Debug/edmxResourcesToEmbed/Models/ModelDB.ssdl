@@ -5,8 +5,7 @@
       <PropertyRef Name="IDAuteur" />
     </Key>
     <Property Name="IDAuteur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="Cooperative">
     <Key>
@@ -98,7 +97,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LivresAut__IDAut__3A81B327">
+  <Association Name="FK__LivresAut__IDAut__403A8C7D">
     <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
     <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
     <ReferentialConstraint>
@@ -110,7 +109,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LivresAut__IDLiv__3B75D760">
+  <Association Name="FK__LivresAut__IDLiv__412EB0B6">
     <End Role="Livre" Type="Self.Livre" Multiplicity="1" />
     <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
     <ReferentialConstraint>
@@ -148,11 +147,11 @@
       <End Role="EtatLivre" EntitySet="EtatLivre" />
       <End Role="Livre" EntitySet="Livre" />
     </AssociationSet>
-    <AssociationSet Name="FK__LivresAut__IDAut__3A81B327" Association="Self.FK__LivresAut__IDAut__3A81B327">
+    <AssociationSet Name="FK__LivresAut__IDAut__403A8C7D" Association="Self.FK__LivresAut__IDAut__403A8C7D">
       <End Role="Auteur" EntitySet="Auteur" />
       <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
     </AssociationSet>
-    <AssociationSet Name="FK__LivresAut__IDLiv__3B75D760" Association="Self.FK__LivresAut__IDLiv__3B75D760">
+    <AssociationSet Name="FK__LivresAut__IDLiv__412EB0B6" Association="Self.FK__LivresAut__IDLiv__412EB0B6">
       <End Role="Livre" EntitySet="Livre" />
       <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
     </AssociationSet>

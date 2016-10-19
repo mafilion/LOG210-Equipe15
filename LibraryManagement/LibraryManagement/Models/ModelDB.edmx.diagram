@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="98fecaa7ad414aadbadaa6a886c9c835" Name="Diagram1">
-        <EntityTypeShape EntityType="LibraryManagementModel.Auteur" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.EtatLivre" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Livre" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
@@ -14,10 +13,11 @@
         <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="LibraryManagementModel.FK__LivresAut__IDAut__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__Manager__IDCoope__2A4B4B5E" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__Livre__IDEtatLiv__37A5467C" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__LivresAut__IDLiv__3B75D760" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Auteur" Width="1.5" PointX="0.75" PointY="4.875" />
+        <AssociationConnector Association="LibraryManagementModel.FK__LivresAut__IDAut__403A8C7D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

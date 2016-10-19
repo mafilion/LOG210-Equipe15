@@ -61,10 +61,11 @@ namespace LibraryManagement.Controllers
         [ActionName("SearchBooks")]
         public async System.Threading.Tasks.Task<ActionResult> SearchBooks(string Number)
         {
-            System.Diagnostics.Debug.WriteLine("Je suis dans la méthode!!!");
-            System.Diagnostics.Debug.WriteLine("Nombre: " + Number);
+            LivresAuteursViewModel LivreAut = new LivresAuteursViewModel();
             Livre livre = new Livre();
+            Auteur Aut = new Auteur();
             Volume volume = new Volume();
+            LivreAut.ListAuteur = new List<Auteur>();
 
             //Recherche dans la BD si le livre existe (avec le Number sur le ISBN/EAN/UPC
             if (db.Livre.Any(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number))
@@ -88,13 +89,19 @@ namespace LibraryManagement.Controllers
                     livre.nbPages = (int)volume.VolumeInfo.PageCount;
                     livre.prix = (double)volume.SaleInfo.RetailPrice.Amount;
                     livre.noISBN = volume.VolumeInfo.IndustryIdentifiers[0].Identifier;
-                    //auteur
 
+                    for(int i=0;i < volume.VolumeInfo.Authors.Count && i<5;i++)
+                    {
+                        Aut.Name = volume.VolumeInfo.Authors[i];
+                        LivreAut.ListAuteur.Add(Aut);
+                        Aut = new Auteur();
+                    }
+                    LivreAut.livre = livre;
                 }
 
             }
             //Récupérer les informations et les retourner en json
-            return Json(livre, JsonRequestBehavior.AllowGet);
+            return Json(LivreAut, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
@@ -109,7 +116,7 @@ namespace LibraryManagement.Controllers
        public static BooksService service = new BooksService(
        new BaseClientService.Initializer
        {
-           ApplicationName = "librarymanagement2",
+           ApplicationName = "librarymanagement",
            ApiKey = "AIzaSyAhY2jOLfkBn5i3lSUISaTkbgWTPex8xzA",
        });
     }

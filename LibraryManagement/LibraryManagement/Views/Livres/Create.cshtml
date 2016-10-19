@@ -53,29 +53,6 @@
                 @Html.ValidationMessageFor(model => model.livre.Titre, "", new { @class = "text-danger" })
             </div>
         </div>
-        <!-- Section Auteur (À Revoir pour rendre dynamique)-->
-         <hr />
-        <h3>@UtilResources.GetLabel("Auteurs")</h3>
-
-        <div class="form-group">
-            @Html.Label(@UtilResources.GetLabel("Prenom") +" :", htmlAttributes: new { @class = "control-label col-md-2"})
-            <div class="col-md-10">
-                <input type="text" id="AuteurPrenom1" name="AuteurPrenom1" class="form-control">
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label(@UtilResources.GetLabel("Nom") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" id="AuteurNom1" name="AuteurNom1" class="form-control">
-                <br />
-                <button type="button" id="AddAuthor" name="AddAuthor" class="btn btn-default">+</button>
-            </div>
-        </div>
-
-        <!--Faire un event javascript/jquery qui va ajouter des champs Prénom/Nom lorsque l'on clique sur le + -->
-        <hr />
-        <!--Fin Section Auteur (À Revoir pour rendre dynamique)-->
 
         <div class="form-group">
             @Html.LabelFor(model => model.livre.nbPages, @UtilResources.GetLabel("Nombre de pages") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -92,8 +69,53 @@
                 @Html.ValidationMessageFor(model => model.livre.prix, "", new { @class = "text-danger" })
             </div>
         </div>
+        <!-- Section Auteur (À Revoir pour rendre dynamique)-->
+         <hr />
+        <h3>@UtilResources.GetLabel("Auteurs")</h3>
 
-        
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Principal") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuteurNom1" name="AuteurNom1" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuteurNom2" name="AuteurNom2" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuteurNom3" name="AuteurNom3" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuteurNom4" name="AuteurNom4" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuteurNom5" name="AuteurNom5" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <!--Faire un event javascript/jquery qui va ajouter des champs Prénom/Nom lorsque l'on clique sur le + -->
+        <hr />
+        <!--Fin Section Auteur (À Revoir pour rendre dynamique)-->
 
         <div class="form-group">
             @Html.LabelFor(model => model.livre.IDEtatLivre, @UtilResources.GetLabel("État du livre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })

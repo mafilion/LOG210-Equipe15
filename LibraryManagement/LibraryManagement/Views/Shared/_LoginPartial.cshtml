@@ -17,10 +17,9 @@
     text-align: center;
     text-decoration: none;
     line-height: 1.2;
-
     }
 
-    Select:hover { 
+    Select.specialeffect:hover { 
     color: White;
 }
 </style>
@@ -42,7 +41,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts" })</a></li>
+        <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts",@class = "specialeffect" })</a></li>
         <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
         @Html.Hidden("StudentsNewAccount", Url.Action("Create", "Students"));

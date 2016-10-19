@@ -341,6 +341,18 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Information du livre','Book Information')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Principal','Principal')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Principal','Main')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Secondaire','Secondaire')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Secondaire','Secondary')
 END
 
 /*Table pour les états de livres*/
@@ -367,8 +379,7 @@ IF (NOT EXISTS (SELECT *
 BEGIN
 	CREATE TABLE Auteur(
 		IDAuteur INT PRIMARY KEY IDENTITY(1,1),
-		FirstName VARCHAR(100) NOT NULL,
-		LastName VARCHAR(100) NOT NULL,
+		Name VARCHAR(200) NOT NULL,
 	)
 END
 

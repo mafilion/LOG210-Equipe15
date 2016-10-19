@@ -18,7 +18,7 @@ namespace LibraryManagement.Models
         public int IDAuteur { get; set; }
         public int IDLivre { get; set; }
     
-        public virtual Auteur Auteur { get; set; }
         public virtual Livre Livre { get; set; }
+        public virtual Auteur Auteur { get; set; }
     }
 }

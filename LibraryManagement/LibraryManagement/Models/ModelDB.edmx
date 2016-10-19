@@ -4,14 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Auteur">
           <Key>
             <PropertyRef Name="IDAuteur" />
           </Key>
           <Property Name="IDAuteur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="Cooperative">
           <Key>
@@ -103,7 +102,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LivresAut__IDAut__3A81B327">
+        <Association Name="FK__LivresAut__IDAut__403A8C7D">
           <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
           <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LivresAut__IDLiv__3B75D760">
+        <Association Name="FK__LivresAut__IDLiv__412EB0B6">
           <End Role="Livre" Type="Self.Livre" Multiplicity="1" />
           <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,11 +152,11 @@
             <End Role="EtatLivre" EntitySet="EtatLivre" />
             <End Role="Livre" EntitySet="Livre" />
           </AssociationSet>
-          <AssociationSet Name="FK__LivresAut__IDAut__3A81B327" Association="Self.FK__LivresAut__IDAut__3A81B327">
+          <AssociationSet Name="FK__LivresAut__IDAut__403A8C7D" Association="Self.FK__LivresAut__IDAut__403A8C7D">
             <End Role="Auteur" EntitySet="Auteur" />
             <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
           </AssociationSet>
-          <AssociationSet Name="FK__LivresAut__IDLiv__3B75D760" Association="Self.FK__LivresAut__IDLiv__3B75D760">
+          <AssociationSet Name="FK__LivresAut__IDLiv__412EB0B6" Association="Self.FK__LivresAut__IDLiv__412EB0B6">
             <End Role="Livre" EntitySet="Livre" />
             <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
           </AssociationSet>
@@ -166,20 +165,10 @@
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Auteur">
-          <Key>
-            <PropertyRef Name="IDAuteur" />
-          </Key>
-          <Property Name="IDAuteur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="LivresAuteurs" Relationship="Self.FK__LivresAut__IDAut__3A81B327" FromRole="Auteur" ToRole="LivresAuteurs" />
-        </EntityType>
         <EntityType Name="Cooperative">
           <Key>
             <PropertyRef Name="IDCooperative" />
@@ -223,8 +212,8 @@
           <Property Name="IDLivresAuteurs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDAuteur" Type="Int32" Nullable="false" />
           <Property Name="IDLivre" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Auteur" Relationship="Self.FK__LivresAut__IDAut__3A81B327" FromRole="LivresAuteurs" ToRole="Auteur" />
           <NavigationProperty Name="Livre" Relationship="Self.FK__LivresAut__IDLiv__3B75D760" FromRole="LivresAuteurs" ToRole="Livre" />
+          <NavigationProperty Name="Auteur" Relationship="LibraryManagementModel.FK__LivresAut__IDAut__403A8C7D" FromRole="LivresAuteurs" ToRole="Auteur" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -265,18 +254,6 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__LivresAut__IDAut__3A81B327">
-          <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
-          <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Auteur">
-              <PropertyRef Name="IDAuteur" />
-            </Principal>
-            <Dependent Role="LivresAuteurs">
-              <PropertyRef Name="IDAuteur" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Manager__IDCoope__2A4B4B5E">
           <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
           <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
@@ -314,7 +291,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="libraryManagementEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Auteur" EntityType="Self.Auteur" />
           <EntitySet Name="Cooperative" EntityType="Self.Cooperative" />
           <EntitySet Name="EtatLivre" EntityType="Self.EtatLivre" />
           <EntitySet Name="Livre" EntityType="Self.Livre" />
@@ -323,10 +299,6 @@
           <EntitySet Name="Resources" EntityType="Self.Resources" />
           <EntitySet Name="Settings" EntityType="Self.Settings" />
           <EntitySet Name="Student" EntityType="Self.Student" />
-          <AssociationSet Name="FK__LivresAut__IDAut__3A81B327" Association="Self.FK__LivresAut__IDAut__3A81B327">
-            <End Role="Auteur" EntitySet="Auteur" />
-            <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
-          </AssociationSet>
           <AssociationSet Name="FK__Manager__IDCoope__2A4B4B5E" Association="Self.FK__Manager__IDCoope__2A4B4B5E">
             <End Role="Cooperative" EntitySet="Cooperative" />
             <End Role="Manager" EntitySet="Manager" />
@@ -339,22 +311,38 @@
             <End Role="Livre" EntitySet="Livre" />
             <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
           </AssociationSet>
+          <EntitySet Name="Auteur" EntityType="LibraryManagementModel.Auteur" />
+          <AssociationSet Name="FK__LivresAut__IDAut__403A8C7D" Association="LibraryManagementModel.FK__LivresAut__IDAut__403A8C7D">
+            <End Role="Auteur" EntitySet="Auteur" />
+            <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Auteur">
+          <Key>
+            <PropertyRef Name="IDAuteur" />
+          </Key>
+          <Property Name="IDAuteur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LivresAuteurs" Relationship="LibraryManagementModel.FK__LivresAut__IDAut__403A8C7D" FromRole="Auteur" ToRole="LivresAuteurs" />
+        </EntityType>
+        <Association Name="FK__LivresAut__IDAut__403A8C7D">
+          <End Type="LibraryManagementModel.Auteur" Role="Auteur" Multiplicity="1" />
+          <End Type="LibraryManagementModel.LivresAuteurs" Role="LivresAuteurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auteur">
+              <PropertyRef Name="IDAuteur" />
+            </Principal>
+            <Dependent Role="LivresAuteurs">
+              <PropertyRef Name="IDAuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LibraryManagementModelStoreContainer" CdmEntityContainer="libraryManagementEntities">
-          <EntitySetMapping Name="Auteur">
-            <EntityTypeMapping TypeName="LibraryManagementModel.Auteur">
-              <MappingFragment StoreEntitySet="Auteur">
-                <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Cooperative">
             <EntityTypeMapping TypeName="LibraryManagementModel.Cooperative">
               <MappingFragment StoreEntitySet="Cooperative">
@@ -438,6 +426,14 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auteur">
+            <EntityTypeMapping TypeName="LibraryManagementModel.Auteur">
+              <MappingFragment StoreEntitySet="Auteur">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IDAuteur" ColumnName="IDAuteur" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
