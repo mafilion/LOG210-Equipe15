@@ -50,11 +50,39 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateBook( Livre livres)
+        public ActionResult CreateBook(LivresAuteursViewModel livresAut)
         {
-            Console.WriteLine(livres.Titre);
+            Auteur autExist = db.Auteur.Where(c => c.Name == livresAut.Aut.Name).FirstOrDefault();
+            Auteur aut = new Auteur();
+            Livre li = new Livre();
+            LivresAuteurs liA = new LivresAuteurs();
+            if (autExist == null)
+            {
+                //Pas présent en BD, on l'ajoute
+                aut.Name = livresAut.Aut.Name;
+                db.Auteur.Add(aut);
+                db.SaveChanges();
+            }
+            else
+            {
+                aut = autExist;
+            }
+            //Ajouter le livre + liaison état
+            li.IDEtatLivre = livresAut.livre.IDEtatLivre;
+            li.Titre = livresAut.livre.Titre;
+            li.nbPages = livresAut.livre.nbPages;
+            li.prix = livresAut.livre.prix;
+            li.noISBN = livresAut.livre.noISBN;
+            db.Livre.Add(li);
+            db.SaveChanges();
+            //on ajoute juste un Auteur pour l'instant ("YOLO")
+            liA.IDLivre = li.IDLivre;
+            liA.IDAuteur = aut.IDAuteur;
+            db.LivresAuteurs.Add(liA);
+            db.SaveChanges();
 
-            return View(livres);
+            //Récupérer les informations et les retourner en json
+            return Json("Success", JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -85,18 +113,49 @@ namespace LibraryManagement.Controllers
 
                 if (volume != null)
                 {
-                    livre.Titre = volume.VolumeInfo.Title;
-                    livre.nbPages = (int)volume.VolumeInfo.PageCount;
-                    livre.prix = (double)volume.SaleInfo.RetailPrice.Amount;
+                    try
+                    {
+                        livre.Titre = volume.VolumeInfo.Title;
+                    }
+                    catch
+                    {
+                        livre.Titre = "";
+                    }
+                    try
+                    {
+                        livre.nbPages = (int)volume.VolumeInfo.PageCount;
+                    }
+                    catch
+                    {
+                        livre.nbPages = 0;
+                    }
+                    try
+                    {
+                        livre.prix = (double)volume.SaleInfo.RetailPrice.Amount;
+                    }
+                    catch
+                    {
+                        livre.prix = 0.00;
+                    }
                     livre.noISBN = volume.VolumeInfo.IndustryIdentifiers[0].Identifier;
+                
 
-                    for(int i=0;i < volume.VolumeInfo.Authors.Count && i<5;i++)
+                    /*for(int i=0;i < volume.VolumeInfo.Authors.Count && i<5;i++)
                     {
                         Aut.Name = volume.VolumeInfo.Authors[i];
                         LivreAut.ListAuteur.Add(Aut);
                         Aut = new Auteur();
+                    }*/
+                    try
+                    {
+                        Aut.Name = volume.VolumeInfo.Authors[0];
+                    }
+                    catch
+                    {
+                        Aut.Name = "";
                     }
                     LivreAut.livre = livre;
+                    LivreAut.Aut = Aut;
                 }
 
             }

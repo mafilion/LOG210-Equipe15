@@ -11,6 +11,7 @@ namespace LibraryManagement.Models
     {
         public Livre livre { get; set; }
         public List<Auteur> ListAuteur { get; set; }
+        public Auteur Aut { get; set; }
         public List<LivresAuteurs> ListlivreAuteur { get; set; }
     }
 }
