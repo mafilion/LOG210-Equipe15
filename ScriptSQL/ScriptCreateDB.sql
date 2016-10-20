@@ -341,34 +341,45 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Information du livre','Book Information')
+
+		INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Principal','Principal')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Principal','Main')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Secondaire','Secondaire')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Secondaire','Secondary')
 END
 
 /*Table pour les états de livres*/
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
-                 WHERE TABLE_NAME = 'EtatLivre'))
+                 WHERE TABLE_NAME = 'BookState'))
 BEGIN
-	CREATE TABLE EtatLivre(
-		IDEtatLivre INT PRIMARY KEY IDENTITY(1,1),
+	CREATE TABLE BookState(
+		IDBookState INT PRIMARY KEY IDENTITY(1,1),
 		Description VARCHAR(MAX) NOT NULL,
-		PourcentagePrix float NOT NULL
+		PricePercentage float NOT NULL
 	)
 	/* Insertion des États */
-	INSERT INTO EtatLivre(Description,PourcentagePrix) VALUES ('Comme neuf',0.75);
-	INSERT INTO EtatLivre(Description,PourcentagePrix) VALUES ('Quelques pages pliés, utilisation d’un marqueur',0.50);
-	INSERT INTO EtatLivre(Description,PourcentagePrix) VALUES ('Livre très utilisé, pages plié, couverture endommagés',0.25);
+	INSERT INTO BookState(Description,PricePercentage) VALUES ('Comme neuf',0.75);
+	INSERT INTO BookState(Description,PricePercentage) VALUES ('Quelques pages pliés, utilisation d’un marqueur',0.50);
+	INSERT INTO BookState(Description,PricePercentage) VALUES ('Livre très utilisé, pages plié, couverture endommagés',0.25);
 END
 
 
 /*Table pour les auteurs des livres*/
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
-                 WHERE TABLE_NAME = 'Auteur'))
+                 WHERE TABLE_NAME = 'Author'))
 BEGIN
-	CREATE TABLE Auteur(
-		IDAuteur INT PRIMARY KEY IDENTITY(1,1),
-		FirstName VARCHAR(100) NOT NULL,
-		LastName VARCHAR(100) NOT NULL,
+	CREATE TABLE Author(
+		IDAuthor INT PRIMARY KEY IDENTITY(1,1),
+		Name VARCHAR(200) NOT NULL,
 	)
 END
 
@@ -376,31 +387,41 @@ END
 /*Table pour les livres ajouté par les étudiants */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
-                 WHERE TABLE_NAME = 'Livre'))
+                 WHERE TABLE_NAME = 'Book'))
 BEGIN
-	CREATE TABLE Livre(
-		IDLivre INT PRIMARY KEY IDENTITY(1,1),
+	CREATE TABLE Book(
+		IDBook INT PRIMARY KEY IDENTITY(1,1),
 		noISBN VARCHAR(50),
 		noEAN VARCHAR(50),
 		noUPC VARCHAR(50),
-		Titre varchar(300) NOT NULL,
+		Title varchar(300) NOT NULL,
 		nbPages int NOT NULL,
-		prix float NOT NULL,
-		IDEtatLivre INT FOREIGN KEY REFERENCES EtatLivre(IDEtatLivre) NOT NULL
+		price float NOT NULL
 	)
-	CREATE UNIQUE NONCLUSTERED INDEX idxISBN on dbo.Livre(noISBN) WHERE noISBN IS NOT NULL;
-	CREATE UNIQUE NONCLUSTERED INDEX idxEAN on dbo.Livre(noEAN) WHERE noEAN IS NOT NULL;
-	CREATE UNIQUE NONCLUSTERED INDEX idxUPC on dbo.Livre(noUPC) WHERE noUPC IS NOT NULL;
 END
 
 /* Table pour la liaison Livre/Auteurs */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
-                 WHERE TABLE_NAME = 'LivresAuteurs'))
+                 WHERE TABLE_NAME = 'BooksAuthors'))
 BEGIN
-	CREATE TABLE LivresAuteurs(
-		IDLivresAuteurs INT PRIMARY KEY IDENTITY(1,1),
-		IDAuteur INT FOREIGN KEY REFERENCES Auteur(IDAuteur) NOT NULL,
-		IDLivre INT FOREIGN KEY REFERENCES Livre(IDLivre) NOT NULL
+	CREATE TABLE BooksAuthors(
+		IDBooksAuthors INT PRIMARY KEY IDENTITY(1,1),
+		IDAuthor INT FOREIGN KEY REFERENCES Author(IDAuthor) NOT NULL,
+		IDBook INT FOREIGN KEY REFERENCES Book(IDBook) NOT NULL
 	)
 END
+
+/* Table Exemplaire */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'BooksCopy'))
+BEGIN
+	CREATE TABLE BooksCopy(
+		IDBooksCopy INT PRIMARY KEY IDENTITY(1,1),
+		IDStudent INT FOREIGN KEY REFERENCES Student(IDStudent) NOT NULL,
+		IDBook INT FOREIGN KEY REFERENCES Book(IDBook) NOT NULL,
+		IDBookState INT FOREIGN KEY REFERENCES BookState(IdBookState)
+	)
+END
+

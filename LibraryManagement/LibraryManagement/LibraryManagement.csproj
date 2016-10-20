@@ -237,7 +237,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
-    <Compile Include="Controllers\LivresController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManagersController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
@@ -245,23 +245,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Auteur.cs">
+    <Compile Include="Models\Author.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Book.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksAuthors.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksCopy.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookState.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cooperative.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EtatLivre.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Livre.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LivresAuteurs.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LivresAuteursViewModel.cs" />
+    <Compile Include="Models\BooksAuthorsViewModel.cs" />
     <Compile Include="Models\Manager.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -374,8 +377,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Livres\Create.cshtml" />
-    <Content Include="Views\Livres\Index.cshtml" />
+    <Content Include="Views\Books\Create.cshtml" />
     <Content Include="Views\Managers\Create.cshtml" />
     <Content Include="Views\Managers\Delete.cshtml" />
     <Content Include="Views\Managers\Details.cshtml" />

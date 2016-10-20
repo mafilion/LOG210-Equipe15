@@ -1,11 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LibraryManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Auteur">
+  <EntityType Name="Author">
     <Key>
-      <PropertyRef Name="IDAuteur" />
+      <PropertyRef Name="IDAuthor" />
     </Key>
-    <Property Name="IDAuteur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDAuthor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="IDBook" />
+    </Key>
+    <Property Name="IDBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="noISBN" Type="varchar" MaxLength="50" />
+    <Property Name="noEAN" Type="varchar" MaxLength="50" />
+    <Property Name="noUPC" Type="varchar" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="nbPages" Type="int" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BooksAuthors">
+    <Key>
+      <PropertyRef Name="IDBooksAuthors" />
+    </Key>
+    <Property Name="IDBooksAuthors" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDAuthor" Type="int" Nullable="false" />
+    <Property Name="IDBook" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BooksCopy">
+    <Key>
+      <PropertyRef Name="IDBooksCopy" />
+    </Key>
+    <Property Name="IDBooksCopy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDStudent" Type="int" Nullable="false" />
+    <Property Name="IDBook" Type="int" Nullable="false" />
+    <Property Name="IDBookState" Type="int" />
+  </EntityType>
+  <EntityType Name="BookState">
+    <Key>
+      <PropertyRef Name="IDBookState" />
+    </Key>
+    <Property Name="IDBookState" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="PricePercentage" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Cooperative">
     <Key>
@@ -17,35 +54,6 @@
     <Property Name="Street" Type="varchar" MaxLength="100" />
     <Property Name="PostalCode" Type="varchar" MaxLength="10" />
     <Property Name="City" Type="varchar" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="EtatLivre">
-    <Key>
-      <PropertyRef Name="IDEtatLivre" />
-    </Key>
-    <Property Name="IDEtatLivre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Description" Type="varchar(max)" Nullable="false" />
-    <Property Name="PourcentagePrix" Type="float" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Livre">
-    <Key>
-      <PropertyRef Name="IDLivre" />
-    </Key>
-    <Property Name="IDLivre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="noISBN" Type="varchar" MaxLength="50" />
-    <Property Name="noEAN" Type="varchar" MaxLength="50" />
-    <Property Name="noUPC" Type="varchar" MaxLength="50" />
-    <Property Name="Titre" Type="varchar" MaxLength="300" Nullable="false" />
-    <Property Name="nbPages" Type="int" Nullable="false" />
-    <Property Name="prix" Type="float" Nullable="false" />
-    <Property Name="IDEtatLivre" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="LivresAuteurs">
-    <Key>
-      <PropertyRef Name="IDLivresAuteurs" />
-    </Key>
-    <Property Name="IDLivresAuteurs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDAuteur" Type="int" Nullable="false" />
-    <Property Name="IDLivre" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>
@@ -85,39 +93,63 @@
     <Property Name="PhoneNumber" Type="varchar" MaxLength="12" />
     <Property Name="StudentPassword" Type="varchar" MaxLength="1000" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Livre__IDEtatLiv__37A5467C">
-    <End Role="EtatLivre" Type="Self.EtatLivre" Multiplicity="1" />
-    <End Role="Livre" Type="Self.Livre" Multiplicity="*" />
+  <Association Name="FK__BooksAuth__IDAut__49C3F6B7">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="BooksAuthors" Type="Self.BooksAuthors" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="EtatLivre">
-        <PropertyRef Name="IDEtatLivre" />
+      <Principal Role="Author">
+        <PropertyRef Name="IDAuthor" />
       </Principal>
-      <Dependent Role="Livre">
-        <PropertyRef Name="IDEtatLivre" />
+      <Dependent Role="BooksAuthors">
+        <PropertyRef Name="IDAuthor" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LivresAut__IDAut__403A8C7D">
-    <End Role="Auteur" Type="Self.Auteur" Multiplicity="1" />
-    <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
+  <Association Name="FK__BooksAuth__IDBoo__4AB81AF0">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BooksAuthors" Type="Self.BooksAuthors" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Auteur">
-        <PropertyRef Name="IDAuteur" />
+      <Principal Role="Book">
+        <PropertyRef Name="IDBook" />
       </Principal>
-      <Dependent Role="LivresAuteurs">
-        <PropertyRef Name="IDAuteur" />
+      <Dependent Role="BooksAuthors">
+        <PropertyRef Name="IDBook" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__LivresAut__IDLiv__412EB0B6">
-    <End Role="Livre" Type="Self.Livre" Multiplicity="1" />
-    <End Role="LivresAuteurs" Type="Self.LivresAuteurs" Multiplicity="*" />
+  <Association Name="FK__BooksCopy__IDBoo__4E88ABD4">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BooksCopy" Type="Self.BooksCopy" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Livre">
-        <PropertyRef Name="IDLivre" />
+      <Principal Role="Book">
+        <PropertyRef Name="IDBook" />
       </Principal>
-      <Dependent Role="LivresAuteurs">
-        <PropertyRef Name="IDLivre" />
+      <Dependent Role="BooksCopy">
+        <PropertyRef Name="IDBook" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BooksCopy__IDBoo__4F7CD00D">
+    <End Role="BookState" Type="Self.BookState" Multiplicity="0..1" />
+    <End Role="BooksCopy" Type="Self.BooksCopy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookState">
+        <PropertyRef Name="IDBookState" />
+      </Principal>
+      <Dependent Role="BooksCopy">
+        <PropertyRef Name="IDBookState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BooksCopy__IDStu__4D94879B">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="BooksCopy" Type="Self.BooksCopy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="IDStudent" />
+      </Principal>
+      <Dependent Role="BooksCopy">
+        <PropertyRef Name="IDStudent" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -134,26 +166,35 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="LibraryManagementModelStoreContainer">
-    <EntitySet Name="Auteur" EntityType="Self.Auteur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BooksAuthors" EntityType="Self.BooksAuthors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BooksCopy" EntityType="Self.BooksCopy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookState" EntityType="Self.BookState" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cooperative" EntityType="Self.Cooperative" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="EtatLivre" EntityType="Self.EtatLivre" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Livre" EntityType="Self.Livre" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="LivresAuteurs" EntityType="Self.LivresAuteurs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Livre__IDEtatLiv__37A5467C" Association="Self.FK__Livre__IDEtatLiv__37A5467C">
-      <End Role="EtatLivre" EntitySet="EtatLivre" />
-      <End Role="Livre" EntitySet="Livre" />
+    <AssociationSet Name="FK__BooksAuth__IDAut__49C3F6B7" Association="Self.FK__BooksAuth__IDAut__49C3F6B7">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="BooksAuthors" EntitySet="BooksAuthors" />
     </AssociationSet>
-    <AssociationSet Name="FK__LivresAut__IDAut__403A8C7D" Association="Self.FK__LivresAut__IDAut__403A8C7D">
-      <End Role="Auteur" EntitySet="Auteur" />
-      <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
+    <AssociationSet Name="FK__BooksAuth__IDBoo__4AB81AF0" Association="Self.FK__BooksAuth__IDBoo__4AB81AF0">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BooksAuthors" EntitySet="BooksAuthors" />
     </AssociationSet>
-    <AssociationSet Name="FK__LivresAut__IDLiv__412EB0B6" Association="Self.FK__LivresAut__IDLiv__412EB0B6">
-      <End Role="Livre" EntitySet="Livre" />
-      <End Role="LivresAuteurs" EntitySet="LivresAuteurs" />
+    <AssociationSet Name="FK__BooksCopy__IDBoo__4E88ABD4" Association="Self.FK__BooksCopy__IDBoo__4E88ABD4">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDBoo__4F7CD00D" Association="Self.FK__BooksCopy__IDBoo__4F7CD00D">
+      <End Role="BookState" EntitySet="BookState" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDStu__4D94879B" Association="Self.FK__BooksCopy__IDStu__4D94879B">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
     </AssociationSet>
     <AssociationSet Name="FK__Manager__IDCoope__2A4B4B5E" Association="Self.FK__Manager__IDCoope__2A4B4B5E">
       <End Role="Cooperative" EntitySet="Cooperative" />

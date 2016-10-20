@@ -12,20 +12,17 @@ namespace LibraryManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class BookState
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
+        public BookState()
         {
             this.BooksCopy = new HashSet<BooksCopy>();
         }
     
-        public int IDStudent { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string StudentPassword { get; set; }
+        public int IDBookState { get; set; }
+        public string Description { get; set; }
+        public double PricePercentage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksCopy> BooksCopy { get; set; }

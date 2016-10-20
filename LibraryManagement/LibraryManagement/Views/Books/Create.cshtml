@@ -1,0 +1,125 @@
+﻿@model LibraryManagement.Models.BooksAuthorsViewModel
+@using LibraryManagement.Utils;
+
+<script src="@Url.Content("~/Scripts/livre.js")" type="text/javascript"></script>
+<h2>@UtilResources.GetLabel("Nouveau Livre")</h2>
+
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        <h3>@UtilResources.GetLabel("Rechercher livre")</h3>
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Numero ISBN/EAN/UPC")+" :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="BookNumber" name="BookNumber" class="form-control">
+                <br />
+                <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
+                <!-- Si il y a des values dans l'un des champs, popup confirmation qu'il souhaite réinitialiser les informations du livre (si il n'a pas cliqué sur ajouter le livre ne sera pas ajouté)-->
+            </div>
+        </div>
+        <hr />
+        <h3>@UtilResources.GetLabel("Information du livre")</h3>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.book.noISBN, @UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.book.noISBN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.book.noISBN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.book.Title, @UtilResources.GetLabel("Titre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.book.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.book.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.book.nbPages, @UtilResources.GetLabel("Nombre de pages") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.book.nbPages, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.book.nbPages, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.book.price, @UtilResources.GetLabel("Prix neuf") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.book.price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.book.price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- Section Auteur (À Revoir pour rendre dynamique)-->
+         <hr />
+        <h3>@UtilResources.GetLabel("Auteurs")</h3>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Principal") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuthorName1" name="AuthorName1" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuthorName2" name="AuthorName2" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuthorName3" name="AuthorName3" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuthorName4" name="AuthorName4" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@UtilResources.GetLabel("Secondaire") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="AuthorName5" name="AuthorName5" class="form-control">
+                <br />
+            </div>
+        </div>
+
+        <!--Faire un event javascript/jquery qui va ajouter des champs Prénom/Nom lorsque l'on clique sur le + -->
+        <hr />
+        <!--Fin Section Auteur (À Revoir pour rendre dynamique)-->
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bookState.IDBookState, @UtilResources.GetLabel("État du livre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDBookState", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.bookState.IDBookState, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Suppression du Form Necessaire, il va falloir faire un event javascript qui va caller la méthode de create dans le controlleur en AJAX-->
+        <!-- Après l'ajout, popup de confirmation de l'ajout puisque la fenêtre ne sera pas redirigez automatiquement(ou faire un popup qui demande si il veut ajouter un autre livre)-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" id="AddBook" name="AddBook" onclick="sendLivre()" class="btn btn-default">@UtilResources.GetLabel("Creer")</button>
+            </div>
+        </div>
+    </div>
+<div>
+    @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index", "Home")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
