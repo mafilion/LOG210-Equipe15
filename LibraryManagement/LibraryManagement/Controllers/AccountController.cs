@@ -65,26 +65,18 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult ConnexionStudent(StudentsManagersViewModels model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
             // Création de la connexion avec la BD
             libraryManagementEntities db = new libraryManagementEntities();
-            string email;
-            string firstname;
             string password;
 
+
+
             // À l'aide des Regular Expression, on regarde si le numéro de téléphone est du bon format. 
-            string strIn = model.Email;
+            string strIn = model.student.Email;
             string re1 = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$";  // RegEx du numero de telephone
 
             Regex r = new Regex(re1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -92,39 +84,43 @@ namespace LibraryManagement.Controllers
             if (m.Success)
             {
                 // on commence par regardé si l'adresse est trouvé en BD
-                if (db.Student.Any(o => o.PhoneNumber == model.Email))
+                if (db.Student.Any(o => o.PhoneNumber == model.student.Email))
                 {
 
                     // On select le student dans la BD
-                    Student student = db.Student.Single(o => o.PhoneNumber == model.Email);
+                    Student student = db.Student.Single(o => o.PhoneNumber == model.student.Email);
 
                     // puis on compare les 2 password
-                    password = UtilResources.EncryptPassword(model.Password);
+                    password = UtilResources.EncryptPassword(model.student.StudentPassword);
 
                     if (password == student.StudentPassword)
                     {
-                        firstname = student.FirstName;
+                        // On ajoute le nom de l'utilisateur dans la variable global
+                        UtilResources.NomUtilisateur = student.FirstName;
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Le numéro de téléphone et le mot de passe ne correspondent pas");
+                        ModelState.AddModelError("", UtilResources.GetLabel("Le numéro de téléphone et le mot de passe ne correspondent pas"));
                     }
                 }
             }
 
             // on commence par regardé si l'adresse est trouvé en BD
-            if (db.Student.Any(o => o.Email == model.Email))
+            if (db.Student.Any(o => o.Email == model.student.Email))
             {
-               
+
                 // On select le student dans la BD
-                Student student = db.Student.Single(o => o.Email == model.Email);
+                Student student = db.Student.Single(o => o.Email == model.student.Email);
 
                 // puis on compare les 2 password
-                password = UtilResources.EncryptPassword(model.Password);
+                password = UtilResources.EncryptPassword(model.student.StudentPassword);
 
                 if (password == student.StudentPassword)
                 {
-                    firstname = student.FirstName;
+                    // On ajoute le nom de l'utilisateur dans la variable global
+                    UtilResources.NomUtilisateur = student.FirstName;
+
+
                 }
                 else
                 {
@@ -136,27 +132,44 @@ namespace LibraryManagement.Controllers
                 ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
 
             }
-
-            
-
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
+            return View();
         }
+
+        ////
+        //// POST: /Account/Login
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Login(StudentsManagersViewModels model, string returnUrl)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+
+
+
+
+
+
+        //    // This doesn't count login failures towards account lockout
+        //    // To enable password failures to trigger account lockout, change to shouldLockout: true
+        //    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+        //    switch (result)
+        //    {
+        //        case SignInStatus.Success:
+        //            return RedirectToLocal(returnUrl);
+        //        case SignInStatus.LockedOut:
+        //            return View("Lockout");
+        //        case SignInStatus.RequiresVerification:
+        //            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+        //        case SignInStatus.Failure:
+        //        default:
+        //            ModelState.AddModelError("", "Invalid login attempt.");
+        //            return View(model);
+        //    }
+        //}
+
 
         //
         // GET: /Account/VerifyCode
