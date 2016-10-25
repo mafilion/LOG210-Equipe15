@@ -8,8 +8,8 @@
 
 <div class="row">
     <div class="col-md-8">
-        <section id="loginFormManager">
-            @using (Html.BeginForm("ConnexionStudent", "Student", FormMethod.Post, new { onsubmit = "return ConnexionStudent();" }))
+        <section id="loginFormStudent">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { onsubmit = "return isValid();" }))
             {
                 @Html.AntiForgeryToken()
                 <h4>Use a student account to log in.</h4>
@@ -44,7 +44,7 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginFormManager">
-            @using (Html.BeginForm("ConnexionManager", "Manager", FormMethod.Post, new { onsubmit = "return ConnexionStudent();" }))
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { onsubmit = "return isValid();" }))
             {
                 @Html.AntiForgeryToken()
                 <h4>Use a manager account to log in.</h4>

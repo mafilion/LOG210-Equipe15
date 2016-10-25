@@ -65,10 +65,20 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
+
+        // Gestion de la connexion des Students. 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ConnexionStudent(StudentsManagersViewModels model)
+        public async Task<ActionResult> LoginStudent(StudentsManagersViewModels model, string returnUrl)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // C'est ici que l'on va faire la connexion complète avec la BD
+
             // Création de la connexion avec la BD
             libraryManagementEntities db = new libraryManagementEntities();
             string password;
@@ -86,7 +96,6 @@ namespace LibraryManagement.Controllers
                 // on commence par regardé si l'adresse est trouvé en BD
                 if (db.Student.Any(o => o.PhoneNumber == model.student.Email))
                 {
-
                     // On select le student dans la BD
                     Student student = db.Student.Single(o => o.PhoneNumber == model.student.Email);
 
@@ -97,10 +106,12 @@ namespace LibraryManagement.Controllers
                     {
                         // On ajoute le nom de l'utilisateur dans la variable global
                         UtilResources.NomUtilisateur = student.FirstName;
+                        return RedirectToLocal(returnUrl);
                     }
                     else
                     {
                         ModelState.AddModelError("", UtilResources.GetLabel("Le numéro de téléphone et le mot de passe ne correspondent pas"));
+                        return View();
                     }
                 }
             }
@@ -119,56 +130,90 @@ namespace LibraryManagement.Controllers
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
                     UtilResources.NomUtilisateur = student.FirstName;
-
+                    return RedirectToLocal(returnUrl);
 
                 }
                 else
                 {
-                    ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                    // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                    return View();
                 }
             }
             else // On on ne trouve pas le email
             {
-                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
-
+                // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                return View();
             }
-            return View();
         }
 
-        ////
-        //// POST: /Account/Login
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Login(StudentsManagersViewModels model, string returnUrl)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+       
+        // Gestion de la connexion des Managers
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> LoginManagers(StudentsManagersViewModels model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // C'est ici que l'on va faire la connexion complète avec la 
+            // Création de la connexion avec la BD
+            libraryManagementEntities db = new libraryManagementEntities();
+            string password;
+
+            // À l'aide des Regular Expression, on regarde si le numéro de téléphone est du bon format. 
+            string strIn = model.manager.Email;
+       
+
+            // on commence par regardé si l'adresse est trouvé en BD
+            if (db.Manager.Any(o => o.Email == model.manager.Email))
+            {
+                // On select le student dans la BD
+                Manager manager = db.Manager.Single(o => o.Email == model.manager.Email);
+
+                // puis on compare les 2 password
+                password = UtilResources.EncryptPassword(model.manager.ManagerPassword);
+
+                if (password == manager.ManagerPassword)
+                {
+                    // On ajoute le nom de l'utilisateur dans la variable global
+                    UtilResources.NomUtilisateur = manager.FirstName;
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                    return View();
+                }
+            }
+            else // On on ne trouve pas le email
+            {
+                // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                return View();
+            }
+           
 
 
 
-
-
-
-        //    // This doesn't count login failures towards account lockout
-        //    // To enable password failures to trigger account lockout, change to shouldLockout: true
-        //    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-        //    switch (result)
-        //    {
-        //        case SignInStatus.Success:
-        //            return RedirectToLocal(returnUrl);
-        //        case SignInStatus.LockedOut:
-        //            return View("Lockout");
-        //        case SignInStatus.RequiresVerification:
-        //            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-        //        case SignInStatus.Failure:
-        //        default:
-        //            ModelState.AddModelError("", "Invalid login attempt.");
-        //            return View(model);
-        //    }
-        //}
+            //// This doesn't count login failures towards account lockout
+            //// To enable password failures to trigger account lockout, change to shouldLockout: true
+            //var result = await SignInManager.PasswordSignInAsync(model.student.Email, model.student.StudentPassword, false, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //       //  return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
+        }
 
 
         //
@@ -475,33 +520,33 @@ namespace LibraryManagement.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
+        ////
+        //// GET: /Account/ExternalLoginFailure
+        //[AllowAnonymous]
+        //public ActionResult ExternalLoginFailure()
+        //{
+        //    return View();
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        if (_userManager != null)
+        //        {
+        //            _userManager.Dispose();
+        //            _userManager = null;
+        //        }
 
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
+        //        if (_signInManager != null)
+        //        {
+        //            _signInManager.Dispose();
+        //            _signInManager = null;
+        //        }
+        //    }
 
-            base.Dispose(disposing);
-        }
+        //    base.Dispose(disposing);
+        //}
 
         #region Helpers
         // Used for XSRF protection when adding external logins

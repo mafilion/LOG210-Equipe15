@@ -11,7 +11,7 @@ namespace LibraryManagement.Utils
 {
     public static class UtilResources
     {
-        
+        public static string NomUtilisateur;
 
         private static int IDLanguage;
         public static void CreateInstance()
