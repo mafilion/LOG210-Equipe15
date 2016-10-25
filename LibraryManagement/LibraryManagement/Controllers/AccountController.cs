@@ -70,7 +70,7 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LoginStudent(StudentsManagersViewModels model, string returnUrl)
+        public async Task<ActionResult> Login(StudentsManagersViewModels model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -105,13 +105,16 @@ namespace LibraryManagement.Controllers
                     if (password == student.StudentPassword)
                     {
                         // On ajoute le nom de l'utilisateur dans la variable global
-                        UtilResources.NomUtilisateur = student.FirstName;
+                        // TODO AJOUTER LE STUDENT NEW STUDENT        
+
+                        // AFFICHER QUI EST CONNECTER DANS LA BAR EN HAUT
+                        AccountManagement.nomUtilisateur = student.FirstName;
                         return RedirectToLocal(returnUrl);
                     }
                     else
                     {
                         ModelState.AddModelError("", UtilResources.GetLabel("Le numéro de téléphone et le mot de passe ne correspondent pas"));
-                        return View();
+                        return View(model);
                     }
                 }
             }
@@ -129,20 +132,22 @@ namespace LibraryManagement.Controllers
                 if (password == student.StudentPassword)
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
-                    UtilResources.NomUtilisateur = student.FirstName;
+                    AccountManagement.nomUtilisateur = student.FirstName;
                     return RedirectToLocal(returnUrl);
 
                 }
                 else
                 {
-                    // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
-                    return View();
+                    ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                 
+                    return View(model);
                 }
             }
             else // On on ne trouve pas le email
             {
-                // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
-                return View();
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+             
+                return View(model);
             }
         }
 
@@ -179,19 +184,19 @@ namespace LibraryManagement.Controllers
                 if (password == manager.ManagerPassword)
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
-                    UtilResources.NomUtilisateur = manager.FirstName;
+                    AccountManagement.nomUtilisateur = manager.FirstName;
                     return RedirectToLocal(returnUrl);
                 }
                 else
                 {
                     // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
-                    return View();
+                    return View(model);
                 }
             }
             else // On on ne trouve pas le email
             {
                 // ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
-                return View();
+                return View(model);
             }
            
 
@@ -516,37 +521,11 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            AccountManagement.Logoff();
+            return View();
         }
 
-        ////
-        //// GET: /Account/ExternalLoginFailure
-        //[AllowAnonymous]
-        //public ActionResult ExternalLoginFailure()
-        //{
-        //    return View();
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        if (_userManager != null)
-        //        {
-        //            _userManager.Dispose();
-        //            _userManager = null;
-        //        }
-
-        //        if (_signInManager != null)
-        //        {
-        //            _signInManager.Dispose();
-        //            _signInManager = null;
-        //        }
-        //    }
-
-        //    base.Dispose(disposing);
-        //}
+     
 
         #region Helpers
         // Used for XSRF protection when adding external logins

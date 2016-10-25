@@ -297,6 +297,7 @@
     <Compile Include="Models\StudentsManagersViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\AccountManagement.cs" />
     <Compile Include="Utility\UtilResources.cs" />
   </ItemGroup>
   <ItemGroup>
