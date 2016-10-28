@@ -353,6 +353,30 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Secondaire','Secondary')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Demande de livraison','Demande de livraison')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Demande de livraison','Delivery Request')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Livraison','Livraison')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Livraison','Delivery')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Date réservation','Date réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Date réservation','Booking Date')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Livrer','Livrer')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Livrer','Deliver')
 END
 
 /*Table pour les états de livres*/
@@ -413,6 +437,7 @@ BEGIN
 END
 
 /* Table Exemplaire */
+/* 1 Disponible , 0 Non-disponible(vendu) , -1 pas encore recu par l'étudiant */
 IF (NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
                  WHERE TABLE_NAME = 'BooksCopy'))
@@ -421,7 +446,36 @@ BEGIN
 		IDBooksCopy INT PRIMARY KEY IDENTITY(1,1),
 		IDStudent INT FOREIGN KEY REFERENCES Student(IDStudent) NOT NULL,
 		IDBook INT FOREIGN KEY REFERENCES Book(IDBook) NOT NULL,
-		IDBookState INT FOREIGN KEY REFERENCES BookState(IdBookState)
+		IDBookState INT FOREIGN KEY REFERENCES BookState(IdBookState),
+		Available INT NOT NULL DEFAULT -1
 	)
 END
 
+/*Table Réservation */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'Booking'))
+BEGIN
+	CREATE TABLE Booking(
+		IDBooking INT PRIMARY KEY IDENTITY(1,1),
+		IDStudent INT FOREIGN KEY REFERENCES Student(IDStudent) NOT NULL,
+		IDManager INT FOREIGN KEY REFERENCES Manager(IDManager) NULL,
+		BookingDate DATETIME NOT NULL,
+		TradeConfirmation BIT NOT NULL
+	)
+END
+
+
+/*Table RéservationLigne */
+/*-1:Pendant la période de 48 heures, 1: Transaction Confirmé, 2: Transaction Annulé(limite dépassé ou l'étudiant ne veut plus le livre). */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'BookingLine'))
+BEGIN
+	CREATE TABLE BookingLine(
+		IDBookingLine INT PRIMARY KEY IDENTITY(1,1),
+		IDBooking INT FOREIGN KEY REFERENCES Booking(IDBooking) NOT NULL,
+		IDBooksCopy INT FOREIGN KEY REFERENCES BooksCopy(IDBooksCopy) NOT NULL,
+		BookingState INT NOT NULL DEFAULT -1,
+	)
+END

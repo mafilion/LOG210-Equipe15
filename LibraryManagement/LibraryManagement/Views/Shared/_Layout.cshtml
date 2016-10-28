@@ -27,6 +27,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Ajouter un livre"), "Create", "Books")</li>
+                    <li>@Html.ActionLink(@UtilResources.GetLabel("Demande de livraison"), "Index", "Deliveries")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

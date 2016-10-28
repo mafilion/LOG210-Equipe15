@@ -78,6 +78,16 @@ namespace LibraryManagement.Controllers
                 db.BooksAuthors.Add(boA);
                 db.SaveChanges();
             }
+            else
+            {
+                //Met à jour le livre
+                bo.Title = booksAut.book.Title;
+                bo.nbPages = booksAut.book.nbPages;
+                bo.price = booksAut.book.price;
+                bo.noISBN = booksAut.book.noISBN;
+                db.Entry(bo).State = EntityState.Modified;
+                db.SaveChanges();
+            }
 
             //Ajouter l'exemplaire
             boC.IDBook = bo.IDBook;

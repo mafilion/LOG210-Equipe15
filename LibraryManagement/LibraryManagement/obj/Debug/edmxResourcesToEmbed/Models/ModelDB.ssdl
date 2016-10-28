@@ -19,6 +19,25 @@
     <Property Name="nbPages" Type="int" Nullable="false" />
     <Property Name="price" Type="float" Nullable="false" />
   </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="IDBooking" />
+    </Key>
+    <Property Name="IDBooking" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDStudent" Type="int" Nullable="false" />
+    <Property Name="IDManager" Type="int" />
+    <Property Name="BookingDate" Type="datetime" Nullable="false" />
+    <Property Name="TradeConfirmation" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingLine">
+    <Key>
+      <PropertyRef Name="IDBookingLine" />
+    </Key>
+    <Property Name="IDBookingLine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDBooking" Type="int" Nullable="false" />
+    <Property Name="IDBooksCopy" Type="int" Nullable="false" />
+    <Property Name="BookingState" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="BooksAuthors">
     <Key>
       <PropertyRef Name="IDBooksAuthors" />
@@ -35,6 +54,7 @@
     <Property Name="IDStudent" Type="int" Nullable="false" />
     <Property Name="IDBook" Type="int" Nullable="false" />
     <Property Name="IDBookState" Type="int" />
+    <Property Name="Available" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BookState">
     <Key>
@@ -93,6 +113,54 @@
     <Property Name="PhoneNumber" Type="varchar" MaxLength="12" />
     <Property Name="StudentPassword" Type="varchar" MaxLength="1000" Nullable="false" />
   </EntityType>
+  <Association Name="FK__Booking__IDManag__534D60F1">
+    <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manager">
+        <PropertyRef Name="IDManager" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="IDManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__IDStude__52593CB8">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="IDStudent" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="IDStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingLi__IDBoo__5CD6CB2B">
+    <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+    <End Role="BookingLine" Type="Self.BookingLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Booking">
+        <PropertyRef Name="IDBooking" />
+      </Principal>
+      <Dependent Role="BookingLine">
+        <PropertyRef Name="IDBooking" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BookingLi__IDBoo__5DCAEF64">
+    <End Role="BooksCopy" Type="Self.BooksCopy" Multiplicity="1" />
+    <End Role="BookingLine" Type="Self.BookingLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BooksCopy">
+        <PropertyRef Name="IDBooksCopy" />
+      </Principal>
+      <Dependent Role="BookingLine">
+        <PropertyRef Name="IDBooksCopy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__BooksAuth__IDAut__49C3F6B7">
     <End Role="Author" Type="Self.Author" Multiplicity="1" />
     <End Role="BooksAuthors" Type="Self.BooksAuthors" Multiplicity="*" />
@@ -168,6 +236,8 @@
   <EntityContainer Name="LibraryManagementModelStoreContainer">
     <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingLine" EntityType="Self.BookingLine" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BooksAuthors" EntityType="Self.BooksAuthors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BooksCopy" EntityType="Self.BooksCopy" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookState" EntityType="Self.BookState" Schema="dbo" store:Type="Tables" />
@@ -176,6 +246,22 @@
     <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__IDManag__534D60F1" Association="Self.FK__Booking__IDManag__534D60F1">
+      <End Role="Manager" EntitySet="Manager" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__IDStude__52593CB8" Association="Self.FK__Booking__IDStude__52593CB8">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingLi__IDBoo__5CD6CB2B" Association="Self.FK__BookingLi__IDBoo__5CD6CB2B">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="BookingLine" EntitySet="BookingLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingLi__IDBoo__5DCAEF64" Association="Self.FK__BookingLi__IDBoo__5DCAEF64">
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+      <End Role="BookingLine" EntitySet="BookingLine" />
+    </AssociationSet>
     <AssociationSet Name="FK__BooksAuth__IDAut__49C3F6B7" Association="Self.FK__BooksAuth__IDAut__49C3F6B7">
       <End Role="Author" EntitySet="Author" />
       <End Role="BooksAuthors" EntitySet="BooksAuthors" />

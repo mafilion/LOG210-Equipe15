@@ -85,9 +85,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BookState">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BookState">
+        <MappingFragment StoreEntitySet="BookState">
+          <ScalarProperty Name="PricePercentage" ColumnName="PricePercentage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IDBookState" ColumnName="IDBookState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Booking">
+      <EntityTypeMapping TypeName="LibraryManagementModel.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="TradeConfirmation" ColumnName="TradeConfirmation" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="IDManager" ColumnName="IDManager" />
+          <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+          <ScalarProperty Name="IDBooking" ColumnName="IDBooking" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BooksCopy">
       <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopy">
         <MappingFragment StoreEntitySet="BooksCopy">
+          <ScalarProperty Name="Available" ColumnName="Available" />
           <ScalarProperty Name="IDBookState" ColumnName="IDBookState" />
           <ScalarProperty Name="IDBook" ColumnName="IDBook" />
           <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
@@ -95,12 +116,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BookState">
-      <EntityTypeMapping TypeName="LibraryManagementModel.BookState">
-        <MappingFragment StoreEntitySet="BookState">
-          <ScalarProperty Name="PricePercentage" ColumnName="PricePercentage" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="IDBookState" ColumnName="IDBookState" />
+    <EntitySetMapping Name="BookingLine">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BookingLine">
+        <MappingFragment StoreEntitySet="BookingLine">
+          <ScalarProperty Name="BookingState" ColumnName="BookingState" />
+          <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
+          <ScalarProperty Name="IDBooking" ColumnName="IDBooking" />
+          <ScalarProperty Name="IDBookingLine" ColumnName="IDBookingLine" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
