@@ -377,7 +377,33 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Livrer','Deliver')
-END
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Bonjour','Bonjour')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Bonjour','Hello')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Utiliser un compte étudiant pour vous connecter.','Utiliser un compte étudiant pour vous connecter.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Utiliser un compte étudiant pour vous connecter.','Use a student account to login')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Utiliser un compte gestionaire pour vous connecter.','Utiliser un compte gestionaire pour vous connecter.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Utiliser un compte gestionaire pour vous connecter.','Use a manager account to login') 
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Déconnexion','Déconnexion')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Déconnexion','Logoff')
+
+
+END 
 
 /*Table pour les états de livres*/
 IF (NOT EXISTS (SELECT * 

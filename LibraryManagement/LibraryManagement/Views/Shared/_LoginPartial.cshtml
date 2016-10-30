@@ -7,6 +7,12 @@
         new SelectListItem() {Text=UtilResources.GetLabel("Etudiant"), Value="Students"},
         new SelectListItem() {Text=UtilResources.GetLabel("Gestionnaire"), Value="Managers" }
     };
+
+    List<SelectListItem> selectListLogin = new List<SelectListItem>()
+    {
+        new SelectListItem() {Text=UtilResources.GetLabel("Etudiant"), Value="Students"},
+        new SelectListItem() {Text=UtilResources.GetLabel("Gestionnaire"), Value="Managers" }
+    };
 }
 
 <style type="text/css">
@@ -32,14 +38,10 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + AccountManagement.nomUtilisateur +   "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink(UtilResources.GetLabel("Bonjour") + " " +  AccountManagement.nomUtilisateur, "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li>@Html.</li>
-        <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts", @class = "specialeffect" })</a></li>
-        <li><a href="@Url.Action("LogOff","Accounts")">@UtilResources.GetLabel("LogOff")</a></li>
+        <li><a href="@Url.Action("LogOff","Accounts")">@UtilResources.GetLabel("Déconnexion")</a></li>
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
-        @Html.Hidden("StudentsNewAccount", Url.Action("Create", "Students"));
-        @Html.Hidden("ManagersNewAccount", Url.Action("Create", "Managers"));
     </ul>
     }
 }
@@ -47,7 +49,10 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts",@class = "specialeffect" })</a></li>
-        <li>@Html.ActionLink(@UtilResources.GetLabel("Connexion"), "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a>@Html.DropDownListFor(x => selectListLogin, selectListLogin, UtilResources.GetLabel("Connexion"), new { @id = "Login", @class = "specialeffect" })</a></li>
+        @Html.Hidden("LoginStudents", Url.Action("LoginStudents", "Accounts"));
+        @Html.Hidden("LoginManagers", Url.Action("LoginManagers", "Accounts"));
+
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
         @Html.Hidden("StudentsNewAccount", Url.Action("Create", "Students"));
         @Html.Hidden("ManagersNewAccount", Url.Action("Create", "Managers"));
@@ -70,4 +75,24 @@ $(document).ready(function (){
         }
     });
 });
+
+$(document).ready(function () {
+    $('#Login').change(function () {
+        switch ($(this).val()) {
+            case "Students":
+                var url = $("#LoginStudents").val();
+                location.href = url;
+                break;
+            case "Managers":
+                var url = $("#LoginManagers").val();
+                location.href = url;
+                break;
+            default:
+        }
+    });
+});
+
+
+
+
 </script>

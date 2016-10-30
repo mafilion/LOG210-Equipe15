@@ -17,8 +17,6 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
-        
-
         //
         // POST: /Account/LogOff
         public ActionResult LogOff()
@@ -32,7 +30,7 @@ namespace LibraryManagement.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult LoginStudents(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -43,7 +41,7 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(StudentsManagersViewModels model, string returnUrl)
+        public ActionResult LoginStudents(StudentsManagersViewModels model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -124,6 +122,15 @@ namespace LibraryManagement.Controllers
             }
         }
 
+
+        //
+        // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult LoginManagers(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
 
         // Gestion de la connexion des Managers
         [HttpPost]
