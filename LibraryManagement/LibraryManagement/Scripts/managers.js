@@ -1,6 +1,6 @@
 ﻿
 function isValidForm() {
-    var answer = confirm("Voulez-vous vraiment enregistrer ce gestionnaire \n\n" +
+    var answer = confirm("Voulez-vous vraiment enregistrer ce gestionnaire? \n\n" +
         "Prénom:             " + document.getElementById("manager_FirstName").value + "\n" +
         "Nom:                " + document.getElementById("manager_LastName").value + "\n" +
         "Courriel:           " + document.getElementById("manager_Email").value + "\n\n" +
@@ -10,7 +10,7 @@ function isValidForm() {
         "Rue:                " + document.getElementById("cooperative_Street").value + "\n" +
         "Ville:              " + document.getElementById("cooperative_City").value + "\n" +
         "Code Postal         " + document.getElementById("cooperative_PostalCode").value) + "\n\n" +
-        "Si le nom de la coopérative existe déjà, alors ses infos seront mis à jours"
+        "Si le nom de la coopérative existe déjà, alors ses infos seront mis à jour"
     if (answer) {
         return true;
     }
