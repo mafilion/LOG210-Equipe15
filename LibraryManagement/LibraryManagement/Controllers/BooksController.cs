@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using LibraryManagement.Models;
+using LibraryManagement.Utils;
 using Google.Apis.Books.v1;
 using Google.Apis.Services;
 using Google.Apis.Books.v1.Data;
@@ -20,8 +19,13 @@ namespace LibraryManagement.Controllers
         // GET: Livres/Create
         public ActionResult Create()
         {
-            ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
-            return View();
+            if (AccountManagement.isConnected() != null && AccountManagement.estManager == false )
+            {
+                ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
+                return View();
+            }
+            //Redirection vers la page de login si il tente d'accéder à la page 
+            return RedirectToAction("LoginStudents", "Accounts");
         }
 
         // POST: Livres/Create
@@ -92,7 +96,9 @@ namespace LibraryManagement.Controllers
             //Ajouter l'exemplaire
             boC.IDBook = bo.IDBook;
             boC.IDBookState = booksAut.bookState.IDBookState;
-            boC.IDStudent = 1; //A changer lors de la variable de session
+
+
+            boC.IDStudent = AccountManagement.IDAccount; //A changer lors de la variable de session
             db.BooksCopy.Add(boC);
             db.SaveChanges();
 

@@ -25,10 +25,17 @@
                 @Html.ActionLink(UtilResources.GetLabel("Gestion Bibliotheque"), "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @if (AccountManagement.isConnected() != null)
+                <!-- Section Page Compte étudiant -->
+                @if (AccountManagement.isConnected() != null && AccountManagement.estManager == false)
                 {
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Ajouter un livre"), "Create", "Books")</li>
+                </ul>
+                }
+                <!-- Section Page compte Gestionnaire -->
+                @if (AccountManagement.isConnected() != null && AccountManagement.estManager == true)
+                {
+                <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Demande de livraison"), "Index", "Deliveries")</li>
                 </ul>
                 }

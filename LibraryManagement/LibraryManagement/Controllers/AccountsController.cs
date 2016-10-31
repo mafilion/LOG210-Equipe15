@@ -80,6 +80,7 @@ namespace LibraryManagement.Controllers
 
                         // AFFICHER QUI EST CONNECTER DANS LA BAR EN HAUT
                         AccountManagement.nomUtilisateur = student.FirstName;
+                        AccountManagement.IDAccount = student.IDStudent;
                         return RedirectToLocal(returnUrl);
                     }
                     else
@@ -167,6 +168,7 @@ namespace LibraryManagement.Controllers
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
                     AccountManagement.nomUtilisateur = manager.FirstName;
+                    AccountManagement.IDAccount = manager.IDManager;
                     return Redirect(url);
                 }
                 else

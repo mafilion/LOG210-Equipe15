@@ -10,6 +10,7 @@ namespace LibraryManagement.Utils
         // Quand il n'y a pas d'utilisateur connecter, on met rien dans les nom
         public static string nomUtilisateur = "";
         public static bool estManager = false;
+        public static int IDAccount = -1;
 
         public static void Login(string username, bool isManager)
         {
@@ -22,6 +23,7 @@ namespace LibraryManagement.Utils
         {
             nomUtilisateur = "";
             estManager = false;
+            IDAccount = -1;
         }
 
 
