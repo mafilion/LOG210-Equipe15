@@ -96,9 +96,8 @@ namespace LibraryManagement.Controllers
             //Ajouter l'exemplaire
             boC.IDBook = bo.IDBook;
             boC.IDBookState = booksAut.bookState.IDBookState;
-
-
-            boC.IDStudent = AccountManagement.IDAccount; //A changer lors de la variable de session
+            boC.IDStudent = AccountManagement.IDAccount;
+            boC.Available = -1;
             db.BooksCopy.Add(boC);
             db.SaveChanges();
 
@@ -119,7 +118,9 @@ namespace LibraryManagement.Controllers
             //Recherche dans la BD si le livre existe (avec le Number sur le ISBN/EAN/UPC
             if (db.Book.Any(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number))
             {
-                book = db.Book.Where(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number).First();
+                BookAut.book = db.Book.Where(o => o.noISBN == Number || o.noEAN == Number || o.noUPC == Number).First();
+                BooksAuthors bookAuts = db.BooksAuthors.Where(o => o.IDBook == BookAut.book.IDBook).First();
+                BookAut.Aut = db.Author.Where(o => o.IDAuthor == bookAuts.IDAuthor).First();
             }
             else
             {

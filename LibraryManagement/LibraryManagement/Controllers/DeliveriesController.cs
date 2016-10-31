@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LibraryManagement.Models;
+using LibraryManagement.Utils;
 
 namespace LibraryManagement.Controllers
 {
@@ -17,33 +18,70 @@ namespace LibraryManagement.Controllers
         // GET: Deliveries
         public ActionResult Index()
         {
-            List<BookingLine> BookingLineList = db.BookingLine.Where(b => b.BookingState == -1).ToList();
-            List<Booking> BookingList = new List<Booking>();
-            foreach (BookingLine element in BookingLineList)
+            if(AccountManagement.isConnected() != null && AccountManagement.estManager == true)
             {
-                if(BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
+                List<BookingLine> BookingLineList = db.BookingLine.Where(b => b.BookingState == -1).ToList();
+                List<Booking> BookingList = new List<Booking>();
+                foreach (BookingLine element in BookingLineList)
                 {
-                    BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
+                    if(BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
+                    {
+                        BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
+                    }
                 }
+                return View(BookingList);
             }
-            return View(BookingList);
+            //Redirection vers la page de login si il tente d'accéder à la page 
+            return RedirectToAction("LoginManagers", "Accounts");
         }
 
         // GET: Bookings/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (AccountManagement.isConnected() != null && AccountManagement.estManager == true)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                DeliveriesViewModel DelModel = new DeliveriesViewModel();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Booking booking = db.Booking.Find(id);
+                if (booking == null)
+                {
+                    return HttpNotFound();
+                }
+                DelModel.booking = booking;
+                DelModel.student = db.Student.Where(stu => stu.IDStudent == booking.IDStudent).FirstOrDefault();
+                DelModel.bookingLineList = db.BookingLine.Where(bl => bl.IDBooking == booking.IDBooking).ToList();
+
+                List<SelectListItem> selectList = new List<SelectListItem>()
+                {
+                    new SelectListItem() {Text=UtilResources.GetLabel("Attente de l'étudiant"), Value="-1"},
+                    new SelectListItem() {Text=UtilResources.GetLabel("Refusé"), Value="0" },
+                    new SelectListItem() {Text=UtilResources.GetLabel("Accepté"), Value="1" }
+                };
+                ViewBag.StateBookingLine = selectList;
+
+                //Test Temp
+                    //On ajoute les exemplaires
+                /*foreach (var line in DelModel.bookingLineList)
+                {
+                    DelModel.booksCopyList.Add(db.BooksCopy.Single(bo => bo.IDBooksCopy == line.IDBooksCopy));
+                }
+                    //On ajoute l'état des exemplaires
+                foreach(var lines in DelModel.booksCopyList)
+                {
+                    DelModel.booksStateList.Add(db.BookState.Single(bo => bo.IDBookState == lines.IDBookState));
+                }
+                    //On ajoute les détails des livres
+                foreach(var linesBook in DelModel.booksCopyList)
+                {
+                    DelModel.bookList.Add(db.Book.Single(bo => bo.IDBook == linesBook.IDBook));
+                }*/
+                return View(DelModel);
             }
-            Booking booking = db.Booking.Find(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.IDManager = new SelectList(db.Manager, "IDManager", "FirstName", booking.IDManager);
-            ViewBag.IDStudent = new SelectList(db.Student, "IDStudent", "FirstName", booking.IDStudent);
-            return View(booking);
+            //Redirection vers la page de login si il tente d'accéder à la page 
+            return RedirectToAction("LoginManagers", "Accounts");
         }
 
         // POST: Bookings/Edit/5

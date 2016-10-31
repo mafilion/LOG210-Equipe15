@@ -105,6 +105,7 @@ namespace LibraryManagement.Controllers
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
                     AccountManagement.nomUtilisateur = student.FirstName;
+                    AccountManagement.IDAccount = student.IDStudent;
                     return RedirectToLocal(returnUrl);
 
                 }
@@ -168,6 +169,7 @@ namespace LibraryManagement.Controllers
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
                     AccountManagement.nomUtilisateur = manager.FirstName;
+                    AccountManagement.estManager = true;
                     AccountManagement.IDAccount = manager.IDManager;
                     return Redirect(url);
                 }

@@ -12,7 +12,7 @@
             @using (Html.BeginForm("LoginManagers", "Accounts", FormMethod.Post, new { onsubmit = "return isValid();" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>@UtilResources.GetLabel("Utiliser un compte gestionaire pour vous connecter.")</h4>
+                <h4>@UtilResources.GetLabel("Utiliser un compte gestionnaire pour vous connecter.")</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">

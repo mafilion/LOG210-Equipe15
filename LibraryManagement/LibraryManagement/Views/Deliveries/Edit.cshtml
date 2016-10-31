@@ -1,63 +1,61 @@
-﻿@model LibraryManagement.Models.Booking
+﻿@model LibraryManagement.Models.DeliveriesViewModel
+@using LibraryManagement.Utils;
 
-@{
-    ViewBag.Title = "Edit";
-}
 
-<h2>Edit</h2>
+<h2>@UtilResources.GetLabel("Détails Livraison")</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Booking</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IDBooking)
+        @Html.HiddenFor(model => model.booking.IDBooking)
 
+        <h3>@UtilResources.GetLabel("Étudiant")</h3>
         <div class="form-group">
-            @Html.LabelFor(model => model.IDStudent, "IDStudent", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.student.FirstName, @UtilResources.GetLabel("Prénom") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IDStudent", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDStudent, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.student.FirstName, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDManager, "IDManager", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.student.LastName, @UtilResources.GetLabel("Nom") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IDManager", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDManager, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.student.LastName, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.booking.BookingDate, @UtilResources.GetLabel("Date réservation") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BookingDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.booking.BookingDate, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TradeConfirmation, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.TradeConfirmation)
-                    @Html.ValidationMessageFor(model => model.TradeConfirmation, "", new { @class = "text-danger" })
+        <h3>@UtilResources.GetLabel("Livres réservés")</h3>
+        <hr />
+        @foreach (var bookingLine in Model.bookingLineList)
+        {
+            <div class="form-group">
+                @Html.LabelFor(boo => bookingLine.BookingState, @UtilResources.GetLabel("Confirmation Transaction")+" :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                  @Html.DropDownList("StateBookingLine", null , htmlAttributes: new { @class = "form-control" , @id="Book#"+bookingLine.IDBooksCopy })
                 </div>
             </div>
-        </div>
+            <hr />
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="@UtilResources.GetLabel("Sauvegarder")" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
 </div>

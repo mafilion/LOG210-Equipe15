@@ -388,13 +388,13 @@ BEGIN
 	VALUES(1,'Utiliser un compte étudiant pour vous connecter.','Utiliser un compte étudiant pour vous connecter.')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
-	VALUES(2,'Utiliser un compte étudiant pour vous connecter.','Use a student account to login')
+	VALUES(2,'Utiliser un compte étudiant pour vous connecter.','Use a student account to log in')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
-	VALUES(1,'Utiliser un compte gestionaire pour vous connecter.','Utiliser un compte gestionaire pour vous connecter.')
+	VALUES(1,'Utiliser un compte gestionnaire pour vous connecter.','Utiliser un compte gestionnaire pour vous connecter.')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
-	VALUES(2,'Utiliser un compte gestionaire pour vous connecter.','Use a manager account to login') 
+	VALUES(2,'Utiliser un compte gestionnaire pour vous connecter.','Use a manager account to log in') 
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(1,'Déconnexion','Déconnexion')
@@ -402,7 +402,41 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Déconnexion','Logoff')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Détails Livraison','Détails Livraison')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Détails Livraison','Delivery Details')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Confirmation Transaction','Confirmation Transaction')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Confirmation Transaction','Trade Confirmed')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Attente de l''étudiant','Attente de l''étudiant')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Attente de l''étudiant','Waiting for the student')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Refusé','Refusé')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Refusé','Declined')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Accepté','Accepté')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Accepté','Accepted')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Livres réservés','Livres réservés')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Livres réservés','Booked books')
 END 
 
 /*Table pour les états de livres*/
