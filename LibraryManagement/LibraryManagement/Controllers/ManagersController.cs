@@ -46,9 +46,9 @@ namespace LibraryManagement.Controllers
                 db.SaveChanges();
 
                 //Connexion automatique du nouveau compte
-                AccountManagement.estManager = true;
-                AccountManagement.IDAccount = managerCoop.manager.IDManager;
-                AccountManagement.nomUtilisateur = managerCoop.manager.FirstName;
+                AccountManagement.setEstManager(true);
+                AccountManagement.setIDAccount(managerCoop.manager.IDManager);
+                AccountManagement.setNomUtilisateur(managerCoop.manager.FirstName);
                 return RedirectToAction("Index","Home");
             }
             if(!ModelState.IsValid)

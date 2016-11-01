@@ -37,9 +37,9 @@ namespace LibraryManagement.Controllers
                 db.Student.Add(student);
                 db.SaveChanges();
                 //Connexion automatique lors de la création
-                AccountManagement.estManager = false;
-                AccountManagement.IDAccount = student.IDStudent;
-                AccountManagement.nomUtilisateur = student.FirstName;
+                AccountManagement.setEstManager(false);
+                AccountManagement.setIDAccount(student.IDStudent);
+                AccountManagement.setNomUtilisateur(student.FirstName);
                 return RedirectToAction("Index","Home");
             }
             if (!ModelState.IsValid)

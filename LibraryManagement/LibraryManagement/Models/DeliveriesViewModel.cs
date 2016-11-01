@@ -15,5 +15,6 @@ namespace LibraryManagement.Models
         public List<BooksCopy> booksCopyList { get; set; }
         public List<BookState> booksStateList { get; set; }
         public List<Book> bookList { get; set; }
+        public List<Author> authorList { get; set; }
     }
 }

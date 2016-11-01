@@ -437,6 +437,56 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Livres réservés','Booked books')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Bienvenue sur GestionBibliotheque','Bienvenue sur Gestion Bibliothèque!')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Bienvenue sur GestionBibliotheque','Welcome on Library Management!')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Veuillez vous connecter pour accéder aux fonctionnalités de Gestion Bibliothèque','Veuillez vous connecter pour accéder aux fonctionnalités de Gestion Bibliothèque')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Veuillez vous connecter pour accéder aux fonctionnalités de Gestion Bibliothèque','Log in to access the feature of Library Management')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information page ajouter un livre','Il vous est possible d’ajouter des livres que vous souhaitez vendre ou échanger à votre coopérative. Pour ce faire, le numéro d’ISBN, d’UPC ou d’EAN vous sera nécessaire. Il est important de mentionner qu’il vous faudra aller porter votre livre directement à votre coopérative suite à cet ajout.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information page ajouter un livre','You would be able to add books that you want to sell or trade to your cooperative. To do it, you will need an ISBN , UPC or EAN number. It is important to say that you will need to carry your books to your cooperative following the addition of your books in the system.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information page Demande de livraison','Gestion des livraisons en cours. Suite à une réservation, l’étudiant se présentera à la coopérative pour recevoir la livraison. Seules les livraisons n’ayant pas été complétées entièrement seront disponibles (ainsi que les livres n’ayant pas été accepté ou refusés par l’étudiant).')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information page Demande de livraison','Management of the deliveries. Following a booking, the student will show himself to the cooperative to receive his delivery. Only the deliveries who have not been completed entirely will be available.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Remise de livre','Remise de livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Remise de livre','Book delivery')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information page Remise de livre','Permet la confirmation de l’ajout des livres au système d’achat ou d’échange pour les autres étudiants. L’étudiant doit avoir effectué l’ajout du livre dans le système et être présent avec son ou ses livres à la coopérative pour effectuer la remise des livres.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information page Remise de livre','Allows the confirmation of the addition of books to the system of purchase or exchange for the other students. The student must have made the addition of the book in the system and be present with his books to the cooperative to make the delivery of books.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Réserver un livre','Réserver un livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Réserver un livre','Reserve a book')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information page Réserver un livre','Liste des livres disponible à l’achat. Il est important de préciser qu’une réservation de 48 heures sera attribuée à l’étudiant lors de la réservation. Suite à cela, l’étudiant à 48 heures pour aller récupérer le livre à la coopérative en question.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information page Réserver un livre','List of the books available for purchase. It is important to specify that a reservation of 48 hours will be attributed to the student during the reservation. Further to it, the student have 48 hours to go at his cooperative in question to get his book.')
+
+
 END 
 
 /*Table pour les états de livres*/

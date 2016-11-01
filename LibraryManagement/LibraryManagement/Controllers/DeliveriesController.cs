@@ -18,7 +18,7 @@ namespace LibraryManagement.Controllers
         // GET: Deliveries
         public ActionResult Index()
         {
-            if(AccountManagement.isConnected() != null && AccountManagement.estManager == true)
+            if(AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
             {
                 List<BookingLine> BookingLineList = db.BookingLine.Where(b => b.BookingState == -1).ToList();
                 List<Booking> BookingList = new List<Booking>();
@@ -38,7 +38,7 @@ namespace LibraryManagement.Controllers
         // GET: Bookings/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (AccountManagement.isConnected() != null && AccountManagement.estManager == true)
+            if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
             {
                 DeliveriesViewModel DelModel = new DeliveriesViewModel();
                 if (id == null)
@@ -52,7 +52,7 @@ namespace LibraryManagement.Controllers
                 }
                 DelModel.booking = booking;
                 DelModel.student = db.Student.Where(stu => stu.IDStudent == booking.IDStudent).FirstOrDefault();
-                DelModel.bookingLineList = db.BookingLine.Where(bl => bl.IDBooking == booking.IDBooking).ToList();
+                DelModel.bookingLineList = db.BookingLine.Where(bl => bl.IDBooking == booking.IDBooking && bl.BookingState==-1).ToList();
 
                 List<SelectListItem> selectList = new List<SelectListItem>()
                 {
@@ -63,21 +63,36 @@ namespace LibraryManagement.Controllers
                 ViewBag.StateBookingLine = selectList;
 
                 //Test Temp
-                    //On ajoute les exemplaires
-                /*foreach (var line in DelModel.bookingLineList)
+                //On ajoute les exemplaires
+                DelModel.booksCopyList = new List<BooksCopy>();
+                foreach (var line in DelModel.bookingLineList)
                 {
                     DelModel.booksCopyList.Add(db.BooksCopy.Single(bo => bo.IDBooksCopy == line.IDBooksCopy));
                 }
-                    //On ajoute l'état des exemplaires
-                foreach(var lines in DelModel.booksCopyList)
+                //On ajoute l'état des exemplaires
+                DelModel.booksStateList = new List<BookState>();
+                foreach (var lines in DelModel.booksCopyList)
                 {
                     DelModel.booksStateList.Add(db.BookState.Single(bo => bo.IDBookState == lines.IDBookState));
                 }
-                    //On ajoute les détails des livres
-                foreach(var linesBook in DelModel.booksCopyList)
+                //On ajoute les détails des livres
+                DelModel.bookList = new List<Book>();
+                foreach (var linesBook in DelModel.booksCopyList)
                 {
                     DelModel.bookList.Add(db.Book.Single(bo => bo.IDBook == linesBook.IDBook));
-                }*/
+                }
+                //AuteurBooks(Pas nécéssaire dans le viewModel
+                List<BooksAuthors> BatempList = new List<BooksAuthors>();
+                foreach (var linesBooks in DelModel.bookList)
+                {
+                    BatempList.Add(db.BooksAuthors.Single(bo => bo.IDBook == linesBooks.IDBook));
+                }
+                //Auteur 
+                DelModel.authorList = new List<Author>();
+                foreach (var linesAuthor in BatempList)
+                {
+                    DelModel.authorList.Add(db.Author.Single(bo => bo.IDAuthor == linesAuthor.IDAuthor));
+                }
                 return View(DelModel);
             }
             //Redirection vers la page de login si il tente d'accéder à la page 

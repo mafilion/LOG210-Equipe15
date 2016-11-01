@@ -38,7 +38,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink(UtilResources.GetLabel("Bonjour") + " " +  AccountManagement.nomUtilisateur, "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink(UtilResources.GetLabel("Bonjour") + " " +  AccountManagement.getNomUtilisateur(), "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="@Url.Action("LogOff","Accounts")">@UtilResources.GetLabel("Déconnexion")</a></li>
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
@@ -50,12 +50,12 @@ else
     <ul class="nav navbar-nav navbar-right">
         <li><a>@Html.DropDownListFor(x => selectList, selectList, UtilResources.GetLabel("Nouveau Compte"), new { @id = "newAccounts",@class = "specialeffect" })</a></li>
         <li><a>@Html.DropDownListFor(x => selectListLogin, selectListLogin, UtilResources.GetLabel("Connexion"), new { @id = "Login", @class = "specialeffect" })</a></li>
-        @Html.Hidden("LoginStudents", Url.Action("LoginStudents", "Accounts"));
-        @Html.Hidden("LoginManagers", Url.Action("LoginManagers", "Accounts"));
+        @Html.Hidden("LoginStudents", Url.Action("LoginStudents", "Accounts"))
+        @Html.Hidden("LoginManagers", Url.Action("LoginManagers", "Accounts"))
 
         <li><a href="@Url.Action("setLanguage","Language")">@UtilResources.GetLabel("Langues")</a></li>
-        @Html.Hidden("StudentsNewAccount", Url.Action("Create", "Students"));
-        @Html.Hidden("ManagersNewAccount", Url.Action("Create", "Managers"));
+        @Html.Hidden("StudentsNewAccount", Url.Action("Create", "Students"))
+        @Html.Hidden("ManagersNewAccount", Url.Action("Create", "Managers"))
     </ul>
 }
 

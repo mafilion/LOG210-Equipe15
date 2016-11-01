@@ -8,9 +8,9 @@ namespace LibraryManagement.Utils
     public static class AccountManagement
     {
         // Quand il n'y a pas d'utilisateur connecter, on met rien dans les nom
-        public static string nomUtilisateur = "";
-        public static bool estManager = false;
-        public static int IDAccount = -1;
+        private static string nomUtilisateur = "";
+        private static bool estManager = false;
+        private static int IDAccount = -1;
 
         public static void Login(string username, bool isManager)
         {
@@ -42,8 +42,36 @@ namespace LibraryManagement.Utils
                 return null; // S'il y a personne de connecter
         }
 
-        
+        //Get
+        public static string getNomUtilisateur()
+        {
+            return nomUtilisateur;
+        }
 
+        public static int getIDAccount()
+        {
+            return IDAccount;
+        }
 
+        public static bool getEstManager()
+        {
+            return estManager;
+        }
+
+        //Set
+        public static void setNomUtilisateur(string NomUtilisateur)
+        {
+            nomUtilisateur = NomUtilisateur;
+        }
+
+        public static void setIDAccount(int Account)
+        {
+            IDAccount = Account;
+        }
+
+        public static void setEstManager(bool manager)
+        {
+            estManager = manager;
+        }
     }
 }

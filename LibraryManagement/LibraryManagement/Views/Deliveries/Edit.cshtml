@@ -37,12 +37,60 @@
 
         <h3>@UtilResources.GetLabel("Livres réservés")</h3>
         <hr />
-        @foreach (var bookingLine in Model.bookingLineList)
+        @for (int i = 0; i < Model.bookingLineList.Count(); i++)
         {
+            @Html.HiddenFor(model => model.booksCopyList[i].IDBooksCopy)
+            <h3>@UtilResources.GetLabel("Livre") @(i+1)</h3>
+            //Info Livre
             <div class="form-group">
-                @Html.LabelFor(boo => bookingLine.BookingState, @UtilResources.GetLabel("Confirmation Transaction")+" :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.bookList[i].noISBN, @UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                  @Html.DropDownList("StateBookingLine", null , htmlAttributes: new { @class = "form-control" , @id="Book#"+bookingLine.IDBooksCopy })
+                    @Html.TextBoxFor(model => model.bookList[i].noISBN, new { htmlAttributes = new { @class = "form-control" } ,@readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bookList[i].Title, @UtilResources.GetLabel("Titre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.bookList[i].Title, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bookList[i].nbPages, @UtilResources.GetLabel("Nombre de pages") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.bookList[i].nbPages, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                </div>
+            </div>
+
+            //À Changé pour le prix du livre
+            <div class="form-group">
+                @Html.LabelFor(model => model.bookList[i].price, @UtilResources.GetLabel("Prix neuf") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.bookList[i].price, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                </div>
+            </div>
+
+            //Auteur Principal (i guess)
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorList[i].Name, @UtilResources.GetLabel("Auteur") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.authorList[i].Name, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                </div>
+            </div>
+
+            //Etat
+            <div class="form-group">
+                @Html.LabelFor(model => model.booksStateList[i].Description, @UtilResources.GetLabel("État du livre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.booksStateList[i].Description, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(boo => Model.booksStateList, @UtilResources.GetLabel("Confirmation Transaction")+" :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                  @Html.DropDownList("StateBookingLine", null , htmlAttributes: new { @class = "form-control" , @id="Book#"+Model.bookingLineList[i].IDBooksCopy })
                 </div>
             </div>
             <hr />

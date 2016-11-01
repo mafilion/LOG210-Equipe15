@@ -19,7 +19,7 @@ namespace LibraryManagement.Controllers
         // GET: Livres/Create
         public ActionResult Create()
         {
-            if (AccountManagement.isConnected() != null && AccountManagement.estManager == false )
+            if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == false )
             {
                 ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
                 return View();
@@ -96,7 +96,7 @@ namespace LibraryManagement.Controllers
             //Ajouter l'exemplaire
             boC.IDBook = bo.IDBook;
             boC.IDBookState = booksAut.bookState.IDBookState;
-            boC.IDStudent = AccountManagement.IDAccount;
+            boC.IDStudent = AccountManagement.getIDAccount();
             boC.Available = -1;
             db.BooksCopy.Add(boC);
             db.SaveChanges();

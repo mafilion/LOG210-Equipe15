@@ -22,9 +22,7 @@ namespace LibraryManagement.Controllers
         public ActionResult LogOff()
         {
             AccountManagement.Logoff();
-            string url = this.Request.UrlReferrer.AbsolutePath;
-            return Redirect(url);
-
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -79,9 +77,9 @@ namespace LibraryManagement.Controllers
                         // TODO AJOUTER LE STUDENT NEW STUDENT        
 
                         // AFFICHER QUI EST CONNECTER DANS LA BAR EN HAUT
-                        AccountManagement.nomUtilisateur = student.FirstName;
-                        AccountManagement.IDAccount = student.IDStudent;
-                        return RedirectToLocal(returnUrl);
+                        AccountManagement.setNomUtilisateur(student.FirstName);
+                        AccountManagement.setIDAccount(student.IDStudent);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -104,9 +102,9 @@ namespace LibraryManagement.Controllers
                 if (password == student.StudentPassword)
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
-                    AccountManagement.nomUtilisateur = student.FirstName;
-                    AccountManagement.IDAccount = student.IDStudent;
-                    return RedirectToLocal(returnUrl);
+                    AccountManagement.setNomUtilisateur(student.FirstName);
+                    AccountManagement.setIDAccount(student.IDStudent);
+                    return RedirectToAction("Index", "Home");
 
                 }
                 else
@@ -168,10 +166,10 @@ namespace LibraryManagement.Controllers
                 if (password == manager.ManagerPassword)
                 {
                     // On ajoute le nom de l'utilisateur dans la variable global
-                    AccountManagement.nomUtilisateur = manager.FirstName;
-                    AccountManagement.estManager = true;
-                    AccountManagement.IDAccount = manager.IDManager;
-                    return Redirect(url);
+                    AccountManagement.setNomUtilisateur(manager.FirstName);
+                    AccountManagement.setEstManager(true);
+                    AccountManagement.setIDAccount(manager.IDManager);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
