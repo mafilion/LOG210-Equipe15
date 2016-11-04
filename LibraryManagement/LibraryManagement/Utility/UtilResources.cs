@@ -16,14 +16,14 @@ namespace LibraryManagement.Utils
         public static void CreateInstance()
         {
             //Aller le chercher en BD et le set
-            libraryManagementEntities db = new libraryManagementEntities();
+            LibraryManagementEntities db = new LibraryManagementEntities();
             Settings config = db.Settings.Single(); //Si plante ici mettre à jour la connexion du ModelDB!
             IDLanguage = config.IDLanguage;
         }
 
         public static void ChangeLanguage(string language)
         {
-            libraryManagementEntities db = new libraryManagementEntities();
+            LibraryManagementEntities db = new LibraryManagementEntities();
             switch (language)
             {
                 case "Fr" :
@@ -44,7 +44,7 @@ namespace LibraryManagement.Utils
 
         public static void ChangeLanguageTwo()
         {
-            libraryManagementEntities db = new libraryManagementEntities();
+            LibraryManagementEntities db = new LibraryManagementEntities();
             Settings config = db.Settings.Single();
             if (config.IDLanguage == 1)
             {
@@ -61,7 +61,7 @@ namespace LibraryManagement.Utils
 
         public static string GetLabel(string label)
         {
-            libraryManagementEntities db = new libraryManagementEntities();
+            LibraryManagementEntities db = new LibraryManagementEntities();
             Resources text = db.Resources.Where(c => c.TextName == label && c.IDLanguage == IDLanguage).FirstOrDefault();
             if (text != null)
                 return text.Description;

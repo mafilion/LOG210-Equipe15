@@ -13,7 +13,7 @@ namespace LibraryManagement.Controllers
 {
     public class DeliveriesController : Controller
     {
-        private libraryManagementEntities db = new libraryManagementEntities();
+        private LibraryManagementEntities db = new LibraryManagementEntities();
 
         // GET: Deliveries
         public ActionResult Index()
@@ -104,17 +104,50 @@ namespace LibraryManagement.Controllers
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDBooking,IDStudent,IDManager,BookingDate,TradeConfirmation")] Booking booking)
+        public ActionResult Edit(DeliveriesViewModel bookingView)
         {
+            bool tradeFullyCompleted = true;
+            BooksCopy book = new BooksCopy();
+            BookingLine bl = new BookingLine();
             if (ModelState.IsValid)
             {
-                db.Entry(booking).State = EntityState.Modified;
-                db.SaveChanges();
+                //Étapes
+                //1.Boucle sur les bookingLine.count()
+                for(int i =0; i< bookingView.bookingLineList.Count();i++)
+                { 
+                switch (Request.Form["Book#"+i])
+                    {
+                        case "0":
+                            bl = db.BookingLine.Single(bls => bls.IDBookingLine == bookingView.bookingLineList[i].IDBookingLine);
+                            bl.BookingState = 0;
+                            book = db.BooksCopy.Single(bo => bo.IDBooksCopy == bookingView.bookingLineList[i].IDBooksCopy);
+                            book.Available = 1; //L'exemplaire est de nouveau disponible pour les autres étudiants.
+                            db.Entry(bl).State = EntityState.Modified;
+                            db.Entry(book).State = EntityState.Modified;
+                            db.SaveChanges();
+                            //Envoyé un courriel de confirmation à l'étudiant.
+                            break;
+                        case "1":
+                                bl = db.BookingLine.Single(bls => bls.IDBookingLine == bookingView.bookingLineList[i].IDBookingLine);
+                                bl.BookingState = 1;
+                                db.Entry(bl).State = EntityState.Modified;
+                                db.SaveChanges();
+                            break;
+                        default: //-1
+                            tradeFullyCompleted = false;
+                            break;
+                    }
+                }
+                if (tradeFullyCompleted == true)
+                {
+                    bookingView.booking.IDManager = AccountManagement.getIDAccount();
+                    bookingView.booking.TradeConfirmation = true;
+                    db.Entry(bookingView.booking).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.IDManager = new SelectList(db.Manager, "IDManager", "FirstName", booking.IDManager);
-            ViewBag.IDStudent = new SelectList(db.Student, "IDStudent", "FirstName", booking.IDStudent);
-            return View(booking);
+            return View(bookingView);
         }
 
         protected override void Dispose(bool disposing)

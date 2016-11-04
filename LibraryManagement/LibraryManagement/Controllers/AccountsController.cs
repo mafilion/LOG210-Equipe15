@@ -49,7 +49,7 @@ namespace LibraryManagement.Controllers
             // C'est ici que l'on va faire la connexion complète avec la BD
 
             // Création de la connexion avec la BD
-            libraryManagementEntities db = new libraryManagementEntities();
+            LibraryManagementEntities db = new LibraryManagementEntities();
             string password;
 
 
@@ -147,7 +147,7 @@ namespace LibraryManagement.Controllers
 
             // C'est ici que l'on va faire la connexion complète avec la 
             // Création de la connexion avec la BD
-            libraryManagementEntities db = new libraryManagementEntities();
+            LibraryManagementEntities db = new LibraryManagementEntities();
             string password;
 
             // À l'aide des Regular Expression, on regarde si le numéro de téléphone est du bon format. 

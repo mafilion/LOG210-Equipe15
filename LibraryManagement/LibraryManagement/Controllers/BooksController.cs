@@ -14,7 +14,7 @@ namespace LibraryManagement.Controllers
 {
     public class BooksController : Controller
     {
-        private libraryManagementEntities db = new libraryManagementEntities();
+        private LibraryManagementEntities db = new LibraryManagementEntities();
 
         // GET: Livres/Create
         public ActionResult Create()

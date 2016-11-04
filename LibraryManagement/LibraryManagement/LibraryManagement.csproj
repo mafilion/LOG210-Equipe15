@@ -258,7 +258,6 @@
     <Compile Include="Models\BookingLine.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DeliveriesViewModel.cs" />
     <Compile Include="Models\BooksAuthors.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -271,6 +270,7 @@
     <Compile Include="Models\Cooperative.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeliveriesViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BooksAuthorsViewModel.cs" />
     <Compile Include="Models\Manager.cs">

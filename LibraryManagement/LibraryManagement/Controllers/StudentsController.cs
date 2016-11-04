@@ -12,7 +12,7 @@ namespace LibraryManagement.Controllers
 {
     public class StudentsController : Controller
     {
-        private libraryManagementEntities db = new libraryManagementEntities();
+        private LibraryManagementEntities db = new LibraryManagementEntities();
 
         // GET: Students/Create
         public ActionResult Create()

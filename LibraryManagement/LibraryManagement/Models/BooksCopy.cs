@@ -27,9 +27,9 @@ namespace LibraryManagement.Models
         public int Available { get; set; }
     
         public virtual Book Book { get; set; }
-        public virtual BookState BookState { get; set; }
-        public virtual Student Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingLine> BookingLine { get; set; }
+        public virtual BookState BookState { get; set; }
+        public virtual Student Student { get; set; }
     }
 }
