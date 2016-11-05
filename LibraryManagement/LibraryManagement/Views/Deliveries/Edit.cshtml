@@ -1,10 +1,10 @@
 ﻿@model LibraryManagement.Models.DeliveriesViewModel
 @using LibraryManagement.Utils;
-
+<script src="@Url.Content("~/Scripts/Deliveries.js")" type="text/javascript"></script>
 
 <h2>@UtilResources.GetLabel("Détails Livraison")</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Deliveries", FormMethod.Post, new { onsubmit = "return isValidForm();" }))
 {
     @Html.AntiForgeryToken()
     
@@ -12,6 +12,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.booking.IDBooking)
+        @Html.HiddenFor(model => model.booking.IDStudent)
 
         <h3>@UtilResources.GetLabel("Étudiant")</h3>
         <div class="form-group">
@@ -39,7 +40,12 @@
         <hr />
         @for (int i = 0; i < Model.bookingLineList.Count(); i++)
         {
-            @Html.HiddenFor(model => model.booksCopyList[i].IDBooksCopy)
+            @Html.HiddenFor(model => model.bookingLineList[i].IDBookingLine)
+            @Html.HiddenFor(model => model.bookingLineList[i].IDBooksCopy)
+            @Html.HiddenFor(model => model.bookingLineList[i].BookingState)
+            @Html.HiddenFor(model => model.bookList[i].IDBook)
+            @Html.HiddenFor(model => model.booksStateList[i].PricePercentage)
+
             <h3>@UtilResources.GetLabel("Livre") @(i+1)</h3>
             //Info Livre
             <div class="form-group">
@@ -65,9 +71,9 @@
 
             //À Changé pour le prix du livre
             <div class="form-group">
-                @Html.LabelFor(model => model.bookList[i].price, @UtilResources.GetLabel("Prix neuf") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.bookList[i].price, @UtilResources.GetLabel("Prix") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => (model.bookList[i].price*model.booksStateList[i].PricePercentage), new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
+                    @Html.TextBoxFor(model => model.bookList[i].price, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
                 </div>
             </div>
 
@@ -90,12 +96,11 @@
             <div class="form-group">
                 @Html.LabelFor(boo => Model.booksStateList, @UtilResources.GetLabel("Confirmation Transaction")+" :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                  @Html.DropDownList("StateBookingLine", null , htmlAttributes: new { @class = "form-control" , @id="Book#"+Model.bookingLineList[i].IDBooksCopy })
+                  @Html.DropDownList("StateBookingLine"+Model.bookingLineList[i].IDBookingLine, null , htmlAttributes: new { @class = "form-control" , @id="Book#"+Model.bookingLineList[i].IDBookingLine })
                 </div>
             </div>
             <hr />
         }
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@UtilResources.GetLabel("Sauvegarder")" class="btn btn-default" />
@@ -103,7 +108,6 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
 </div>

@@ -50,48 +50,38 @@ namespace LibraryManagement.Controllers
                 {
                     return HttpNotFound();
                 }
-                DelModel.booking = booking;
-                DelModel.student = db.Student.Where(stu => stu.IDStudent == booking.IDStudent).FirstOrDefault();
-                DelModel.bookingLineList = db.BookingLine.Where(bl => bl.IDBooking == booking.IDBooking && bl.BookingState==-1).ToList();
-
                 List<SelectListItem> selectList = new List<SelectListItem>()
                 {
                     new SelectListItem() {Text=UtilResources.GetLabel("Attente de l'étudiant"), Value="-1"},
                     new SelectListItem() {Text=UtilResources.GetLabel("Refusé"), Value="0" },
                     new SelectListItem() {Text=UtilResources.GetLabel("Accepté"), Value="1" }
                 };
-                ViewBag.StateBookingLine = selectList;
-
-                //Test Temp
-                //On ajoute les exemplaires
+                DelModel.bookingLineList = new List<BookingLine>();
                 DelModel.booksCopyList = new List<BooksCopy>();
-                foreach (var line in DelModel.bookingLineList)
-                {
-                    DelModel.booksCopyList.Add(db.BooksCopy.Single(bo => bo.IDBooksCopy == line.IDBooksCopy));
-                }
-                //On ajoute l'état des exemplaires
                 DelModel.booksStateList = new List<BookState>();
-                foreach (var lines in DelModel.booksCopyList)
-                {
-                    DelModel.booksStateList.Add(db.BookState.Single(bo => bo.IDBookState == lines.IDBookState));
-                }
-                //On ajoute les détails des livres
                 DelModel.bookList = new List<Book>();
-                foreach (var linesBook in DelModel.booksCopyList)
-                {
-                    DelModel.bookList.Add(db.Book.Single(bo => bo.IDBook == linesBook.IDBook));
-                }
-                //AuteurBooks(Pas nécéssaire dans le viewModel
-                List<BooksAuthors> BatempList = new List<BooksAuthors>();
-                foreach (var linesBooks in DelModel.bookList)
-                {
-                    BatempList.Add(db.BooksAuthors.Single(bo => bo.IDBook == linesBooks.IDBook));
-                }
-                //Auteur 
                 DelModel.authorList = new List<Author>();
-                foreach (var linesAuthor in BatempList)
+                DelModel.booking = booking;
+                DelModel.student = db.Student.Where(stu => stu.IDStudent == booking.IDStudent).FirstOrDefault();
+
+                var Query = from bl in db.BookingLine
+                            join bc in db.BooksCopy on bl.IDBooksCopy equals bc.IDBooksCopy
+                            join bs in db.BookState on bc.IDBookState equals bs.IDBookState
+                            join b in db.Book on bc.IDBook equals b.IDBook
+                            join ba in db.BooksAuthors on b.IDBook equals ba.IDBook
+                            join a in db.Author on ba.IDAuthor equals a.IDAuthor
+                            where bl.IDBooking == DelModel.booking.IDBooking && bl.BookingState == -1
+                            select new { bl, bc, bs, b, a };
+
+                foreach (var lines in Query)
                 {
-                    DelModel.authorList.Add(db.Author.Single(bo => bo.IDAuthor == linesAuthor.IDAuthor));
+                    ViewData["StateBookingLine" + lines.bl.IDBookingLine] = selectList;
+                    DelModel.bookingLineList.Add(lines.bl);
+                    DelModel.booksCopyList.Add(lines.bc);
+                    DelModel.booksStateList.Add(lines.bs);
+                    lines.b.price = (lines.b.price * lines.bs.PricePercentage);
+                    DelModel.bookList.Add(lines.b);
+                    DelModel.authorList.Add(lines.a);
                 }
                 return View(DelModel);
             }
@@ -107,20 +97,22 @@ namespace LibraryManagement.Controllers
         public ActionResult Edit(DeliveriesViewModel bookingView)
         {
             bool tradeFullyCompleted = true;
+            int IDTemp =0;
             BooksCopy book = new BooksCopy();
             BookingLine bl = new BookingLine();
             if (ModelState.IsValid)
             {
                 //Étapes
-                //1.Boucle sur les bookingLine.count()
                 for(int i =0; i< bookingView.bookingLineList.Count();i++)
-                { 
-                switch (Request.Form["Book#"+i])
+                {
+                    IDTemp = bookingView.bookingLineList[i].IDBookingLine;
+                    switch (Request.Form["StateBookingLine" + bookingView.bookingLineList[i].IDBookingLine])
                     {
                         case "0":
-                            bl = db.BookingLine.Single(bls => bls.IDBookingLine == bookingView.bookingLineList[i].IDBookingLine);
+                            bl = db.BookingLine.Single(bls => bls.IDBookingLine == IDTemp);
                             bl.BookingState = 0;
-                            book = db.BooksCopy.Single(bo => bo.IDBooksCopy == bookingView.bookingLineList[i].IDBooksCopy);
+                            IDTemp = bookingView.bookingLineList[i].IDBooksCopy;
+                            book = db.BooksCopy.Single(bo => bo.IDBooksCopy == IDTemp);
                             book.Available = 1; //L'exemplaire est de nouveau disponible pour les autres étudiants.
                             db.Entry(bl).State = EntityState.Modified;
                             db.Entry(book).State = EntityState.Modified;
@@ -128,9 +120,13 @@ namespace LibraryManagement.Controllers
                             //Envoyé un courriel de confirmation à l'étudiant.
                             break;
                         case "1":
-                                bl = db.BookingLine.Single(bls => bls.IDBookingLine == bookingView.bookingLineList[i].IDBookingLine);
+                                bl = db.BookingLine.Single(bls => bls.IDBookingLine == IDTemp);
                                 bl.BookingState = 1;
+                                IDTemp = bookingView.bookingLineList[i].IDBooksCopy;
+                                book = db.BooksCopy.Single(bo => bo.IDBooksCopy == IDTemp);
+                                book.Available = 0;
                                 db.Entry(bl).State = EntityState.Modified;
+                                db.Entry(book).State = EntityState.Modified;
                                 db.SaveChanges();
                             break;
                         default: //-1
