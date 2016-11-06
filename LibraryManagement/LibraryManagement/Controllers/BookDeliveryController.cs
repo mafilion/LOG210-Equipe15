@@ -12,7 +12,7 @@ namespace LibraryManagement.Controllers
 {
     public class BookDeliveryController : Controller
     {
-        private libraryManagementEntities db = new libraryManagementEntities();
+        private LibraryManagementEntities db = new LibraryManagementEntities();
 
         // GET: BookDelivery
         public ActionResult Index()

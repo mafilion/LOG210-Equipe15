@@ -235,6 +235,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\BookDeliveryController.cs" />
     <Compile Include="Controllers\DeliveriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -309,6 +310,7 @@
     <Compile Include="Utility\UtilResources.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BookDeliveries.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -327,6 +329,7 @@
     </Content>
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\bookDelivery.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -380,6 +383,11 @@
     <Content Include="Views\Deliveries\Index.cshtml" />
     <Content Include="Views\Deliveries\Edit.cshtml" />
     <Content Include="Views\Accounts\LoginManagers.cshtml" />
+    <Content Include="Views\BookDelivery\Create.cshtml" />
+    <Content Include="Views\BookDelivery\Delete.cshtml" />
+    <Content Include="Views\BookDelivery\Details.cshtml" />
+    <Content Include="Views\BookDelivery\Edit.cshtml" />
+    <Content Include="Views\BookDelivery\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
