@@ -44,7 +44,7 @@ function sendLivre() {
         BookAut.Book.noISBN = document.getElementById('book_noISBN').value
         BookAut.Book.Title = document.getElementById('book_Title').value;
         BookAut.Book.nbPages = document.getElementById('book_nbPages').value;
-        BookAut.Book.prix = document.getElementById('book_price').value;
+        BookAut.Book.price = document.getElementById('book_price').value;
         BookAut.BookState.IDBookState = document.getElementById('IDBookState').value;
         BookAut.Aut.Name = document.getElementById('AuthorName1').value;
  
