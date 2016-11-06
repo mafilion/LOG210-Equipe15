@@ -486,6 +486,11 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Information page Réserver un livre','List of the books available for purchase. It is important to specify that a reservation of 48 hours will be attributed to the student during the reservation. Further to it, the student have 48 hours to go at his cooperative in question to get his book.')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Réservation','Réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Réservation','Reservation')
 
 END 
 
