@@ -515,6 +515,12 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Recherche par numéro de réservation','Search from booking number')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Réservation','Réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Réservation','Booking')
 END 
 
 /*Table pour les états de livres*/

@@ -9,8 +9,8 @@ function isValidForm() {
         "Numéro de rue:      " + document.getElementById("cooperative_NoStreet").value + "\n" +
         "Rue:                " + document.getElementById("cooperative_Street").value + "\n" +
         "Ville:              " + document.getElementById("cooperative_City").value + "\n" +
-        "Code Postal         " + document.getElementById("cooperative_PostalCode").value) + "\n\n" +
-        "Si le nom de la coopérative existe déjà, alors ses infos seront mis à jour"
+        "Code Postal         " + document.getElementById("cooperative_PostalCode").value + "\n\n" +
+        "Si le nom de la coopérative existe déjà, alors ses infos seront mis à jour")
     if (answer) {
         return true;
     }
