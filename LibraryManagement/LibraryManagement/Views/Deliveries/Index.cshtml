@@ -1,14 +1,24 @@
 ﻿@model IEnumerable<LibraryManagement.Models.Booking>
 @using LibraryManagement.Utils;
 
-@{
-    ViewBag.Title = "Index";
-}
-
 <h2>@UtilResources.GetLabel("Livraison")</h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+        <h4>@UtilResources.GetLabel("Recherche par numéro de réservation")</h4>
+        <p>
+            @Html.TextBox("idBooking")
+        <input type="submit" value="@UtilResources.GetLabel("Rechercher")" />
+        </p>
+    }
+</p>
 
 <table class="table">
     <tr>
+        <th>
+            @UtilResources.GetLabel("#Réservation")
+        </th>
         <th>
             @UtilResources.GetLabel("Date réservation")
         </th>
@@ -18,24 +28,44 @@
         <th>
             @UtilResources.GetLabel("Nom")
         </th>
+        <th>
+            @UtilResources.GetLabel("Livraison complétée")
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.LastName)
-        </td>
-        <td>
-            <input type="button" title="LivrerLivre" value="@UtilResources.GetLabel("Livrer")" onclick="location.href='@Url.Action("Edit", "Deliveries", new { id = item.IDBooking })'" />
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDBooking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            @if (item.TradeConfirmation == true)
+            {
+                <td>
+                    @UtilResources.GetLabel("Complétée")
+                </td>
+                <td></td>
+            }
+            else
+            {
+                <td>
+                    @UtilResources.GetLabel("Incomplète")
+                </td>
+                <td>
+                    <input type="button" title="LivrerLivre" value="@UtilResources.GetLabel("Livrer")" onclick="location.href='@Url.Action("Edit", "Deliveries", new { id = item.IDBooking })'" />
+                </td>
+            }
+        </tr>
+    }
 
-</table>
+    </table>

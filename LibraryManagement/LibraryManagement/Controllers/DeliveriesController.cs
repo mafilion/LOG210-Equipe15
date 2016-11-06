@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LibraryManagement.Models;
 using LibraryManagement.Utils;
+using System.ComponentModel;
 
 namespace LibraryManagement.Controllers
 {
@@ -15,21 +16,29 @@ namespace LibraryManagement.Controllers
     {
         private LibraryManagementEntities db = new LibraryManagementEntities();
 
-        // GET: Deliveries
-        public ActionResult Index()
+        public ActionResult Index([DefaultValue(0)]int idBooking)
         {
-            if(AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
+            if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
             {
-                List<BookingLine> BookingLineList = db.BookingLine.Where(b => b.BookingState == -1).ToList();
-                List<Booking> BookingList = new List<Booking>();
-                foreach (BookingLine element in BookingLineList)
+                if (idBooking != 0)
                 {
-                    if(BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
-                    {
-                        BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
-                    }
+
+                    List<Booking> BookingList = db.Booking.Where(bo => bo.IDBooking == idBooking).Include(b => b.Student).ToList();
+                    return View(BookingList);
                 }
-                return View(BookingList);
+                else
+                {
+                    List<BookingLine> BookingLineList = db.BookingLine.ToList();
+                    List<Booking> BookingList = new List<Booking>();
+                    foreach (BookingLine element in BookingLineList)
+                    {
+                        if (BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
+                        {
+                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
+                        }
+                    }
+                    return View(BookingList);
+                }
             }
             //Redirection vers la page de login si il tente d'accéder à la page 
             return RedirectToAction("LoginManagers", "Accounts");
