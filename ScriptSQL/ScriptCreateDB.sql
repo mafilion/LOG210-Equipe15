@@ -486,7 +486,41 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Information page Réserver un livre','List of the books available for purchase. It is important to specify that a reservation of 48 hours will be attributed to the student during the reservation. Further to it, the student have 48 hours to go at his cooperative in question to get his book.')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'#Réservation','Numéro Réservation')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'#Réservation','Booking Number')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Livraison complétée','Livraison complétée')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Livraison complétée','Delivery completed')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Complétée','Complétée')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Complétée','Completed')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Incomplète','Incomplète')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Incomplète','Incomplete')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Recherche par numéro de réservation','Recherche par numéro de réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Recherche par numéro de réservation','Search from booking number')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Réservation','Réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Réservation','Booking')
 END 
 
 /*Table pour les états de livres*/
