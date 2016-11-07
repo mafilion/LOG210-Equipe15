@@ -19,3 +19,9 @@ LibraryManagement2/LibraryManagement2/bin/LibraryManagement2.dll
 LibraryManagement/LibraryManagement/Web.config
 LibraryManagement/LibraryManagement/Web.config
 LibraryManagement/LibraryManagement/Web.config
+LibraryManagement/LibraryManagement/Web.config
+*.pdb
+*.config
+*.cache
+*.ssdl
+LibraryManagement/LibraryManagement/obj/Debug/LibraryManagement.csproj.FileListAbsolute.txt

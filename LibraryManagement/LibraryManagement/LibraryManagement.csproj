@@ -236,6 +236,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\BookDeliveryController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\DeliveriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Models\Cooperative.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingViewModel.cs" />
     <Compile Include="Models\DeliveriesViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\BooksAuthorsViewModel.cs" />
@@ -329,6 +331,7 @@
     </Content>
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\booking.js" />
     <Content Include="Scripts\bookDelivery.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -388,6 +391,8 @@
     <Content Include="Views\BookDelivery\Details.cshtml" />
     <Content Include="Views\BookDelivery\Edit.cshtml" />
     <Content Include="Views\BookDelivery\Index.cshtml" />
+    <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
