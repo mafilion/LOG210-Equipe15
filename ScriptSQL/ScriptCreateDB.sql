@@ -558,6 +558,19 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Annulation','Cancel')
 	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'TitreMailDepot','Confirmation Dépot Livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'TitreMailDepot','Confirmation book deposit')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'SujetMailDepot','Les livres ont bien été déposés dans le système de la coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'SujetMailDepot','The books were successfully deposited into the system')
+
+	
 END 
 
 /*Table pour les états de livres*/
