@@ -31,14 +31,14 @@
                 {
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Ajouter un livre"), "Create", "Books")</li>
-                    <li>@Html.ActionLink(@UtilResources.GetLabel("Réserver un livre"), "Create", "Books")</li> <!-- À changé-->
+                    <li>@Html.ActionLink(@UtilResources.GetLabel("Réserver un livre"), "Create", "Books")</li> 
                 </ul>
                 }
                 <!-- Section Page compte Gestionnaire -->
                 @if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
                 {
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(@UtilResources.GetLabel("Remise de livre"), "Index", "Deliveries")</li> <!-- À changé-->
+                    <li>@Html.ActionLink(@UtilResources.GetLabel("Remise de livre"), "Create", "BookDelivery")</li> 
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Demande de livraison"), "Index", "Deliveries")</li>
                 </ul>
                 }

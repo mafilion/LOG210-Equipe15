@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Models.Book
+﻿@model LibraryManagement.Models.BookDeliveriesViewModel
 @using LibraryManagement.Utils;
 
 <script src="@Url.Content("~/Scripts/bookDelivery.js")" type="text/javascript"></script>
@@ -7,32 +7,99 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
-        <h3>@UtilResources.GetLabel("Rechercher livre")</h3>
-        <div class="form-group">
-            @Html.Label(@UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="text" id="BookInfo" name="BookInfo" class="form-control">
-                <br />
-                <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
+
+    <div class="researchForm">
+        <div class="form-horizontal">
+            <hr />
+            <h3>Recherche d'un exemplaire</h3>
+            <div class="form-group">
+                @Html.Label(@UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" id="BookInfo" name="BookInfo" class="form-control">
+                    <br />
+                    <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
+                </div>
+                <table id="book" class="table">
+                    <tr>
+                        <th>noISBN</th>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Étudiant</th>
+                        <th>État</th>
+                        <th>Prix</th>
+                    </tr>
+                </table>
             </div>
-            <table id="book" class="table">
-                <tr>
-                <th>noISBN</th>
-                <th>Titre</th>
-                <th>Auteur</th>
-                <th>Étudiant</th>
-                <th>État</th>
-                <th>Prix</th>
-                </tr>
-            </table>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" id="confirmExp" name="confirmExp" onclick="confirmExp()" class="btn btn-default">Fin de la remise du livre</button>
+                </div>
+            </div>
+            <hr />
         </div>
-        <hr />
+     </div>
+
+
+    <div class="inputForm">
+        <div class="form-horizontal">
+            <hr />
+            <h3>Confirmation du dépot</h3>
+            <div class="form-group">
+                @Html.LabelFor(model => model.noISBN, "ISBN" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.noISBN, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.title, "Titre" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.author, "Auteur" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.student, "Étudiant" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.student, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.price, "Prix" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.state, "État" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IDBookState", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" id="confirmDpt" name="confirmDpt" onclick="deposit()" class="btn btn-default">Remise du livre</button>
+                    <button type="button" id="cancelDpt" name="cancelDpt"  onclick="cancel()" class="btn btn-default">Annuler</button>
+                </div>
+            </div>
+            <div class="hide" id="IDBookCopy"></div>
+
+            <hr />
+        </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>

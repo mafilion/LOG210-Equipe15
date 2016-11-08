@@ -45,3 +45,7 @@ p {
     .show{
         display:inline !important;
     }
+
+    .inputForm {
+        display: none;
+    }
