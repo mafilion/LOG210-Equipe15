@@ -7,11 +7,15 @@ namespace LibraryManagement.Models
 {
     public class BookDeliveriesViewModel
     {
-       public Book book { get; set; }
-       public Author author { get; set; }
-       public Student student { get; set; }
+       public int idBookState { get; set; }
+       public string noISBN { get; set; }
+       public string author { get; set; }
+       public string title { get; set; }
+       public string student { get; set; }
        public BookState state { get; set; }
-       public BooksCopy copy { get; set; }
+       public string price { get; set; }
 
     }
+
+
 }

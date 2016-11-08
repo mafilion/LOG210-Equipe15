@@ -38,6 +38,7 @@ namespace LibraryManagement.Controllers
         // GET: BookDelivery/Create
         public ActionResult Create()
         {
+            ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
             return View();
         }
 
@@ -68,12 +69,38 @@ namespace LibraryManagement.Controllers
                                 join BC in db.BooksCopy on B.IDBook equals BC.IDBook
                                 join S in db.Student on BC.IDStudent equals S.IDStudent
                                 join BS in db.BookState on BC.IDBookState equals BS.IDBookState
-                                where B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title == Value || S.FirstName + " " + S.LastName == Value
-                                select new {BC.IDBooksCopy,B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage }).ToList();
+                                where (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title == Value || S.FirstName + " " + S.LastName == Value) && BC.Available == -1
+                                select new {BC.IDBooksCopy,B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description,B.price, BS.PricePercentage }).ToList();
 
             //Récupérer les informations et les retourner en json
             return Json(Books, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        [ActionName("getBookCopy")]
+        public ActionResult getBookCopy(string id)
+        {
+            int idBookCopy = Int32.Parse(id);
+            var Books = (from BC in db.BooksCopy
+                         join BA in db.BooksAuthors on BC.Book.IDBook equals BA.IDBook
+                         join A in db.Author on BA.IDAuthor equals A.IDAuthor
+                         where BC.IDBooksCopy == idBookCopy
+            select new { BC.IDBooksCopy,BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, A.Name }).SingleOrDefault();
+
+            //Récupérer les informations et les retourner en json
+            return Json(Books, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ActionName("depositBook")]
+        public void depositBook(string IDBooksCopy, string IDBookState)
+        {
+            int idBookCopy = Int32.Parse(IDBooksCopy);
+            int idBookState = Int32.Parse(IDBookState);
+        
+            //updater truc dans bd
+        }
+
         // GET: BookDelivery/Edit/5
         public ActionResult Edit(int? id)
         {
