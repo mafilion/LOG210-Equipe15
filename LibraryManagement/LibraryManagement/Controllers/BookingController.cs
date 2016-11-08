@@ -21,7 +21,6 @@ namespace LibraryManagement.Controllers
             return View(db.Book.ToList());
         }
 
-        // GET: BookDelivery/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,14 +35,13 @@ namespace LibraryManagement.Controllers
             return View(book);
         }
 
-        // GET: BookDelivery/Create
+
         public ActionResult Create()
         {
             return View();
         }
 
 
-        // POST: BookDelivery/Create À MODIFIER
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IDBook,noISBN,noEAN,noUPC,Title,nbPages,price")] Book book)
@@ -63,18 +61,30 @@ namespace LibraryManagement.Controllers
         [ActionName("SearchBooks")]
         public ActionResult SearchBooks(string Value)
         {
-            // On permet à l'utilisateur d'entrer tous les paramètre de la recherche dans un seul champs
-            var Books = (from B in db.Book
-                         join BA in db.BooksAuthors on B.IDBook equals BA.IDBook
-                         join A in db.Author on BA.IDAuthor equals A.IDAuthor
-                         join BC in db.BooksCopy on B.IDBook equals BC.IDBook
-                         join S in db.Student on BC.IDStudent equals S.IDStudent
-                         join BS in db.BookState on BC.IDBookState equals BS.IDBookState
-                         where B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)
-                         select new { BC.IDBooksCopy, B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage }).ToList();
+            if (Value != "") // On vérifie si l'utilisateur à bel et bien entré quelque chose dans le champ
+            {
+                // On permet à l'utilisateur d'entrer tous les paramètre de la recherche dans un seul champs
+                var Books = (from B in db.Book
+                             join BA in db.BooksAuthors on B.IDBook equals BA.IDBook
+                             join A in db.Author on BA.IDAuthor equals A.IDAuthor
+                             join BC in db.BooksCopy on B.IDBook equals BC.IDBook
+                             join S in db.Student on BC.IDStudent equals S.IDStudent
+                             join BS in db.BookState on BC.IDBookState equals BS.IDBookState
+                             where B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)
+                             select new { BC.IDBooksCopy, B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage }).ToList();
 
-            //Récupérer les informations et les retourner en json
-            return Json(Books, JsonRequestBehavior.AllowGet);
+                // S'il n'y a rien trouvé, on doit retourner une erreur. 
+                if (Books.Count == 0)
+                {
+                    return View();
+                }
+                else
+                {
+                    //Récupérer les informations et les retourner en json
+                    return Json(Books, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return View();
         }
 
         // GET: BookDelivery/Edit/5
@@ -143,6 +153,29 @@ namespace LibraryManagement.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public void CreateBooking(BookingViewModel model,)
+        {
+            DateTime localDate = DateTime.Now;
+
+
+            Booking booking = new Booking();
+            BookingLine bookingline = new BookingLine();
+
+            booking.BookingDate = localDate;
+            booking.IDStudent = AccountManagement.getIDAccount();
+            booking.IDManager = 1; // À CHANGÉ
+            booking.TradeConfirmation = false;
+
+            db.Booking.Add(booking);
+
+            bookingline.IDBooking = 1;// À Changé
+            bookingline.IDBooksCopy = 2; // À Changé
+            bookingline.BookingState = -1; // À 48h
+            db.BookingLine.Add(bookingline);
+
+
         }
     }
 }
