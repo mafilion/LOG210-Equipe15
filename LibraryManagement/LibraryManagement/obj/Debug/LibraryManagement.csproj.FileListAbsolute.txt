@@ -215,7 +215,6 @@ C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\Libra
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\log4net.xml
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Zlib.Portable.xml
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\fr\EntityFramework.SqlServer.resources.dll
-C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csprojResolveAssemblyReference.cache
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.dll
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\ApplicationInsights.config
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -316,3 +315,4 @@ C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagemen
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\fr\EntityFramework.resources.dll
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\fr\EntityFramework.SqlServer.resources.dll
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csprojResolveAssemblyReference.cache

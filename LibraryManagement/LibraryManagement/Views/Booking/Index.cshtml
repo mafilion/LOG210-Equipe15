@@ -1,0 +1,63 @@
+﻿@model IEnumerable<LibraryManagement.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vos réservation:</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.noISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noEAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noUPC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nbPages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.noISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noEAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noUPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nbPages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDBook }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDBook }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDBook })
+        </td>
+    </tr>
+}
+
+</table>
