@@ -19,11 +19,16 @@ function findLivre() {
 
         function successFunc(data, status) {
 
-            $.each(data, function (index, value) {
-                $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.Name + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price + ' $</td></tr>');
-            });
+            if (data.length != 0)
+            {
+                $.each(data, function (index, value) {
+                    $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.Name + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price + ' $</td></tr>');
+                });
+                $("table").addClass("show");
+            } else {
+               alert("Aucun exemplaire ne correspond à vos critères de recherches")
 
-            $("table").addClass("show");
+            }
         }
 
         function errorFunc() {
@@ -69,7 +74,6 @@ function cancel() {
     $(".researchForm").removeClass("hide");
     $(".inputForm").removeClass("show");
     $("#BookInfo").val("");
-
 }
 
 function deposit() {
@@ -86,8 +90,8 @@ function deposit() {
         data: '{"IDBooksCopy":"' + IDBookCopy + '","IDBookState":"' + IDBookState + '"}',
         dataType: "json",
         success: function () {
-            CleanForm();
             alert('Le livre a bien été déposé');
+            cancel();
         },
         error: function () {
             alert('Erreur');

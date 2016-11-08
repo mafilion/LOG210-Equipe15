@@ -11,9 +11,9 @@
     <div class="researchForm">
         <div class="form-horizontal">
             <hr />
-            <h3>Recherche d'un exemplaire</h3>
+            <h3>@UtilResources.GetLabel("TitreDepot")</h3>
             <div class="form-group">
-                @Html.Label(@UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label(@UtilResources.GetLabel("RechercheDepot") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <input type="text" id="BookInfo" name="BookInfo" class="form-control">
                     <br />
@@ -21,19 +21,19 @@
                 </div>
                 <table id="book" class="table">
                     <tr>
-                        <th>noISBN</th>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>Étudiant</th>
-                        <th>État</th>
-                        <th>Prix</th>
+                        <th>@UtilResources.GetLabel("Numero ISBN")</th>
+                        <th>@UtilResources.GetLabel("Titre")</th>
+                        <th>@UtilResources.GetLabel("Auteur")</th>
+                        <th>@UtilResources.GetLabel("Etudiant")</th>
+                        <th>@UtilResources.GetLabel("État du livre")</th>
+                        <th>@UtilResources.GetLabel("Prix neuf")</th>
                     </tr>
                 </table>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <button type="button" id="confirmExp" name="confirmExp" onclick="confirmExp()" class="btn btn-default">Fin de la remise du livre</button>
+                    <button type="button" id="confirmExp" name="confirmExp" onclick="confirmExp()" class="btn btn-default">@UtilResources.GetLabel("finDepot")</button>
                 </div>
             </div>
             <hr />
@@ -44,44 +44,44 @@
     <div class="inputForm">
         <div class="form-horizontal">
             <hr />
-            <h3>Confirmation du dépot</h3>
+            <h3>@UtilResources.GetLabel("ConfirmDepot")</h3>
             <div class="form-group">
-                @Html.LabelFor(model => model.noISBN, "ISBN" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.noISBN, @UtilResources.GetLabel("Numero ISBN") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.noISBN, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.title, "Titre" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.title, @UtilResources.GetLabel("Titre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.author, "Auteur" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.author, @UtilResources.GetLabel("Auteur") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.student, "Étudiant" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.student, @UtilResources.GetLabel("Etudiant") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.student, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.price, "Prix" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.price, @UtilResources.GetLabel("Prix neuf") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.state, "État" + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.state, @UtilResources.GetLabel("État du livre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("IDBookState", null, htmlAttributes: new { @class = "form-control" })
                 </div>
@@ -89,8 +89,8 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <button type="button" id="confirmDpt" name="confirmDpt" onclick="deposit()" class="btn btn-default">Remise du livre</button>
-                    <button type="button" id="cancelDpt" name="cancelDpt"  onclick="cancel()" class="btn btn-default">Annuler</button>
+                    <button type="button" id="confirmDpt" name="confirmDpt" onclick="deposit()" class="btn btn-default">@UtilResources.GetLabel("État du livre")</button>
+                    <button type="button" id="cancelDpt" name="cancelDpt"  onclick="cancel()" class="btn btn-default">@UtilResources.GetLabel("Annulation")</button>
                 </div>
             </div>
             <div class="hide" id="IDBookCopy"></div>
@@ -101,5 +101,5 @@
 }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index", "Home")
         </div>

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LibraryManagement.Models;
+using LibraryManagement.Utils;
 
 namespace LibraryManagement.Controllers
 {
@@ -38,8 +39,14 @@ namespace LibraryManagement.Controllers
         // GET: BookDelivery/Create
         public ActionResult Create()
         {
-            ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
-            return View();
+            if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
+            {
+                ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
+                return View();
+            }
+            //Redirection vers la page de login si il tente d'accéder à la page 
+            return RedirectToAction("LoginManagers", "Accounts");
+          
         }
 
         // POST: BookDelivery/Create
@@ -93,12 +100,18 @@ namespace LibraryManagement.Controllers
 
         [HttpPost]
         [ActionName("depositBook")]
-        public void depositBook(string IDBooksCopy, string IDBookState)
+        public ActionResult depositBook(string IDBooksCopy, string IDBookState)
         {
             int idBookCopy = Int32.Parse(IDBooksCopy);
             int idBookState = Int32.Parse(IDBookState);
-        
+
             //updater truc dans bd
+            BooksCopy book = db.BooksCopy.Where(c => c.IDBooksCopy == idBookCopy).FirstOrDefault();
+            book.Available = 0;
+            book.IDBookState = idBookState;
+            db.SaveChanges();
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
         }
 
         // GET: BookDelivery/Edit/5

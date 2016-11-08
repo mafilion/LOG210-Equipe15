@@ -521,6 +521,43 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Réservation','Booking')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'RechercheDepot','Recherche selon isbn/titre/étudiant')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'RechercheDepot','Research by ISBN/Title/Student')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'TitreDepot','Recherche exemplaire')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'TitreDepot','Research book copy')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'ConfirmDepot','Confirmation du dépot')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'ConfirmDepot','Confirmation of the copy deposit')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'finDepot','Fin de la remise du livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'finDepot','End of the copy deposit')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'DepotLivre','Remise du livre')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'DepotLivre','Book deposit')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Annulation','Annuler')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Annulation','Cancel')
+	
 END 
 
 /*Table pour les états de livres*/
