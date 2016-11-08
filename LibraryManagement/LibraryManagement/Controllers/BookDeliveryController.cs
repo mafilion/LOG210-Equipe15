@@ -92,7 +92,7 @@ namespace LibraryManagement.Controllers
                          join BA in db.BooksAuthors on BC.Book.IDBook equals BA.IDBook
                          join A in db.Author on BA.IDAuthor equals A.IDAuthor
                          where BC.IDBooksCopy == idBookCopy
-            select new { BC.IDBooksCopy,BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, A.Name }).SingleOrDefault();
+            select new { BC.IDBooksCopy,BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, A.Name, BC.IDStudent }).SingleOrDefault();
 
             //Récupérer les informations et les retourner en json
             return Json(Books, JsonRequestBehavior.AllowGet);
@@ -114,6 +114,18 @@ namespace LibraryManagement.Controllers
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [ActionName("SendMail")]
+        public ActionResult SendMail(string IDStudent)
+        {
+            int idStudent = Int32.Parse(IDStudent);
+
+            //updater truc dans bd
+            Student s = db.Student.Where(c => c.IDStudent == idStudent).FirstOrDefault();
+            Utils.UtilResources.SendMail(s.Email, UtilResources.GetLabel("TitreMailDepot"), UtilResources.GetLabel("SujetMailDepot"));
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
         // GET: BookDelivery/Edit/5
         public ActionResult Edit(int? id)
         {

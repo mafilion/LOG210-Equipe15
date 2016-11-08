@@ -6,6 +6,8 @@ using LibraryManagement.Models;
 using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Text;
+using System.Net.Mail;
+using System.Net;
 
 namespace LibraryManagement.Utils
 {
@@ -67,6 +69,18 @@ namespace LibraryManagement.Utils
                 return text.Description;
             else
                 return label;
+        }
+
+        public static bool SendMail(String courrielDestinataire, String titre, String sujet)
+        {
+            var client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("gestionbiblio10@gmail.com", "#TristesseDunHomme"),
+                EnableSsl = true
+            };
+            client.Send("gestionbiblio10@gmail.com", courrielDestinataire, titre, sujet);
+
+            return true;
         }
 
         public static string EncryptPassword(string password)

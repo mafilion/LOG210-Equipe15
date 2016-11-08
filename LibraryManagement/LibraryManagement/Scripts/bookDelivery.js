@@ -1,4 +1,6 @@
-﻿
+﻿var idStudent;
+
+
 function findLivre() {
 
     $('#book tr:gt(0)').remove()
@@ -54,7 +56,7 @@ function showBook(id) {
         $("table").removeClass("show");
         $(".researchForm").addClass("hide");
         $(".inputForm").addClass("show");
-        
+        idStudent = data.IDStudent;
         $('#noISBN').val(data.noISBN);
         $('#title').val(data.Title);
         $('#author').val(data.Name);
@@ -98,4 +100,26 @@ function deposit() {
         },
     });
 
+}
+
+function finDepot() {
+
+    if (idStudent == null) {
+        alert("Vous devez avoir déposé au moins un livre avant de pouvoir finir la transaction");
+    } else {
+        $.ajax({
+            type: "POST",
+            url: '/BookDelivery/SendMail',
+            contentType: "application/json; charset=utf-8",
+            data: '{"IDStudent":"' + idStudent + '"}',
+            dataType: "json",
+            success: function () {
+                alert('La confirmation par courriel a bien été envoyé');
+                cancel();
+            },
+            error: function () {
+                alert('Erreur');
+            },
+        });
+    }
 }
