@@ -570,6 +570,23 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'SujetMailDepot','The books were successfully deposited into the system')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'TitreMailAnnulationLivraison','Annulation Réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'TitreMailAnnulationLivraison','Booking Cancel')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'SujetAnnulationLivraison','Voici la liste des livres dont vous avez refusé la réception:')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'SujetAnnulationLivraison','Here is the list of the books that you refused to acquired in your delivery.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'TotalRemboursement','Au total, l''annulation vous octroit un remboursement de:')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'TotalRemboursement','All in all, the cancellation gives you a refund of:')
 	
 END 
 

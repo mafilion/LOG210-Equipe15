@@ -106,9 +106,13 @@ namespace LibraryManagement.Controllers
         public ActionResult Edit(DeliveriesViewModel bookingView)
         {
             bool tradeFullyCompleted = true;
+            bool sendEmail = false;
+            double TotalRefundStudent = 0;
             int IDTemp =0;
             BooksCopy book = new BooksCopy();
             BookingLine bl = new BookingLine();
+            string EmailContent = UtilResources.GetLabel("SujetAnnulationLivraison");
+            EmailContent = EmailContent + "\n" + "------------------------------------------------------------------------------------------------------";
             if (ModelState.IsValid)
             {
                 //Étapes
@@ -126,6 +130,16 @@ namespace LibraryManagement.Controllers
                             db.Entry(bl).State = EntityState.Modified;
                             db.Entry(book).State = EntityState.Modified;
                             db.SaveChanges();
+                            //Création du message du courriel envoyé à l'étudiant
+                            sendEmail = true;
+                            TotalRefundStudent = TotalRefundStudent + (book.Book.price * book.BookState.PricePercentage);
+                            EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Titre") + ": " + book.Book.Title;
+                            EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :" + book.Book.noISBN;
+                            EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Nombre de pages") + " :" + book.Book.nbPages;
+                            EmailContent = EmailContent + " \n" + UtilResources.GetLabel("État du livre") + " :" + book.BookState.Description;
+                            EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Prix") + " :" + (book.Book.price * book.BookState.PricePercentage) + "$";
+                            EmailContent = EmailContent + " \n";
+                            EmailContent = EmailContent + "------------------------------------------------------------------------------------------------------";
                             //Envoyé un courriel de confirmation à l'étudiant.
                             break;
                         case "1":
@@ -143,12 +157,19 @@ namespace LibraryManagement.Controllers
                             break;
                     }
                 }
-                if (tradeFullyCompleted == true)
+                if (tradeFullyCompleted)
                 {
                     bookingView.booking.IDManager = AccountManagement.getIDAccount();
                     bookingView.booking.TradeConfirmation = true;
                     db.Entry(bookingView.booking).State = EntityState.Modified;
                     db.SaveChanges();
+                }
+                if(sendEmail)
+                {
+                    IDTemp = bookingView.booking.IDStudent;
+                    EmailContent = EmailContent + "\n" + UtilResources.GetLabel("TotalRemboursement") + " " + TotalRefundStudent + " $";
+                    Student s = db.Student.Where(stu => stu.IDStudent == IDTemp).FirstOrDefault();
+                    UtilResources.SendMail(s.Email, UtilResources.GetLabel("TitreMailAnnulationLivraison")+" #"+bookingView.booking.IDBooking, UtilResources.GetLabel("Bonjour")+ " "+s.FirstName + " " + s.LastName + ", \n\n" + EmailContent);
                 }
                 return RedirectToAction("Index");
             }
