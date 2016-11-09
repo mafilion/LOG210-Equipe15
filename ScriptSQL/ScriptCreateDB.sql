@@ -599,6 +599,12 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Retour','Back')
+
+		INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'SujetReservation','Voici les informations des votre réservation. Merci')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'SujetReservation','Here are your reservation details. Thanks ')
 	
 	
 	

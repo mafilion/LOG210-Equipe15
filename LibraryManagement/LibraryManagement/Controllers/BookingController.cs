@@ -196,9 +196,30 @@ namespace LibraryManagement.Controllers
 
             bookcopy.Available = 1;
 
+            Book book =
+                (from b in db.Book
+                 where b.IDBook == bookcopy.IDBook
+                 select b).SingleOrDefault();
+
+
+
             // On sauvegarde en BD les modifs
             db.SaveChanges();
 
+            sendEmail(book, bookcopy, booking);
         }
-    }
+
+        public void sendEmail(Book b, BooksCopy bc, Booking bo)
+        {
+            string EmailContent = "Votre réservation est complété. SVP passer le récupérer d'ici 48h.";
+            EmailContent = EmailContent + "\n" + "------------------------------------------------------------------------------------------------------";
+            EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Titre") + ": " + b.Title;
+            EmailContent = EmailContent + " \n";
+            EmailContent = EmailContent + "------------------------------------------------------------------------------------------------------";
+
+            int IDTemp = bo.IDStudent;
+            Student s = db.Student.Where(stu => stu.IDStudent == IDTemp).FirstOrDefault();
+            UtilResources.SendMail(s.Email, UtilResources.GetLabel("Réservation") + " #" + bo.IDBooking, UtilResources.GetLabel("Bonjour") + " " + s.FirstName + " " + s.LastName + ", \n\n" + EmailContent);
+        }
+    }    
 }
