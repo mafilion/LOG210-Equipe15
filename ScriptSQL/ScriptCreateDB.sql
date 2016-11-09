@@ -587,6 +587,20 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'TotalRemboursement','All in all, the cancellation gives you a refund of:')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Nouvelle réservation','Nouvelle réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Nouvelle réservation','New booking')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Retour','Retour')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Retour','Back')
+	
+	
 	
 END 
 

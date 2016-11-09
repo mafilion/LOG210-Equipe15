@@ -8,7 +8,7 @@
 <h2>Vos réservation:</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@UtilResources.GetLabel("Nouvelle réservation"), "Create")
 </p>
 <table class="table">
     <tr>
@@ -57,9 +57,7 @@
                 <td>
                     @UtilResources.GetLabel("Incomplète")
                 </td>
-                <td>
-                    <input type="button" title="LivrerLivre" value="@UtilResources.GetLabel("Annuler")" onclick="location.href='@Url.Action("Delete", "Booking", new { id = item.IDBooking })'" />
-                </td>
+              
             }
         </tr>
     }

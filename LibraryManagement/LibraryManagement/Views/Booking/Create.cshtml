@@ -18,7 +18,7 @@
             <div class="form-group">
                 @Html.Label(@UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input type="text" id="BookInfo" name="BookInfo" class="form-control">
+                    <input type="text" id="BookInfo" name="BookInfo" placeholder="Auteur, Titre, ISBN, UPC, etc" class="form-control">
                     <br />
                     <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
                 </div>
@@ -34,11 +34,7 @@
                 </table>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="button" id="confirmExp" name="confirmExp" onclick="confirmExp()" class="btn btn-default">Fin de la réservation</button>
-                </div>
-            </div>
+            
 
             <hr />
         </div>
@@ -46,5 +42,5 @@
 }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
         </div>
