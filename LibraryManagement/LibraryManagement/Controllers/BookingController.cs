@@ -96,7 +96,7 @@ namespace LibraryManagement.Controllers
                              join BC in db.BooksCopy on B.IDBook equals BC.IDBook
                              join S in db.Student on BC.IDStudent equals S.IDStudent
                              join BS in db.BookState on BC.IDBookState equals BS.IDBookState
-                             where BC.Available == -1 && B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)
+                             where BC.Available == -1 && (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value))
                              select new { BC.IDBooksCopy, B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage }).ToList();
 
                 // S'il n'y a rien trouvé, on doit retourner une erreur. 
