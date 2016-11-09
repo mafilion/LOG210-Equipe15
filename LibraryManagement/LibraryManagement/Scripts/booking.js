@@ -46,17 +46,31 @@ function showBook(id) {
     });
 
     function successFunc(data, status) {
-        $("table").removeClass("show");
-        $(".researchForm").addClass("hide");
-        $(".inputForm").addClass("show");
+        var answer = confirm("Voulez-vous vraiment effectuer la cette réservation? \n\n" +
+        "Titre:              " + data.Title +"\n" +
+        "Auteur:             " + data.Name + "\n" +
+        "Étudiant:           " + data.FirstName + " " + data.LastName + "\n" +
+        "Prix:               " + data.price + "\n" +
+        "État:               " + data.IDBookState + "\n");
 
-        $('#noISBN').val(data.noISBN);
-        $('#title').val(data.Title);
-        $('#author').val(data.Name);
-        $('#student').val(data.FirstName + " " + data.LastName);
-        $('#price').val(data.price)
-        $('#IDBookState').val(data.IDBookState)
-        data
+        if (answer) {
+            var serviceURL = '/Booking/CreateBooking';
+
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: '{"id":"' + id + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     function errorFunc() {

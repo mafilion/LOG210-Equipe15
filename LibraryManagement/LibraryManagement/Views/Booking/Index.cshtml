@@ -1,4 +1,5 @@
-﻿@model IEnumerable<LibraryManagement.Models.Book>
+﻿@model IEnumerable<LibraryManagement.Models.Booking>
+@using LibraryManagement.Utils;
 
 @{
     ViewBag.Title = "Index";
@@ -12,52 +13,55 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.noISBN)
+            @UtilResources.GetLabel("#Réservation")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.noEAN)
+            @UtilResources.GetLabel("Date réservation")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.noUPC)
+            @UtilResources.GetLabel("Prénom")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @UtilResources.GetLabel("Nom")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nbPages)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
+            @UtilResources.GetLabel("Livraison complétée")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.noISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.noEAN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.noUPC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nbPages)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDBook }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDBook }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDBook })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDBooking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            @if (item.TradeConfirmation == true)
+            {
+                <td>
+                    @UtilResources.GetLabel("Complétée")
+                </td>
+                <td></td>
+            }
+            else
+            {
+                <td>
+                    @UtilResources.GetLabel("Incomplète")
+                </td>
+                <td>
+                    <input type="button" title="LivrerLivre" value="@UtilResources.GetLabel("Annuler")" onclick="location.href='@Url.Action("Delete", "Booking", new { id = item.IDBooking })'" />
+                </td>
+            }
+        </tr>
+    }
 
 </table>

@@ -2,6 +2,7 @@
 using LibraryManagement.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -15,10 +16,35 @@ namespace LibraryManagement.Controllers
 
         private LibraryManagementEntities db = new LibraryManagementEntities();
 
-        // GET: Booking
-        public ActionResult Index()
+        private int IDLivreTrouver = 0;
+
+        // Retourne les réservations du student
+        public ActionResult Index([DefaultValue(0)]int idBooking)
         {
-            return View(db.Book.ToList());
+            if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == false)
+            {
+                if (idBooking != 0)
+                {
+
+                    List<Booking> BookingList = db.Booking.Where(bo => bo.IDBooking == idBooking).Include(b => b.Student).ToList();
+                    return View(BookingList);
+                }
+                else
+                {
+                    List<BookingLine> BookingLineList = db.BookingLine.ToList();
+                    List<Booking> BookingList = new List<Booking>();
+                    foreach (BookingLine element in BookingLineList)
+                    {
+                        if (BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
+                        {
+                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
+                        }
+                    }
+                    return View(BookingList);
+                }
+            }
+            //Redirection vers la page de login si il tente d'accéder à la page 
+            return RedirectToAction("LoginStudents", "Accounts");
         }
 
         public ActionResult Details(int? id)
@@ -46,12 +72,12 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IDBook,noISBN,noEAN,noUPC,Title,nbPages,price")] Book book)
         {
-            if (ModelState.IsValid)
-            {
-                db.Book.Add(book);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    db.Book.Add(book);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
             return View(book);
         }
@@ -70,7 +96,7 @@ namespace LibraryManagement.Controllers
                              join BC in db.BooksCopy on B.IDBook equals BC.IDBook
                              join S in db.Student on BC.IDStudent equals S.IDStudent
                              join BS in db.BookState on BC.IDBookState equals BS.IDBookState
-                             where B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)
+                             where BC.Available == -1 && B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)
                              select new { BC.IDBooksCopy, B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage }).ToList();
 
                 // S'il n'y a rien trouvé, on doit retourner une erreur. 
@@ -87,38 +113,24 @@ namespace LibraryManagement.Controllers
             return View();
         }
 
-        // GET: BookDelivery/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Book book = db.Book.Find(id);
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-            return View(book);
-        }
-
-
-
-        // POST: BookDelivery/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Permet d'aller chercher le copy du livre qui à été sélectionné. 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDBook,noISBN,noEAN,noUPC,Title,nbPages,price")] Book book)
+        [ActionName("getBookCopy")]
+        public ActionResult getBookCopy(string id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(book).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(book);
+            int idBookCopy = Int32.Parse(id);
+            var Books = (from BC in db.BooksCopy
+                         join BA in db.BooksAuthors on BC.Book.IDBook equals BA.IDBook
+                         join A in db.Author on BA.IDAuthor equals A.IDAuthor
+                         where BC.IDBooksCopy == idBookCopy
+                         select new { BC.IDBooksCopy, BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, A.Name }).SingleOrDefault();
+
+            //Récupérer les informations et les retourner en json
+            IDLivreTrouver = idBookCopy;
+            return Json(Books, JsonRequestBehavior.AllowGet);
         }
+
+
 
         // GET: BookDelivery/Delete/5
         public ActionResult Delete(int? id)
@@ -127,12 +139,12 @@ namespace LibraryManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Book.Find(id);
-            if (book == null)
+            Booking booking = db.Booking.Find(id);
+            if (booking == null)
             {
                 return HttpNotFound();
             }
-            return View(book);
+            return View(booking);
         }
 
         // POST: BookDelivery/Delete/5
@@ -155,7 +167,8 @@ namespace LibraryManagement.Controllers
             base.Dispose(disposing);
         }
 
-        public void CreateBooking(BookingViewModel model,)
+        // Effectue la réservation en BD
+        public void CreateBooking(string id)
         {
             DateTime localDate = DateTime.Now;
 
@@ -165,16 +178,26 @@ namespace LibraryManagement.Controllers
 
             booking.BookingDate = localDate;
             booking.IDStudent = AccountManagement.getIDAccount();
-            booking.IDManager = 1; // À CHANGÉ
+            booking.IDManager = null; // À CHANGÉ
             booking.TradeConfirmation = false;
-
             db.Booking.Add(booking);
 
-            bookingline.IDBooking = 1;// À Changé
-            bookingline.IDBooksCopy = 2; // À Changé
+            
+            bookingline.IDBooksCopy =  Int32.Parse(id); // À Changé
             bookingline.BookingState = -1; // À 48h
             db.BookingLine.Add(bookingline);
 
+            // On indique que le livre n'est plus disponible
+            int idlivre = Int32.Parse(id);
+            BooksCopy bookcopy =
+                (from b in db.BooksCopy
+                 where b.IDBooksCopy == idlivre
+                 select b).SingleOrDefault(); 
+
+            bookcopy.Available = 1;
+
+            // On sauvegarde en BD les modifs
+            db.SaveChanges();
 
         }
     }
