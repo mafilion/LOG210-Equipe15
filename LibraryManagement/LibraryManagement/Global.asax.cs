@@ -18,6 +18,16 @@ namespace LibraryManagement
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             UtilResources.CreateInstance();
+
+        }
+
+        protected void Application_PreSendRequestHeaders()
+        {
+            Response.Headers.Remove("X-Frame-Options");
+            Response.AddHeader("X-Frame-Options", "AllowAll");
+
         }
     }
+
+
 }
