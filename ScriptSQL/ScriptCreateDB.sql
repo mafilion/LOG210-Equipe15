@@ -677,7 +677,8 @@ BEGIN
 		IDBooksCopy INT PRIMARY KEY IDENTITY(1,1),
 		IDStudent INT FOREIGN KEY REFERENCES Student(IDStudent) NOT NULL,
 		IDBook INT FOREIGN KEY REFERENCES Book(IDBook) NOT NULL,
-		IDBookState INT FOREIGN KEY REFERENCES BookState(IdBookState),
+		IDBookState INT FOREIGN KEY REFERENCES BookState(IdBookState) NOT NULL,
+		IDCooperative INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
 		Available INT NOT NULL DEFAULT -1
 	)
 END
@@ -691,6 +692,7 @@ BEGIN
 		IDBooking INT PRIMARY KEY IDENTITY(1,1),
 		IDStudent INT FOREIGN KEY REFERENCES Student(IDStudent) NOT NULL,
 		IDManager INT FOREIGN KEY REFERENCES Manager(IDManager) NULL,
+		IDCooperative INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
 		BookingDate DATETIME NOT NULL,
 		TradeConfirmation BIT NOT NULL
 	)
@@ -708,5 +710,32 @@ BEGIN
 		IDBooking INT FOREIGN KEY REFERENCES Booking(IDBooking) NOT NULL,
 		IDBooksCopy INT FOREIGN KEY REFERENCES BooksCopy(IDBooksCopy) NOT NULL,
 		BookingState INT NOT NULL DEFAULT -1,
+	)
+END
+
+/* Table TransfertExemplaire */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'BooksCopyTransfer'))
+BEGIN
+	CREATE TABLE BooksCopyTransfer(
+		IDBooksCopyTransfer INT PRIMARY KEY IDENTITY(1,1),
+		IDCooperativeFrom INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
+		IDCooperativeTo INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
+		TransferDate DateTime NOT NULL,
+		TransferConfirmation bit NOT NULL DEFAULT 0,
+	)
+END
+
+/* Table LigneTransfertExemplaire */
+IF (NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_NAME = 'BooksCopyTransferLine'))
+BEGIN
+	CREATE TABLE BooksCopyTransferLine(
+		IDBooksCopyTransferLine INT PRIMARY KEY IDENTITY(1,1),
+		IDBooksCopyTransfer INT FOREIGN KEY REFERENCES BooksCopyTransfer(IDBooksCopyTransfer) NOT NULL,
+		IDBooksCopy INT FOREIGN KEY REFERENCES BooksCopy(IDBooksCopy) NOT NULL,
+		State INT NOT NULL DEFAULT -1
 	)
 END
