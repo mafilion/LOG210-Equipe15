@@ -109,6 +109,15 @@
             </div>
         </div>
 
+        <hr/>
+        <div class="form-group">
+            @Html.LabelFor(model => model.coop.IDCooperative, @UtilResources.GetLabel("Coopérative") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDCooperative", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.coop.IDCooperative, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <!-- Suppression du Form Necessaire, il va falloir faire un event javascript qui va caller la méthode de create dans le controlleur en AJAX-->
         <!-- Après l'ajout, popup de confirmation de l'ajout puisque la fenêtre ne sera pas redirigez automatiquement(ou faire un popup qui demande si il veut ajouter un autre livre)-->
         <div class="form-group">

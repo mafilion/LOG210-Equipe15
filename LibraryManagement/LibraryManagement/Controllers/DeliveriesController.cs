@@ -20,10 +20,11 @@ namespace LibraryManagement.Controllers
         {
             if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
             {
+                int idManager = AccountManagement.getIDAccount(); //LinQ n'accepte pas qu'on l'entre directement dans la requête
+                Manager man = db.Manager.Where(mans => mans.IDManager == idManager).Single();
                 if (idBooking != 0)
                 {
-
-                    List<Booking> BookingList = db.Booking.Where(bo => bo.IDBooking == idBooking).Include(b => b.Student).ToList();
+                    List<Booking> BookingList = db.Booking.Where(bo => bo.IDBooking == idBooking && bo.IDCooperative == man.IDCooperative).Include(b => b.Student).ToList();
                     return View(BookingList);
                 }
                 else
@@ -34,7 +35,7 @@ namespace LibraryManagement.Controllers
                     {
                         if (BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
                         {
-                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
+                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking && b.IDCooperative == man.IDCooperative).Include(b => b.Student).Single());
                         }
                     }
                     return View(BookingList);

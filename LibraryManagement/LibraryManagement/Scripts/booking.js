@@ -20,7 +20,7 @@ function findLivre() {
     function successFunc(data, status) {
 
         $.each(data, function (index, value) {
-            $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.Name + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price * this.PricePercentage + ' $</td></tr>');
+            $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.AuthorName + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price * this.PricePercentage + ' $</td><td>'+ this.CoopName +'</td></tr>');
         });
 
         $("table").addClass("show");
@@ -46,11 +46,13 @@ function showBook(id) {
     });
 
     function successFunc(data, status) {
-        var answer = confirm("Voulez-vous vraiment effectuer la cette réservation? \n\n" +
+        var answer = confirm("Voulez-vous vraiment effectuer cette réservation? \n\n" +
         "Titre:                 " + data.Title + "\n" +
-        "Auteur:             " + data.Name + "\n" +
+        "Auteur:             " + data.AuthorName + "\n" +
         "Étudiant:           " + data.FirstName + " " + data.LastName + "\n" +
-        "Prix:                  " + data.price * data.PricePercentage + "$\n");
+        "Prix:                  " + data.price * data.PricePercentage + "$\n" +
+        "Coopérative:        " + data.CoopName);
+        var idCoop = document.getElementById("IDCooperative").value;
 
         if (answer) {
             var serviceURL = '/Booking/CreateBooking';
@@ -58,7 +60,7 @@ function showBook(id) {
             $.ajax({
                 type: "POST",
                 url: serviceURL,
-                data: '{"id":"' + id + '"}',
+                data: '{"id":"' + id + '" ,"idCoop":"' + idCoop + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: successFunc,
@@ -73,7 +75,7 @@ function showBook(id) {
     }
 
     function errorFunc() {
-        alert("La réservation est faite.");
+        alert("La réservation a été réalisé avec succès.");
         $('#book tr:gt(0)').remove()
     }
 }

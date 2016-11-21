@@ -26,7 +26,7 @@ namespace LibraryManagement.Controllers
                 if (idBooking != 0)
                 {
 
-                    List<Booking> BookingList = db.Booking.Where(bo => bo.IDBooking == idBooking).Include(b => b.Student).ToList();
+                    List<Booking> BookingList = db.Booking.Where(bo => bo.IDBooking == idBooking).Include(b => b.Student).Include(c => c.Cooperative).ToList();
                     return View(BookingList);
                 }
                 else
@@ -37,7 +37,7 @@ namespace LibraryManagement.Controllers
                     {
                         if (BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
                         {
-                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Single());
+                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking).Include(b => b.Student).Include(c => c.Cooperative).Single());
                         }
                     }
                     return View(BookingList);
@@ -64,13 +64,19 @@ namespace LibraryManagement.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == false)
+            {
+                ViewBag.IDCooperative = new SelectList(db.Cooperative, "IDCooperative", "Name");
+                return View();
+            }
+            //Redirection vers la page de login si il tente d'accéder à la page 
+            return RedirectToAction("LoginStudents", "Accounts");
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDBook,noISBN,noEAN,noUPC,Title,nbPages,price")] Book book)
+        public ActionResult Create(BookingCoopViewModel book)
         {
             //if (ModelState.IsValid)
             //{
@@ -78,7 +84,6 @@ namespace LibraryManagement.Controllers
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-
             return View(book);
         }
 
@@ -94,10 +99,11 @@ namespace LibraryManagement.Controllers
                              join BA in db.BooksAuthors on B.IDBook equals BA.IDBook
                              join A in db.Author on BA.IDAuthor equals A.IDAuthor
                              join BC in db.BooksCopy on B.IDBook equals BC.IDBook
+                             join C in db.Cooperative on BC.IDCooperative equals C.IDCooperative
                              join S in db.Student on BC.IDStudent equals S.IDStudent
                              join BS in db.BookState on BC.IDBookState equals BS.IDBookState
-                             where BC.Available == -1 && (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value))
-                             select new { BC.IDBooksCopy, B.noISBN, B.Title, B.price, A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage }).ToList();
+                             where BC.Available == 1 && (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value))
+                             select new { BC.IDBooksCopy, B.noISBN, B.Title, B.price, AuthorName = A.Name, S.FirstName, S.LastName, BS.Description, BS.PricePercentage,C.IDCooperative , CoopName = C.Name}).ToList();
 
                 // S'il n'y a rien trouvé, on doit retourner une erreur. 
                 if (Books.Count == 0)
@@ -122,8 +128,9 @@ namespace LibraryManagement.Controllers
             var Books = (from BC in db.BooksCopy
                          join BA in db.BooksAuthors on BC.Book.IDBook equals BA.IDBook
                          join A in db.Author on BA.IDAuthor equals A.IDAuthor
+                         join C in db.Cooperative on BC.IDCooperative equals C.IDCooperative
                          where BC.IDBooksCopy == idBookCopy
-                         select new { BC.IDBooksCopy, BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, A.Name }).SingleOrDefault();
+                         select new { BC.IDBooksCopy, BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, AuthorName = A.Name, C.IDCooperative , CoopName = C.Name }).SingleOrDefault();
 
             //Récupérer les informations et les retourner en json
             IDLivreTrouver = idBookCopy;
@@ -168,7 +175,7 @@ namespace LibraryManagement.Controllers
         }
 
         // Effectue la réservation en BD
-        public void CreateBooking(string id)
+        public void CreateBooking(string id,string idCoop)
         {
             DateTime localDate = DateTime.Now;
 
@@ -180,6 +187,7 @@ namespace LibraryManagement.Controllers
             booking.IDStudent = AccountManagement.getIDAccount();
             booking.IDManager = null; // À CHANGÉ
             booking.TradeConfirmation = false;
+            booking.IDCooperative = Int32.Parse(idCoop);
             db.Booking.Add(booking);
 
             

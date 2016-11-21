@@ -42,6 +42,7 @@ namespace LibraryManagement.Controllers
             if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == true)
             {
                 ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
+                ViewBag.IDCooperative = new SelectList(db.Cooperative, "IDCooperative", "Name");
                 return View();
             }
             //Redirection vers la page de login si il tente d'accéder à la page 
@@ -74,10 +75,11 @@ namespace LibraryManagement.Controllers
                                 join BA in db.BooksAuthors on B.IDBook equals BA.IDBook
                                 join A in db.Author on BA.IDAuthor equals A.IDAuthor
                                 join BC in db.BooksCopy on B.IDBook equals BC.IDBook
+                                join C in db.Cooperative on BC.IDCooperative equals C.IDCooperative
                                 join S in db.Student on BC.IDStudent equals S.IDStudent
                                 join BS in db.BookState on BC.IDBookState equals BS.IDBookState
-                                where (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title == Value || S.FirstName + " " + S.LastName == Value) && BC.Available == -1
-                                select new {BC.IDBooksCopy,B.noISBN, B.Title, A.Name, S.FirstName, S.LastName, BS.Description,B.price, BS.PricePercentage }).ToList();
+                                where (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)) && BC.Available == -1
+                                select new {BC.IDBooksCopy,B.noISBN, B.Title, AuthorName = A.Name, S.FirstName, S.LastName, BS.Description,B.price, BS.PricePercentage,C.IDCooperative, CoopName = C.Name }).ToList();
 
             //Récupérer les informations et les retourner en json
             return Json(Books, JsonRequestBehavior.AllowGet);
@@ -89,10 +91,11 @@ namespace LibraryManagement.Controllers
         {
             int idBookCopy = Int32.Parse(id);
             var Books = (from BC in db.BooksCopy
+                         join C in db.Cooperative on BC.IDCooperative equals C.IDCooperative
                          join BA in db.BooksAuthors on BC.Book.IDBook equals BA.IDBook
                          join A in db.Author on BA.IDAuthor equals A.IDAuthor
                          where BC.IDBooksCopy == idBookCopy
-            select new { BC.IDBooksCopy,BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, A.Name, BC.IDStudent }).SingleOrDefault();
+            select new { BC.IDBooksCopy,BC.Book.noISBN, BC.Book.Title, BC.Student.FirstName, BC.Student.LastName, BC.BookState.IDBookState, BC.BookState.PricePercentage, BC.Book.price, AuthorName = A.Name, BC.IDStudent,C.IDCooperative , CoopName = C.Name }).SingleOrDefault();
 
             //Récupérer les informations et les retourner en json
             return Json(Books, JsonRequestBehavior.AllowGet);
@@ -107,7 +110,7 @@ namespace LibraryManagement.Controllers
 
             //updater truc dans bd
             BooksCopy book = db.BooksCopy.Where(c => c.IDBooksCopy == idBookCopy).FirstOrDefault();
-            book.Available = 0;
+            book.Available = 1;
             book.IDBookState = idBookState;
             db.SaveChanges();
 

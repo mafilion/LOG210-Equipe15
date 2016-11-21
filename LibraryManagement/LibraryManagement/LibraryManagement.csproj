@@ -258,6 +258,7 @@
     <Compile Include="Models\Booking.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingCoopViewModel.cs" />
     <Compile Include="Models\BookingLine.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -266,6 +267,12 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BooksCopy.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksCopyTransfer.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksCopyTransferLine.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BookState.cs">

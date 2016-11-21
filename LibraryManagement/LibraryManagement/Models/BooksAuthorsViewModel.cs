@@ -14,5 +14,6 @@ namespace LibraryManagement.Models
         public Author Aut { get; set; }
         public List<BooksAuthors> BooksAuthorsList { get; set; }
         public BookState bookState { get; set; }
+        public Cooperative coop { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace LibraryManagement.Controllers
             if (AccountManagement.isConnected() != null && AccountManagement.getEstManager() == false )
             {
                 ViewBag.IDBookState = new SelectList(db.BookState, "IDBookState", "Description");
+                ViewBag.IDCooperative = new SelectList(db.Cooperative, "IDCooperative", "Name");
                 return View();
             }
             //Redirection vers la page de login si il tente d'accéder à la page 
@@ -43,6 +44,7 @@ namespace LibraryManagement.Controllers
             }
 
             ViewBag.IDEtatLivre = new SelectList(db.BookState, "IDBookState", "Description", books.bookState.IDBookState);
+            ViewBag.IDCooperative = new SelectList(db.Cooperative, "IDCooperative", "Name");
             return View(books);
         }
 
@@ -97,6 +99,7 @@ namespace LibraryManagement.Controllers
             boC.IDBook = bo.IDBook;
             boC.IDBookState = booksAut.bookState.IDBookState;
             boC.IDStudent = AccountManagement.getIDAccount();
+            boC.IDCooperative = booksAut.coop.IDCooperative;
             boC.Available = -1;
             db.BooksCopy.Add(boC);
             db.SaveChanges();

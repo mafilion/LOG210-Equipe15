@@ -24,7 +24,7 @@ function findLivre() {
             if (data.length != 0)
             {
                 $.each(data, function (index, value) {
-                    $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.Name + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price + ' $</td></tr>');
+                    $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.AuthorName + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price + ' $</td><td>' + this.CoopName + '</td></tr>');
                 });
                 $("table").addClass("show");
             } else {
@@ -59,12 +59,12 @@ function showBook(id) {
         idStudent = data.IDStudent;
         $('#noISBN').val(data.noISBN);
         $('#title').val(data.Title);
-        $('#author').val(data.Name);
+        $('#author').val(data.AuthorName);
         $('#student').val(data.FirstName + " " + data.LastName);
         $('#price').val(data.price);
         $('#IDBookState').val(data.IDBookState);
         $('#IDBookCopy').text(data.IDBooksCopy);
-       data
+        $('#coop_Name').val(data.CoopName);
     }
 
     function errorFunc() {

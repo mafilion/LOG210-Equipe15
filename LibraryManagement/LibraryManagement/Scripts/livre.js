@@ -39,6 +39,7 @@ function sendLivre() {
         Book: {},
         Aut: {},
         BookState: {},
+        coop: {},
     }
          
         BookAut.Book.noISBN = document.getElementById('book_noISBN').value
@@ -46,6 +47,7 @@ function sendLivre() {
         BookAut.Book.nbPages = document.getElementById('book_nbPages').value;
         BookAut.Book.price = document.getElementById('book_price').value;
         BookAut.BookState.IDBookState = document.getElementById('IDBookState').value;
+        BookAut.coop.IDCooperative = document.getElementById('IDCooperative').value;
         BookAut.Aut.Name = document.getElementById('AuthorName1').value;
  
         $.ajax({
@@ -93,4 +95,5 @@ function CleanForm()
     document.getElementById('AuthorName4').value = "";
     document.getElementById('AuthorName5').value = "";
     document.getElementById('IDBookState').value = 1;
+    document.getElementById('IDCooperative').value = 1;
 }

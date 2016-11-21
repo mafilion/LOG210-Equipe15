@@ -27,6 +27,14 @@
         <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__19DFD96B" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDStu__17F790F9" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__Manager__IDCoope__09A971A2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransfer" Width="1.5" PointX="3.75" PointY="13.625" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransferLine" Width="1.5" PointX="8.25" PointY="8.625" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDCoope__2739D489" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__31B762FC" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__29221CFB" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__30C33EC3" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__2BFE89A6" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__2CF2ADDF" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

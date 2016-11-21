@@ -26,7 +26,8 @@
                         <th>@UtilResources.GetLabel("Auteur")</th>
                         <th>@UtilResources.GetLabel("Etudiant")</th>
                         <th>@UtilResources.GetLabel("État du livre")</th>
-                        <th>@UtilResources.GetLabel("Prix neuf")</th>
+                        <th>@UtilResources.GetLabel("Prix")</th>
+                        <td>@UtilResources.GetLabel("Coopérative")</td>
                     </tr>
                 </table>
             </div>
@@ -77,6 +78,13 @@
                 @Html.LabelFor(model => model.price, @UtilResources.GetLabel("Prix neuf") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.coop.Name, @UtilResources.GetLabel("Coopérative") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.coop.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
                 </div>
             </div>
 

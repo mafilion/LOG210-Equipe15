@@ -14,6 +14,7 @@ namespace LibraryManagement.Models
        public string student { get; set; }
        public BookState state { get; set; }
        public string price { get; set; }
+       public Cooperative coop { get; set; }
 
     }
 

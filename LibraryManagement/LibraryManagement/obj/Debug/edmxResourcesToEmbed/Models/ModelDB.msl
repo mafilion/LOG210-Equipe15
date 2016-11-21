@@ -25,6 +25,7 @@
     <EntitySetMapping Name="Booking">
       <EntityTypeMapping TypeName="LibraryManagementModel.Booking">
         <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
           <ScalarProperty Name="IDBooking" ColumnName="IDBooking" />
           <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
           <ScalarProperty Name="IDManager" ColumnName="IDManager" />
@@ -55,6 +56,7 @@
     <EntitySetMapping Name="BooksCopy">
       <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopy">
         <MappingFragment StoreEntitySet="BooksCopy">
+          <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
           <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
           <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
           <ScalarProperty Name="IDBook" ColumnName="IDBook" />
@@ -123,6 +125,27 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BooksCopyTransfer">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransfer">
+        <MappingFragment StoreEntitySet="BooksCopyTransfer">
+          <ScalarProperty Name="TransferConfirmation" ColumnName="TransferConfirmation" />
+          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
+          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
+          <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BooksCopyTransferLine">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransferLine">
+        <MappingFragment StoreEntitySet="BooksCopyTransferLine">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
+          <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
+          <ScalarProperty Name="IDBooksCopyTransferLine" ColumnName="IDBooksCopyTransferLine" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
