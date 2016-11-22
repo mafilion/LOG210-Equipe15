@@ -53,7 +53,6 @@ function showBook(id) {
         "Prix:                  " + data.price * data.PricePercentage + "$\n" +
         "Coopérative:        " + data.CoopName);
         var idCoop = document.getElementById("IDCooperative").value;
-
         if (answer) {
             var serviceURL = '/Booking/CreateBooking';
 

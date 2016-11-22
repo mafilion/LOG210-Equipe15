@@ -27,8 +27,8 @@ namespace LibraryManagement.Models
         public string Email { get; set; }
         public string ManagerPassword { get; set; }
     
+        public virtual Cooperative Cooperative { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Booking { get; set; }
-        public virtual Cooperative Cooperative { get; set; }
     }
 }

@@ -14,9 +14,9 @@
         @Html.HiddenFor(model => model.booking.IDBooking)
         @Html.HiddenFor(model => model.booking.IDStudent)
 
-        <h3>@UtilResources.GetLabel("Étudiant")</h3>
+        <h3>@UtilResources.GetLabel("Etudiant")</h3>
         <div class="form-group">
-            @Html.LabelFor(model => model.student.FirstName, @UtilResources.GetLabel("Prénom") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.student.FirstName, @UtilResources.GetLabel("Prenom") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.student.FirstName, new { htmlAttributes = new { @class = "form-control" }, @readonly = "readonly" })
             </div>

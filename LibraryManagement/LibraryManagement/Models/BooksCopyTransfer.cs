@@ -23,7 +23,7 @@ namespace LibraryManagement.Models
         public int IDBooksCopyTransfer { get; set; }
         public int IDCooperativeFrom { get; set; }
         public int IDCooperativeTo { get; set; }
-        public System.DateTime TransferDate { get; set; }
+        public Nullable<System.DateTime> TransferDate { get; set; }
         public bool TransferConfirmation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

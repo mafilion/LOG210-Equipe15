@@ -202,7 +202,8 @@ namespace LibraryManagement.Controllers
                  where b.IDBooksCopy == idlivre
                  select b).SingleOrDefault(); 
 
-            bookcopy.Available = 1;
+            bookcopy.Available = 0;
+            db.Entry(bookcopy).State = EntityState.Modified;
 
             Book book =
                 (from b in db.Book
@@ -213,13 +214,46 @@ namespace LibraryManagement.Controllers
 
             // On sauvegarde en BD les modifs
             db.SaveChanges();
+            //Transfert de livre entre coop
+            if (booking.IDCooperative !=  bookcopy.IDCooperative)
+            {
+                //Ajout d'un transfert
+                BooksCopyTransfer BCT = new BooksCopyTransfer();
+                BCT.IDCooperativeFrom = bookcopy.IDCooperative;
+                BCT.IDCooperativeTo = booking.IDCooperative;
+                BCT.TransferConfirmation = false;
+                BCT.TransferDate = null;
 
-            sendEmail(book, bookcopy, booking);
+                db.BooksCopyTransfer.Add(BCT);
+                db.SaveChanges();
+
+                //Ajout de la ligne de transfert
+                BooksCopyTransferLine BCTL = new BooksCopyTransferLine();
+                BCTL.IDBooksCopy = bookcopy.IDBooksCopy;
+                BCTL.IDBooksCopyTransfer = BCT.IDBooksCopyTransfer;
+                BCTL.State = -1;
+                db.BooksCopyTransferLine.Add(BCTL);
+                db.SaveChanges();
+
+                sendEmail(book, bookcopy, booking,true);
+            }
+            else
+            {
+                sendEmail(book, bookcopy, booking,false);
+            }
         }
 
-        public void sendEmail(Book b, BooksCopy bc, Booking bo)
+        public void sendEmail(Book b, BooksCopy bc, Booking bo,bool transfer)
         {
-            string EmailContent = "Votre réservation est complété. SVP passer le récupérer d'ici 48h.";
+            string EmailContent = "";
+            if(transfer)
+            {
+                EmailContent = "Votre réservation est complété. Un transfert de l'exemplaire réservé  à votre coopérative est nécéssaire. \n Un courriel vous sera envoyé lorsque votre coopérative aura recu votre exemplaire. \n Suite à la réception de votre exemplaire, un délai de 48H vous sera attribué.";
+            }
+            else
+            {
+                EmailContent = "Votre réservation est complété. SVP passer le récupérer d'ici 48h.";
+            }
             EmailContent = EmailContent + "\n" + "------------------------------------------------------------------------------------------------------";
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Titre") + ": " + b.Title;
             EmailContent = EmailContent + " \n";

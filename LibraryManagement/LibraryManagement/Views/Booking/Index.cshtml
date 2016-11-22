@@ -5,7 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Vos réservation:</h2>
+<h2>@UtilResources.GetLabel("Vos réservation")</h2>
 
 <p>
     @Html.ActionLink(@UtilResources.GetLabel("Nouvelle réservation"), "Create")
@@ -19,13 +19,13 @@
             @UtilResources.GetLabel("Date réservation")
         </th>
         <th>
-            @UtilResources.GetLabel("Prénom")
+            @UtilResources.GetLabel("Prenom")
         </th>
         <th>
             @UtilResources.GetLabel("Nom")
         </th>
         <th>
-            @UtilResources.GetLabel("Coopérative")
+            @UtilResources.GetLabel("Cooperative")
         </th>
         <th>
             @UtilResources.GetLabel("Livraison complétée")

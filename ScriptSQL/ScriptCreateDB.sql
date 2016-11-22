@@ -612,6 +612,17 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Création d''une réservation','New booking')
 	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Auteur, Titre, ISBN, UPC, etc','Auteur, Titre, ISBN, UPC, etc')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Auteur, Titre, ISBN, UPC, etc','Author, Title, ISBN, UPC , etc')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Vos réservation','Vos réservation:')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Vos réservation','Your booking:')
 END 
 
 /*Table pour les états de livres*/
@@ -726,7 +737,7 @@ BEGIN
 		IDBooksCopyTransfer INT PRIMARY KEY IDENTITY(1,1),
 		IDCooperativeFrom INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
 		IDCooperativeTo INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
-		TransferDate DateTime NOT NULL,
+		TransferDate DateTime NULL,
 		TransferConfirmation bit NOT NULL DEFAULT 0,
 	)
 END
