@@ -22,6 +22,8 @@ namespace LibraryManagement.Models
             this.BooksCopyTransfer = new HashSet<BooksCopyTransfer>();
             this.BooksCopyTransfer1 = new HashSet<BooksCopyTransfer>();
             this.Manager = new HashSet<Manager>();
+            this.BooksCopyTransferLine = new HashSet<BooksCopyTransferLine>();
+            this.BooksCopyTransferLine1 = new HashSet<BooksCopyTransferLine>();
         }
     
         public int IDCooperative { get; set; }
@@ -36,10 +38,11 @@ namespace LibraryManagement.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksCopy> BooksCopy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BooksCopyTransfer> BooksCopyTransfer { get; set; }
+        public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksCopyTransfer> BooksCopyTransfer1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Manager> Manager { get; set; }
+        public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine1 { get; set; }
     }
 }

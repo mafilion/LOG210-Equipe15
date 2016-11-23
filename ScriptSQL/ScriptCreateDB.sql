@@ -761,8 +761,6 @@ IF (NOT EXISTS (SELECT *
 BEGIN
 	CREATE TABLE BooksCopyTransfer(
 		IDBooksCopyTransfer INT PRIMARY KEY IDENTITY(1,1),
-		IDCooperativeFrom INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
-		IDCooperativeTo INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
 		TransferDate DateTime NULL,
 		TransferConfirmation bit NOT NULL DEFAULT 0,
 	)
@@ -777,6 +775,8 @@ BEGIN
 		IDBooksCopyTransferLine INT PRIMARY KEY IDENTITY(1,1),
 		IDBooksCopyTransfer INT FOREIGN KEY REFERENCES BooksCopyTransfer(IDBooksCopyTransfer) NOT NULL,
 		IDBooksCopy INT FOREIGN KEY REFERENCES BooksCopy(IDBooksCopy) NOT NULL,
+		IDCooperativeFrom INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
+		IDCooperativeTo INT FOREIGN KEY REFERENCES Cooperative(IDCooperative) NOT NULL, 
 		State INT NOT NULL DEFAULT -1
 	)
 END

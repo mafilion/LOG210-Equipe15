@@ -32,9 +32,9 @@ namespace LibraryManagement.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingLine> BookingLine { get; set; }
         public virtual BookState BookState { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
         public virtual Cooperative Cooperative { get; set; }
         public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
     }
 }
