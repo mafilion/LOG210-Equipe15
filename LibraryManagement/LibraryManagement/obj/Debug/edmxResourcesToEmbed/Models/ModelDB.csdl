@@ -1,12 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LibraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LibraryManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Author" EntityType="LibraryManagementModel.Author" />
+    <EntitySet Name="Book" EntityType="LibraryManagementModel.Book" />
+    <EntitySet Name="Booking" EntityType="LibraryManagementModel.Booking" />
+    <EntitySet Name="BookingLine" EntityType="LibraryManagementModel.BookingLine" />
+    <EntitySet Name="BooksAuthors" EntityType="LibraryManagementModel.BooksAuthors" />
+    <EntitySet Name="BooksCopy" EntityType="LibraryManagementModel.BooksCopy" />
+    <EntitySet Name="BooksCopyTransfer" EntityType="LibraryManagementModel.BooksCopyTransfer" />
+    <EntitySet Name="BooksCopyTransferLine" EntityType="LibraryManagementModel.BooksCopyTransferLine" />
+    <EntitySet Name="BookState" EntityType="LibraryManagementModel.BookState" />
+    <EntitySet Name="Cooperative" EntityType="LibraryManagementModel.Cooperative" />
+    <EntitySet Name="Manager" EntityType="LibraryManagementModel.Manager" />
+    <EntitySet Name="Resources" EntityType="LibraryManagementModel.Resources" />
+    <EntitySet Name="Settings" EntityType="LibraryManagementModel.Settings" />
+    <EntitySet Name="Student" EntityType="LibraryManagementModel.Student" />
+    <AssociationSet Name="FK__BooksAuth__IDAut__73852659" Association="LibraryManagementModel.FK__BooksAuth__IDAut__73852659">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="BooksAuthors" EntitySet="BooksAuthors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksAuth__IDBoo__74794A92" Association="LibraryManagementModel.FK__BooksAuth__IDBoo__74794A92">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BooksAuthors" EntitySet="BooksAuthors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDBoo__12FDD1B2" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__12FDD1B2">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__IDCoope__1A9EF37A" Association="LibraryManagementModel.FK__Booking__IDCoope__1A9EF37A">
+      <End Role="Cooperative" EntitySet="Cooperative" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__IDManag__19AACF41" Association="LibraryManagementModel.FK__Booking__IDManag__19AACF41">
+      <End Role="Manager" EntitySet="Manager" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__IDStude__18B6AB08" Association="LibraryManagementModel.FK__Booking__IDStude__18B6AB08">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingLi__IDBoo__1D7B6025" Association="LibraryManagementModel.FK__BookingLi__IDBoo__1D7B6025">
+      <End Role="Booking" EntitySet="Booking" />
+      <End Role="BookingLine" EntitySet="BookingLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BookingLi__IDBoo__1E6F845E" Association="LibraryManagementModel.FK__BookingLi__IDBoo__1E6F845E">
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+      <End Role="BookingLine" EntitySet="BookingLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDBoo__13F1F5EB" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__13F1F5EB">
+      <End Role="BookState" EntitySet="BookState" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDBoo__27F8EE98" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__27F8EE98">
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+      <End Role="BooksCopyTransferLine" EntitySet="BooksCopyTransferLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDCoo__14E61A24" Association="LibraryManagementModel.FK__BooksCopy__IDCoo__14E61A24">
+      <End Role="Cooperative" EntitySet="Cooperative" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDStu__1209AD79" Association="LibraryManagementModel.FK__BooksCopy__IDStu__1209AD79">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="BooksCopy" EntitySet="BooksCopy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDBoo__2704CA5F" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__2704CA5F">
+      <End Role="BooksCopyTransfer" EntitySet="BooksCopyTransfer" />
+      <End Role="BooksCopyTransferLine" EntitySet="BooksCopyTransferLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDCoo__22401542" Association="LibraryManagementModel.FK__BooksCopy__IDCoo__22401542">
+      <End Role="Cooperative" EntitySet="Cooperative" />
+      <End Role="BooksCopyTransfer" EntitySet="BooksCopyTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BooksCopy__IDCoo__2334397B" Association="LibraryManagementModel.FK__BooksCopy__IDCoo__2334397B">
+      <End Role="Cooperative" EntitySet="Cooperative" />
+      <End Role="BooksCopyTransfer" EntitySet="BooksCopyTransfer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Manager__IDCoope__690797E6" Association="LibraryManagementModel.FK__Manager__IDCoope__690797E6">
+      <End Role="Cooperative" EntitySet="Cooperative" />
+      <End Role="Manager" EntitySet="Manager" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Author">
     <Key>
       <PropertyRef Name="IDAuthor" />
     </Key>
     <Property Name="IDAuthor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="BooksAuthors" Relationship="Self.FK__BooksAuth__IDAut__14270015" FromRole="Author" ToRole="BooksAuthors" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BooksAuthors" Relationship="LibraryManagementModel.FK__BooksAuth__IDAut__73852659" FromRole="Author" ToRole="BooksAuthors" />
   </EntityType>
   <EntityType Name="Book">
     <Key>
@@ -16,11 +96,37 @@
     <Property Name="noISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="noEAN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="noUPC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="nbPages" Type="Int32" Nullable="false" />
     <Property Name="price" Type="Double" Nullable="false" />
-    <NavigationProperty Name="BooksAuthors" Relationship="Self.FK__BooksAuth__IDBoo__151B244E" FromRole="Book" ToRole="BooksAuthors" />
-    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__489AC854" FromRole="Book" ToRole="BooksCopy" />
+    <NavigationProperty Name="BooksAuthors" Relationship="LibraryManagementModel.FK__BooksAuth__IDBoo__74794A92" FromRole="Book" ToRole="BooksAuthors" />
+    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__12FDD1B2" FromRole="Book" ToRole="BooksCopy" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="IDBooking" />
+    </Key>
+    <Property Name="IDBooking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDStudent" Type="Int32" Nullable="false" />
+    <Property Name="IDManager" Type="Int32" />
+    <Property Name="IDCooperative" Type="Int32" Nullable="false" />
+    <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TradeConfirmation" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__Booking__IDCoope__1A9EF37A" FromRole="Booking" ToRole="Cooperative" />
+    <NavigationProperty Name="Manager" Relationship="LibraryManagementModel.FK__Booking__IDManag__19AACF41" FromRole="Booking" ToRole="Manager" />
+    <NavigationProperty Name="Student" Relationship="LibraryManagementModel.FK__Booking__IDStude__18B6AB08" FromRole="Booking" ToRole="Student" />
+    <NavigationProperty Name="BookingLine" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__1D7B6025" FromRole="Booking" ToRole="BookingLine" />
+  </EntityType>
+  <EntityType Name="BookingLine">
+    <Key>
+      <PropertyRef Name="IDBookingLine" />
+    </Key>
+    <Property Name="IDBookingLine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDBooking" Type="Int32" Nullable="false" />
+    <Property Name="IDBooksCopy" Type="Int32" Nullable="false" />
+    <Property Name="BookingState" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__1D7B6025" FromRole="BookingLine" ToRole="Booking" />
+    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__1E6F845E" FromRole="BookingLine" ToRole="BooksCopy" />
   </EntityType>
   <EntityType Name="BooksAuthors">
     <Key>
@@ -29,33 +135,74 @@
     <Property Name="IDBooksAuthors" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDAuthor" Type="Int32" Nullable="false" />
     <Property Name="IDBook" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Author" Relationship="Self.FK__BooksAuth__IDAut__14270015" FromRole="BooksAuthors" ToRole="Author" />
-    <NavigationProperty Name="Book" Relationship="Self.FK__BooksAuth__IDBoo__151B244E" FromRole="BooksAuthors" ToRole="Book" />
+    <NavigationProperty Name="Author" Relationship="LibraryManagementModel.FK__BooksAuth__IDAut__73852659" FromRole="BooksAuthors" ToRole="Author" />
+    <NavigationProperty Name="Book" Relationship="LibraryManagementModel.FK__BooksAuth__IDBoo__74794A92" FromRole="BooksAuthors" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="BooksCopy">
+    <Key>
+      <PropertyRef Name="IDBooksCopy" />
+    </Key>
+    <Property Name="IDBooksCopy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDStudent" Type="Int32" Nullable="false" />
+    <Property Name="IDBook" Type="Int32" Nullable="false" />
+    <Property Name="IDBookState" Type="Int32" Nullable="false" />
+    <Property Name="IDCooperative" Type="Int32" Nullable="false" />
+    <Property Name="Available" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__12FDD1B2" FromRole="BooksCopy" ToRole="Book" />
+    <NavigationProperty Name="BookingLine" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__1E6F845E" FromRole="BooksCopy" ToRole="BookingLine" />
+    <NavigationProperty Name="BookState" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__13F1F5EB" FromRole="BooksCopy" ToRole="BookState" />
+    <NavigationProperty Name="BooksCopyTransferLine" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__27F8EE98" FromRole="BooksCopy" ToRole="BooksCopyTransferLine" />
+    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__14E61A24" FromRole="BooksCopy" ToRole="Cooperative" />
+    <NavigationProperty Name="Student" Relationship="LibraryManagementModel.FK__BooksCopy__IDStu__1209AD79" FromRole="BooksCopy" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="BooksCopyTransfer">
+    <Key>
+      <PropertyRef Name="IDBooksCopyTransfer" />
+    </Key>
+    <Property Name="IDBooksCopyTransfer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCooperativeFrom" Type="Int32" Nullable="false" />
+    <Property Name="IDCooperativeTo" Type="Int32" Nullable="false" />
+    <Property Name="TransferDate" Type="DateTime" Precision="3" />
+    <Property Name="TransferConfirmation" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BooksCopyTransferLine" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__2704CA5F" FromRole="BooksCopyTransfer" ToRole="BooksCopyTransferLine" />
+    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__22401542" FromRole="BooksCopyTransfer" ToRole="Cooperative" />
+    <NavigationProperty Name="Cooperative1" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__2334397B" FromRole="BooksCopyTransfer" ToRole="Cooperative" />
+  </EntityType>
+  <EntityType Name="BooksCopyTransferLine">
+    <Key>
+      <PropertyRef Name="IDBooksCopyTransferLine" />
+    </Key>
+    <Property Name="IDBooksCopyTransferLine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDBooksCopyTransfer" Type="Int32" Nullable="false" />
+    <Property Name="IDBooksCopy" Type="Int32" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__27F8EE98" FromRole="BooksCopyTransferLine" ToRole="BooksCopy" />
+    <NavigationProperty Name="BooksCopyTransfer" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__2704CA5F" FromRole="BooksCopyTransferLine" ToRole="BooksCopyTransfer" />
   </EntityType>
   <EntityType Name="BookState">
     <Key>
       <PropertyRef Name="IDBookState" />
     </Key>
     <Property Name="IDBookState" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="PricePercentage" Type="Double" Nullable="false" />
-    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__498EEC8D" FromRole="BookState" ToRole="BooksCopy" />
+    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__13F1F5EB" FromRole="BookState" ToRole="BooksCopy" />
   </EntityType>
   <EntityType Name="Cooperative">
     <Key>
       <PropertyRef Name="IDCooperative" />
     </Key>
     <Property Name="IDCooperative" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="NoStreet" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Manager" Relationship="Self.FK__Manager__IDCoope__09A971A2" FromRole="Cooperative" ToRole="Manager" />
-    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__Booking__IDCoope__503BEA1C" FromRole="Cooperative" ToRole="Booking" />
-    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__4A8310C6" FromRole="Cooperative" ToRole="BooksCopy" />
-    <NavigationProperty Name="BooksCopyTransfer" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__57DD0BE4" FromRole="Cooperative" ToRole="BooksCopyTransfer" />
-    <NavigationProperty Name="BooksCopyTransfer1" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__58D1301D" FromRole="Cooperative" ToRole="BooksCopyTransfer" />
+    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__Booking__IDCoope__1A9EF37A" FromRole="Cooperative" ToRole="Booking" />
+    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__14E61A24" FromRole="Cooperative" ToRole="BooksCopy" />
+    <NavigationProperty Name="BooksCopyTransfer" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__22401542" FromRole="Cooperative" ToRole="BooksCopyTransfer" />
+    <NavigationProperty Name="BooksCopyTransfer1" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__2334397B" FromRole="Cooperative" ToRole="BooksCopyTransfer" />
+    <NavigationProperty Name="Manager" Relationship="LibraryManagementModel.FK__Manager__IDCoope__690797E6" FromRole="Cooperative" ToRole="Manager" />
   </EntityType>
   <EntityType Name="Manager">
     <Key>
@@ -63,12 +210,12 @@
     </Key>
     <Property Name="IDManager" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDCooperative" Type="Int32" />
-    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ManagerPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Cooperative" Relationship="Self.FK__Manager__IDCoope__09A971A2" FromRole="Manager" ToRole="Cooperative" />
-    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__Booking__IDManag__4F47C5E3" FromRole="Manager" ToRole="Booking" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ManagerPassword" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__Booking__IDManag__19AACF41" FromRole="Manager" ToRole="Booking" />
+    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__Manager__IDCoope__690797E6" FromRole="Manager" ToRole="Cooperative" />
   </EntityType>
   <EntityType Name="Resources">
     <Key>
@@ -77,7 +224,7 @@
     <Property Name="IDResources" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDLanguage" Type="Int32" Nullable="false" />
     <Property Name="TextName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Settings">
     <Key>
@@ -91,17 +238,17 @@
       <PropertyRef Name="IDStudent" />
     </Key>
     <Property Name="IDStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-    <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__Booking__IDStude__4E53A1AA" FromRole="Student" ToRole="Booking" />
-    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDStu__47A6A41B" FromRole="Student" ToRole="BooksCopy" />
+    <Property Name="StudentPassword" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__Booking__IDStude__18B6AB08" FromRole="Student" ToRole="Booking" />
+    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDStu__1209AD79" FromRole="Student" ToRole="BooksCopy" />
   </EntityType>
-  <Association Name="FK__BooksAuth__IDAut__14270015">
-    <End Role="Author" Type="Self.Author" Multiplicity="1" />
-    <End Role="BooksAuthors" Type="Self.BooksAuthors" Multiplicity="*" />
+  <Association Name="FK__BooksAuth__IDAut__73852659">
+    <End Type="LibraryManagementModel.Author" Role="Author" Multiplicity="1" />
+    <End Type="LibraryManagementModel.BooksAuthors" Role="BooksAuthors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Author">
         <PropertyRef Name="IDAuthor" />
@@ -111,9 +258,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksAuth__IDBoo__151B244E">
-    <End Role="Book" Type="Self.Book" Multiplicity="1" />
-    <End Role="BooksAuthors" Type="Self.BooksAuthors" Multiplicity="*" />
+  <Association Name="FK__BooksAuth__IDBoo__74794A92">
+    <End Type="LibraryManagementModel.Book" Role="Book" Multiplicity="1" />
+    <End Type="LibraryManagementModel.BooksAuthors" Role="BooksAuthors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Book">
         <PropertyRef Name="IDBook" />
@@ -123,166 +270,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Manager__IDCoope__09A971A2">
-    <End Role="Cooperative" Type="Self.Cooperative" Multiplicity="0..1" />
-    <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cooperative">
-        <PropertyRef Name="IDCooperative" />
-      </Principal>
-      <Dependent Role="Manager">
-        <PropertyRef Name="IDCooperative" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="LibraryManagementEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Author" EntityType="Self.Author" />
-    <EntitySet Name="Book" EntityType="Self.Book" />
-    <EntitySet Name="BooksAuthors" EntityType="Self.BooksAuthors" />
-    <EntitySet Name="BookState" EntityType="Self.BookState" />
-    <EntitySet Name="Cooperative" EntityType="Self.Cooperative" />
-    <EntitySet Name="Manager" EntityType="Self.Manager" />
-    <EntitySet Name="Resources" EntityType="Self.Resources" />
-    <EntitySet Name="Settings" EntityType="Self.Settings" />
-    <EntitySet Name="Student" EntityType="Self.Student" />
-    <AssociationSet Name="FK__BooksAuth__IDAut__14270015" Association="Self.FK__BooksAuth__IDAut__14270015">
-      <End Role="Author" EntitySet="Author" />
-      <End Role="BooksAuthors" EntitySet="BooksAuthors" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksAuth__IDBoo__151B244E" Association="Self.FK__BooksAuth__IDBoo__151B244E">
-      <End Role="Book" EntitySet="Book" />
-      <End Role="BooksAuthors" EntitySet="BooksAuthors" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Manager__IDCoope__09A971A2" Association="Self.FK__Manager__IDCoope__09A971A2">
-      <End Role="Cooperative" EntitySet="Cooperative" />
-      <End Role="Manager" EntitySet="Manager" />
-    </AssociationSet>
-    <EntitySet Name="Booking" EntityType="LibraryManagementModel.Booking" />
-    <EntitySet Name="BookingLine" EntityType="LibraryManagementModel.BookingLine" />
-    <EntitySet Name="BooksCopy" EntityType="LibraryManagementModel.BooksCopy" />
-    <EntitySet Name="BooksCopyTransfer" EntityType="LibraryManagementModel.BooksCopyTransfer" />
-    <EntitySet Name="BooksCopyTransferLine" EntityType="LibraryManagementModel.BooksCopyTransferLine" />
-    <AssociationSet Name="FK__BooksCopy__IDBoo__489AC854" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__489AC854">
-      <End Role="Book" EntitySet="Book" />
-      <End Role="BooksCopy" EntitySet="BooksCopy" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Booking__IDCoope__503BEA1C" Association="LibraryManagementModel.FK__Booking__IDCoope__503BEA1C">
-      <End Role="Cooperative" EntitySet="Cooperative" />
-      <End Role="Booking" EntitySet="Booking" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Booking__IDManag__4F47C5E3" Association="LibraryManagementModel.FK__Booking__IDManag__4F47C5E3">
-      <End Role="Manager" EntitySet="Manager" />
-      <End Role="Booking" EntitySet="Booking" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Booking__IDStude__4E53A1AA" Association="LibraryManagementModel.FK__Booking__IDStude__4E53A1AA">
-      <End Role="Student" EntitySet="Student" />
-      <End Role="Booking" EntitySet="Booking" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BookingLi__IDBoo__531856C7" Association="LibraryManagementModel.FK__BookingLi__IDBoo__531856C7">
-      <End Role="Booking" EntitySet="Booking" />
-      <End Role="BookingLine" EntitySet="BookingLine" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BookingLi__IDBoo__540C7B00" Association="LibraryManagementModel.FK__BookingLi__IDBoo__540C7B00">
-      <End Role="BooksCopy" EntitySet="BooksCopy" />
-      <End Role="BookingLine" EntitySet="BookingLine" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDBoo__498EEC8D" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__498EEC8D">
-      <End Role="BookState" EntitySet="BookState" />
-      <End Role="BooksCopy" EntitySet="BooksCopy" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDBoo__5D95E53A" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__5D95E53A">
-      <End Role="BooksCopy" EntitySet="BooksCopy" />
-      <End Role="BooksCopyTransferLine" EntitySet="BooksCopyTransferLine" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDCoo__4A8310C6" Association="LibraryManagementModel.FK__BooksCopy__IDCoo__4A8310C6">
-      <End Role="Cooperative" EntitySet="Cooperative" />
-      <End Role="BooksCopy" EntitySet="BooksCopy" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDStu__47A6A41B" Association="LibraryManagementModel.FK__BooksCopy__IDStu__47A6A41B">
-      <End Role="Student" EntitySet="Student" />
-      <End Role="BooksCopy" EntitySet="BooksCopy" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDBoo__5CA1C101" Association="LibraryManagementModel.FK__BooksCopy__IDBoo__5CA1C101">
-      <End Role="BooksCopyTransfer" EntitySet="BooksCopyTransfer" />
-      <End Role="BooksCopyTransferLine" EntitySet="BooksCopyTransferLine" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDCoo__57DD0BE4" Association="LibraryManagementModel.FK__BooksCopy__IDCoo__57DD0BE4">
-      <End Role="Cooperative" EntitySet="Cooperative" />
-      <End Role="BooksCopyTransfer" EntitySet="BooksCopyTransfer" />
-    </AssociationSet>
-    <AssociationSet Name="FK__BooksCopy__IDCoo__58D1301D" Association="LibraryManagementModel.FK__BooksCopy__IDCoo__58D1301D">
-      <End Role="Cooperative" EntitySet="Cooperative" />
-      <End Role="BooksCopyTransfer" EntitySet="BooksCopyTransfer" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Booking">
-    <Key>
-      <PropertyRef Name="IDBooking" />
-    </Key>
-    <Property Name="IDBooking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDStudent" Type="Int32" Nullable="false" />
-    <Property Name="IDManager" Type="Int32" />
-    <Property Name="IDCooperative" Type="Int32" Nullable="false" />
-    <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="TradeConfirmation" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__Booking__IDCoope__503BEA1C" FromRole="Booking" ToRole="Cooperative" />
-    <NavigationProperty Name="Manager" Relationship="LibraryManagementModel.FK__Booking__IDManag__4F47C5E3" FromRole="Booking" ToRole="Manager" />
-    <NavigationProperty Name="Student" Relationship="LibraryManagementModel.FK__Booking__IDStude__4E53A1AA" FromRole="Booking" ToRole="Student" />
-    <NavigationProperty Name="BookingLine" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__531856C7" FromRole="Booking" ToRole="BookingLine" />
-  </EntityType>
-  <EntityType Name="BookingLine">
-    <Key>
-      <PropertyRef Name="IDBookingLine" />
-    </Key>
-    <Property Name="IDBookingLine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDBooking" Type="Int32" Nullable="false" />
-    <Property Name="IDBooksCopy" Type="Int32" Nullable="false" />
-    <Property Name="BookingState" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Booking" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__531856C7" FromRole="BookingLine" ToRole="Booking" />
-    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__540C7B00" FromRole="BookingLine" ToRole="BooksCopy" />
-  </EntityType>
-  <EntityType Name="BooksCopy">
-    <Key>
-      <PropertyRef Name="IDBooksCopy" />
-    </Key>
-    <Property Name="IDBooksCopy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDStudent" Type="Int32" Nullable="false" />
-    <Property Name="IDBook" Type="Int32" Nullable="false" />
-    <Property Name="IDBookState" Type="Int32" Nullable="false" />
-    <Property Name="IDCooperative" Type="Int32" Nullable="false" />
-    <Property Name="Available" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Book" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__489AC854" FromRole="BooksCopy" ToRole="Book" />
-    <NavigationProperty Name="BookingLine" Relationship="LibraryManagementModel.FK__BookingLi__IDBoo__540C7B00" FromRole="BooksCopy" ToRole="BookingLine" />
-    <NavigationProperty Name="BookState" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__498EEC8D" FromRole="BooksCopy" ToRole="BookState" />
-    <NavigationProperty Name="BooksCopyTransferLine" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__5D95E53A" FromRole="BooksCopy" ToRole="BooksCopyTransferLine" />
-    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__4A8310C6" FromRole="BooksCopy" ToRole="Cooperative" />
-    <NavigationProperty Name="Student" Relationship="LibraryManagementModel.FK__BooksCopy__IDStu__47A6A41B" FromRole="BooksCopy" ToRole="Student" />
-  </EntityType>
-  <EntityType Name="BooksCopyTransfer">
-    <Key>
-      <PropertyRef Name="IDBooksCopyTransfer" />
-    </Key>
-    <Property Name="IDBooksCopyTransfer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDCooperativeFrom" Type="Int32" Nullable="false" />
-    <Property Name="IDCooperativeTo" Type="Int32" Nullable="false" />
-    <Property Name="TransferDate" Type="DateTime" Precision="3" />
-    <Property Name="TransferConfirmation" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="BooksCopyTransferLine" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__5CA1C101" FromRole="BooksCopyTransfer" ToRole="BooksCopyTransferLine" />
-    <NavigationProperty Name="Cooperative" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__57DD0BE4" FromRole="BooksCopyTransfer" ToRole="Cooperative" />
-    <NavigationProperty Name="Cooperative1" Relationship="LibraryManagementModel.FK__BooksCopy__IDCoo__58D1301D" FromRole="BooksCopyTransfer" ToRole="Cooperative" />
-  </EntityType>
-  <EntityType Name="BooksCopyTransferLine">
-    <Key>
-      <PropertyRef Name="IDBooksCopyTransferLine" />
-    </Key>
-    <Property Name="IDBooksCopyTransferLine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDBooksCopyTransfer" Type="Int32" Nullable="false" />
-    <Property Name="IDBooksCopy" Type="Int32" Nullable="false" />
-    <Property Name="State" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="BooksCopy" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__5D95E53A" FromRole="BooksCopyTransferLine" ToRole="BooksCopy" />
-    <NavigationProperty Name="BooksCopyTransfer" Relationship="LibraryManagementModel.FK__BooksCopy__IDBoo__5CA1C101" FromRole="BooksCopyTransferLine" ToRole="BooksCopyTransfer" />
-  </EntityType>
-  <Association Name="FK__BooksCopy__IDBoo__489AC854">
+  <Association Name="FK__BooksCopy__IDBoo__12FDD1B2">
     <End Type="LibraryManagementModel.Book" Role="Book" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopy" Role="BooksCopy" Multiplicity="*" />
     <ReferentialConstraint>
@@ -294,7 +282,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Booking__IDCoope__503BEA1C">
+  <Association Name="FK__Booking__IDCoope__1A9EF37A">
     <End Type="LibraryManagementModel.Cooperative" Role="Cooperative" Multiplicity="1" />
     <End Type="LibraryManagementModel.Booking" Role="Booking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -306,7 +294,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Booking__IDManag__4F47C5E3">
+  <Association Name="FK__Booking__IDManag__19AACF41">
     <End Type="LibraryManagementModel.Manager" Role="Manager" Multiplicity="0..1" />
     <End Type="LibraryManagementModel.Booking" Role="Booking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -318,7 +306,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Booking__IDStude__4E53A1AA">
+  <Association Name="FK__Booking__IDStude__18B6AB08">
     <End Type="LibraryManagementModel.Student" Role="Student" Multiplicity="1" />
     <End Type="LibraryManagementModel.Booking" Role="Booking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -330,7 +318,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BookingLi__IDBoo__531856C7">
+  <Association Name="FK__BookingLi__IDBoo__1D7B6025">
     <End Type="LibraryManagementModel.Booking" Role="Booking" Multiplicity="1" />
     <End Type="LibraryManagementModel.BookingLine" Role="BookingLine" Multiplicity="*" />
     <ReferentialConstraint>
@@ -342,7 +330,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BookingLi__IDBoo__540C7B00">
+  <Association Name="FK__BookingLi__IDBoo__1E6F845E">
     <End Type="LibraryManagementModel.BooksCopy" Role="BooksCopy" Multiplicity="1" />
     <End Type="LibraryManagementModel.BookingLine" Role="BookingLine" Multiplicity="*" />
     <ReferentialConstraint>
@@ -354,7 +342,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDBoo__498EEC8D">
+  <Association Name="FK__BooksCopy__IDBoo__13F1F5EB">
     <End Type="LibraryManagementModel.BookState" Role="BookState" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopy" Role="BooksCopy" Multiplicity="*" />
     <ReferentialConstraint>
@@ -366,7 +354,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDBoo__5D95E53A">
+  <Association Name="FK__BooksCopy__IDBoo__27F8EE98">
     <End Type="LibraryManagementModel.BooksCopy" Role="BooksCopy" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopyTransferLine" Role="BooksCopyTransferLine" Multiplicity="*" />
     <ReferentialConstraint>
@@ -378,7 +366,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDCoo__4A8310C6">
+  <Association Name="FK__BooksCopy__IDCoo__14E61A24">
     <End Type="LibraryManagementModel.Cooperative" Role="Cooperative" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopy" Role="BooksCopy" Multiplicity="*" />
     <ReferentialConstraint>
@@ -390,7 +378,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDStu__47A6A41B">
+  <Association Name="FK__BooksCopy__IDStu__1209AD79">
     <End Type="LibraryManagementModel.Student" Role="Student" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopy" Role="BooksCopy" Multiplicity="*" />
     <ReferentialConstraint>
@@ -402,7 +390,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDBoo__5CA1C101">
+  <Association Name="FK__BooksCopy__IDBoo__2704CA5F">
     <End Type="LibraryManagementModel.BooksCopyTransfer" Role="BooksCopyTransfer" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopyTransferLine" Role="BooksCopyTransferLine" Multiplicity="*" />
     <ReferentialConstraint>
@@ -414,7 +402,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDCoo__57DD0BE4">
+  <Association Name="FK__BooksCopy__IDCoo__22401542">
     <End Type="LibraryManagementModel.Cooperative" Role="Cooperative" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopyTransfer" Role="BooksCopyTransfer" Multiplicity="*" />
     <ReferentialConstraint>
@@ -426,7 +414,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__BooksCopy__IDCoo__58D1301D">
+  <Association Name="FK__BooksCopy__IDCoo__2334397B">
     <End Type="LibraryManagementModel.Cooperative" Role="Cooperative" Multiplicity="1" />
     <End Type="LibraryManagementModel.BooksCopyTransfer" Role="BooksCopyTransfer" Multiplicity="*" />
     <ReferentialConstraint>
@@ -435,6 +423,18 @@
       </Principal>
       <Dependent Role="BooksCopyTransfer">
         <PropertyRef Name="IDCooperativeTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Manager__IDCoope__690797E6">
+    <End Type="LibraryManagementModel.Cooperative" Role="Cooperative" Multiplicity="0..1" />
+    <End Type="LibraryManagementModel.Manager" Role="Manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperative">
+        <PropertyRef Name="IDCooperative" />
+      </Principal>
+      <Dependent Role="Manager">
+        <PropertyRef Name="IDCooperative" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

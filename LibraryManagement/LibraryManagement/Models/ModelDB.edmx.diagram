@@ -4,38 +4,38 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a705287d5e7844e39d924122e701813f" Name="Diagram1">
-        <EntityTypeShape EntityType="LibraryManagementModel.Author" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Book" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksAuthors" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BookState" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Manager" Width="1.5" PointX="3.75" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="3.75" PointY="6.5" IsExpanded="true" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDAut__14270015" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDBoo__151B244E" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryManagementModel.FK__Manager__IDCoope__09A971A2" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Booking" Width="1.5" PointX="6" PointY="10.5" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BookingLine" Width="1.5" PointX="10.25" PointY="7.5" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopy" Width="1.5" PointX="8" PointY="5.625" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransfer" Width="1.5" PointX="3.75" PointY="14.75" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransferLine" Width="1.5" PointX="10.25" PointY="10.375" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__489AC854" />
-        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDCoope__503BEA1C" />
-        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDManag__4F47C5E3" />
-        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDStude__4E53A1AA" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BookingLi__IDBoo__531856C7" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BookingLi__IDBoo__540C7B00" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__498EEC8D" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__5D95E53A" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__4A8310C6" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDStu__47A6A41B" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__5CA1C101" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__57DD0BE4" />
-        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__58D1301D" />
-        </Diagram>
+      <Diagram DiagramId="a705287d5e7844e39d924122e701813f" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="LibraryManagementModel.Author" Width="1.5" PointX="3.75" PointY="22.75" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Book" Width="1.5" PointX="3.75" PointY="19.25" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Booking" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BookingLine" Width="1.5" PointX="8.25" PointY="9" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksAuthors" Width="1.5" PointX="6" PointY="19.625" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopy" Width="1.5" PointX="6" PointY="10.625" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransfer" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransferLine" Width="1.5" PointX="8.25" PointY="12.75" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BookState" Width="1.5" PointX="3.75" PointY="16.625" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Manager" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDAut__73852659" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDBoo__74794A92" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__12FDD1B2" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDCoope__1A9EF37A" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDManag__19AACF41" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Booking__IDStude__18B6AB08" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BookingLi__IDBoo__1D7B6025" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BookingLi__IDBoo__1E6F845E" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__13F1F5EB" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__27F8EE98" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__14E61A24" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDStu__1209AD79" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDBoo__2704CA5F" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__22401542" />
+        <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__2334397B" />
+        <AssociationConnector Association="LibraryManagementModel.FK__Manager__IDCoope__690797E6" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
