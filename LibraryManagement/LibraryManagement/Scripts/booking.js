@@ -75,6 +75,6 @@ function showBook(id) {
 
     function errorFunc() {
         alert("La réservation a été réalisé avec succès.");
-        $('#book tr:gt(0)').remove()
+        $('#book').remove()
     }
 }
