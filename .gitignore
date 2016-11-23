@@ -24,3 +24,6 @@ LibraryManagement/LibraryManagement/Web.config
 *.config
 *.config
 LibraryManagement/LibraryManagement/Web.config
+LibraryManagement/LibraryManagement/Web.config
+*.cs
+LibraryManagement/LibraryManagement/bin/LibraryManagement.dll.config

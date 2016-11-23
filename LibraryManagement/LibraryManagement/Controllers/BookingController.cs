@@ -219,11 +219,8 @@ namespace LibraryManagement.Controllers
             {
                 //Ajout d'un transfert
                 BooksCopyTransfer BCT = new BooksCopyTransfer();
-                BCT.IDCooperativeFrom = bookcopy.IDCooperative;
-                BCT.IDCooperativeTo = booking.IDCooperative;
                 BCT.TransferConfirmation = false;
                 BCT.TransferDate = null;
-
                 db.BooksCopyTransfer.Add(BCT);
                 db.SaveChanges();
 
@@ -231,6 +228,8 @@ namespace LibraryManagement.Controllers
                 BooksCopyTransferLine BCTL = new BooksCopyTransferLine();
                 BCTL.IDBooksCopy = bookcopy.IDBooksCopy;
                 BCTL.IDBooksCopyTransfer = BCT.IDBooksCopyTransfer;
+                BCTL.IDCooperativeFrom = bookcopy.IDCooperative;
+                BCTL.IDCooperativeTo = booking.IDCooperative;
                 BCTL.State = -1;
                 db.BooksCopyTransferLine.Add(BCTL);
                 db.SaveChanges();
@@ -243,16 +242,17 @@ namespace LibraryManagement.Controllers
             }
         }
 
+        // Méthode qui envoie un courriel de notification à l'étudiant quand il effectue un résevation
         public void sendEmail(Book b, BooksCopy bc, Booking bo,bool transfer)
         {
             string EmailContent = "";
             if(transfer)
             {
-                EmailContent = "Votre réservation est complété. Un transfert de l'exemplaire réservé  à votre coopérative est nécéssaire. \n Un courriel vous sera envoyé lorsque votre coopérative aura recu votre exemplaire. \n Suite à la réception de votre exemplaire, un délai de 48H vous sera attribué.";
+                EmailContent = UtilResources.GetLabel("ResevationComplete"); 
             }
             else
             {
-                EmailContent = "Votre réservation est complété. SVP passer le récupérer d'ici 48h.";
+                EmailContent = UtilResources.GetLabel("ResevationCompleteNoPickup");
             }
             EmailContent = EmailContent + "\n" + "------------------------------------------------------------------------------------------------------";
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Titre") + ": " + b.Title;
