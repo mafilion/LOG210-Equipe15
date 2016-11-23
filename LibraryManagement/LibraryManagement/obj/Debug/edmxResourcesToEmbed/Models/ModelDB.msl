@@ -133,8 +133,6 @@
         <MappingFragment StoreEntitySet="BooksCopyTransfer">
           <ScalarProperty Name="TransferConfirmation" ColumnName="TransferConfirmation" />
           <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
-          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
-          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
           <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -143,6 +141,8 @@
       <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransferLine">
         <MappingFragment StoreEntitySet="BooksCopyTransferLine">
           <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
+          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
           <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
           <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
           <ScalarProperty Name="IDBooksCopyTransferLine" ColumnName="IDBooksCopyTransferLine" />

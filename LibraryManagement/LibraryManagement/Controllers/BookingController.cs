@@ -219,11 +219,8 @@ namespace LibraryManagement.Controllers
             {
                 //Ajout d'un transfert
                 BooksCopyTransfer BCT = new BooksCopyTransfer();
-                BCT.IDCooperativeFrom = bookcopy.IDCooperative;
-                BCT.IDCooperativeTo = booking.IDCooperative;
                 BCT.TransferConfirmation = false;
                 BCT.TransferDate = null;
-
                 db.BooksCopyTransfer.Add(BCT);
                 db.SaveChanges();
 
@@ -231,6 +228,8 @@ namespace LibraryManagement.Controllers
                 BooksCopyTransferLine BCTL = new BooksCopyTransferLine();
                 BCTL.IDBooksCopy = bookcopy.IDBooksCopy;
                 BCTL.IDBooksCopyTransfer = BCT.IDBooksCopyTransfer;
+                BCTL.IDCooperativeFrom = bookcopy.IDCooperative;
+                BCTL.IDCooperativeTo = booking.IDCooperative;
                 BCTL.State = -1;
                 db.BooksCopyTransferLine.Add(BCTL);
                 db.SaveChanges();

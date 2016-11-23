@@ -17,9 +17,13 @@ namespace LibraryManagement.Models
         public int IDBooksCopyTransferLine { get; set; }
         public int IDBooksCopyTransfer { get; set; }
         public int IDBooksCopy { get; set; }
+        public int IDCooperativeFrom { get; set; }
+        public int IDCooperativeTo { get; set; }
         public int State { get; set; }
     
         public virtual BooksCopy BooksCopy { get; set; }
         public virtual BooksCopyTransfer BooksCopyTransfer { get; set; }
+        public virtual Cooperative Cooperative { get; set; }
+        public virtual Cooperative Cooperative1 { get; set; }
     }
 }
