@@ -8,12 +8,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Net.Mail;
 using System.Net;
+using Twilio;
 
 namespace LibraryManagement.Utils
 {
     public static class UtilResources
     {
- 
+        static private LibraryManagementEntities db = new LibraryManagementEntities();
+
         private static int IDLanguage;
         public static void CreateInstance()
         {
@@ -28,15 +30,15 @@ namespace LibraryManagement.Utils
             LibraryManagementEntities db = new LibraryManagementEntities();
             switch (language)
             {
-                case "Fr" :
+                case "Fr":
                     IDLanguage = 1;
-                break;
+                    break;
                 case "En":
                     IDLanguage = 2;
-                break;
+                    break;
                 default:
                     IDLanguage = 1;
-                break;
+                    break;
             }
             Settings config = db.Settings.Single();
             config.IDLanguage = IDLanguage;
@@ -111,7 +113,24 @@ namespace LibraryManagement.Utils
             return result.ToString();
         }
 
-        
+        public static bool sendSMS(String phoneNumber, String message)
+        {
 
+            Settings settings = db.Settings.FirstOrDefault();
+            if (settings.SendSMS != 0 && phoneNumber != null)
+            {
+                string AccountSid = "ACf9d4a41255a5fc42fcc78c7580904685";
+                string AuthToken = "cf15c831f9fdecd9e35761737db642df";
+
+                var twilio = new TwilioRestClient(AccountSid, AuthToken);
+
+                var test = twilio.SendMessage("+16137049807", "+1" + phoneNumber, message);
+
+                Console.WriteLine(test.Sid);
+                return true;
+            }
+
+            return false;
+        }
     }
 }

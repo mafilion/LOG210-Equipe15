@@ -6,7 +6,8 @@ BEGIN
     CREATE TABLE Settings
 	(
 		IDSettings INT PRIMARY KEY IDENTITY(1,1),
-		IDLanguage INT not null DEFAULT 1
+		IDLanguage INT not null DEFAULT 1,
+		SendSMS INT not null DEFAULT 0
 	);
 
 	INSERT INTO Settings (IDLanguage) VALUES (1)
@@ -25,7 +26,7 @@ BEGIN
 		LastName VARCHAR (100) NOT NULL,
 		Email VARCHAR(150) NOT NULL,
 		PhoneNumber VARCHAR(12),
-		StudentPassword VARCHAR(1000) NOT NULL
+		StudentPassword VARCHAR(1000) NOT NULL,
 	);
 END
 

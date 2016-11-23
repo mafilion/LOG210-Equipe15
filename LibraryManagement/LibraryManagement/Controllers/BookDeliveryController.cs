@@ -108,8 +108,16 @@ namespace LibraryManagement.Controllers
             int idBookCopy = Int32.Parse(IDBooksCopy);
             int idBookState = Int32.Parse(IDBookState);
 
-            //updater truc dans bd
             BooksCopy book = db.BooksCopy.Where(c => c.IDBooksCopy == idBookCopy).FirstOrDefault();
+            Settings settings = db.Settings.FirstOrDefault();
+
+            if (book.IDBookState != idBookState)
+            {
+                string msg = "L'état du livre: " + book.Book.Title + " a été changé pour usagé";
+                Utils.UtilResources.sendSMS(book.Student.PhoneNumber, msg);
+            }
+
+
             book.Available = 1;
             book.IDBookState = idBookState;
             db.SaveChanges();
@@ -123,7 +131,6 @@ namespace LibraryManagement.Controllers
         {
             int idStudent = Int32.Parse(IDStudent);
 
-            //updater truc dans bd
             Student s = db.Student.Where(c => c.IDStudent == idStudent).FirstOrDefault();
             Utils.UtilResources.SendMail(s.Email, UtilResources.GetLabel("TitreMailDepot"), UtilResources.GetLabel("SujetMailDepot"));
 
