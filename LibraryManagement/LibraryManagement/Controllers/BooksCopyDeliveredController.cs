@@ -100,7 +100,7 @@ namespace LibraryManagement.Controllers
                 bctv.bctl.State = 1;
                 bctv.bct.TransferConfirmation = true;
                 bol.BookingState = -1;
-                bctv.booksCopy.IDCooperative = bctv.bctl.IDCooperativeTo;
+              ///  bctv.booksCopy.IDCooperative = bctv.bctl.IDCooperativeTo;
 
                 db.Entry(bctv.bctl).State = EntityState.Modified;
                 db.Entry(bctv.bct).State = EntityState.Modified;
@@ -125,7 +125,7 @@ namespace LibraryManagement.Controllers
 
         public void sendEmail(BooksCopy bc, Booking bo, Student stu,BooksCopyTransferLine bctl)
         {
-            string EmailContent = UtilResources.GetLabel("Information Courriel ReceptionLivre1") +bctl.Cooperative.Name;
+            string EmailContent = UtilResources.GetLabel("Information Courriel ReceptionLivre1") +bctl.BooksCopy;
             EmailContent = EmailContent + "\n" + "------------------------------------------------------------------------------------------------------";
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Titre") + ": " + bc.Book.Title;
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :" + bc.Book.noISBN;

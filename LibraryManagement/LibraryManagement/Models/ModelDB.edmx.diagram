@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="506b92c01d3c47a689d6dec5a910ab1a" Name="Diagram1">
+      <Diagram DiagramId="83fdbe6271c24512ac171633e3664afe" Name="Diagram1">
         <EntityTypeShape EntityType="LibraryManagementModel.Author" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Book" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Booking" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.BookingLine" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.BooksAuthors" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopy" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransfer" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransferLine" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopy" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransfer" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.BooksCopyTransferLine" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.BookState" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Manager" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="4.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Manager" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="4.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
         <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDAut__21B6055D" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDBoo__22AA2996" ManuallyRouted="false" />

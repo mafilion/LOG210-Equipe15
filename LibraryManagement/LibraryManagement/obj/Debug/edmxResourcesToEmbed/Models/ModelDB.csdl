@@ -98,6 +98,8 @@
     <Property Name="State" Type="Int32" Nullable="false" />
     <NavigationProperty Name="BooksCopy" Relationship="Self.FK__BooksCopy__IDBoo__3B75D760" FromRole="BooksCopyTransferLine" ToRole="BooksCopy" />
     <NavigationProperty Name="BooksCopyTransfer" Relationship="Self.FK__BooksCopy__IDBoo__3A81B327" FromRole="BooksCopyTransferLine" ToRole="BooksCopyTransfer" />
+    <Property Name="IDCooperativeFrom" Type="Int32" />
+    <Property Name="IDCooperativeTo" Type="Int32" />
   </EntityType>
   <EntityType Name="BookState">
     <Key>
@@ -164,9 +166,9 @@
     <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SendSMS" Type="Int32" />
     <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__IDStude__2C3393D0" FromRole="Student" ToRole="Booking" />
     <NavigationProperty Name="BooksCopy" Relationship="Self.FK__BooksCopy__IDStu__25869641" FromRole="Student" ToRole="BooksCopy" />
-    <Property Name="SendSMS" Type="Int32" />
   </EntityType>
   <Association Name="FK__BooksAuth__IDAut__21B6055D">
     <End Role="Author" Type="Self.Author" Multiplicity="1" />

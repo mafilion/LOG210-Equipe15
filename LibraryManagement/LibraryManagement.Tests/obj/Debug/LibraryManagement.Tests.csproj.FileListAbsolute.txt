@@ -137,3 +137,6 @@ C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.csprojResolveAssemblyReference.cache
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\obj\Debug\LibraryManagement.Tests.pdb
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\chromedriver.exe
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.dll
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.xml

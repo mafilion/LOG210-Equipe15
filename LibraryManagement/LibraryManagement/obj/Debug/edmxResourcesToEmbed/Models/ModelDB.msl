@@ -79,6 +79,8 @@
     <EntitySetMapping Name="BooksCopyTransferLine">
       <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransferLine">
         <MappingFragment StoreEntitySet="BooksCopyTransferLine">
+          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
+          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
           <ScalarProperty Name="IDBooksCopyTransferLine" ColumnName="IDBooksCopyTransferLine" />
           <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
           <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
@@ -132,22 +134,22 @@
     <EntitySetMapping Name="Settings">
       <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
         <MappingFragment StoreEntitySet="Settings">
-          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
           <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
           <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="LibraryManagementModel.Student">
         <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
           <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

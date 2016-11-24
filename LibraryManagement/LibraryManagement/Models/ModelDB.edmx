@@ -81,6 +81,8 @@
           <Property Name="IDBooksCopyTransfer" Type="int" Nullable="false" />
           <Property Name="IDBooksCopy" Type="int" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="IDCooperativeFrom" Type="int" />
+          <Property Name="IDCooperativeTo" Type="int" />
         </EntityType>
         <EntityType Name="BookState">
           <Key>
@@ -515,6 +517,8 @@
           <Property Name="State" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BooksCopy" Relationship="Self.FK__BooksCopy__IDBoo__3B75D760" FromRole="BooksCopyTransferLine" ToRole="BooksCopy" />
           <NavigationProperty Name="BooksCopyTransfer" Relationship="Self.FK__BooksCopy__IDBoo__3A81B327" FromRole="BooksCopyTransferLine" ToRole="BooksCopyTransfer" />
+          <Property Name="IDCooperativeFrom" Type="Int32" />
+          <Property Name="IDCooperativeTo" Type="Int32" />
         </EntityType>
         <EntityType Name="BookState">
           <Key>
@@ -581,9 +585,9 @@
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="StudentPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SendSMS" Type="Int32" />
           <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__IDStude__2C3393D0" FromRole="Student" ToRole="Booking" />
           <NavigationProperty Name="BooksCopy" Relationship="Self.FK__BooksCopy__IDStu__25869641" FromRole="Student" ToRole="BooksCopy" />
-          <Property Name="SendSMS" Type="Int32" />
         </EntityType>
         <Association Name="FK__BooksAuth__IDAut__21B6055D">
           <End Role="Author" Type="Self.Author" Multiplicity="1" />
@@ -941,6 +945,8 @@
           <EntitySetMapping Name="BooksCopyTransferLine">
             <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransferLine">
               <MappingFragment StoreEntitySet="BooksCopyTransferLine">
+                <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
+                <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
                 <ScalarProperty Name="IDBooksCopyTransferLine" ColumnName="IDBooksCopyTransferLine" />
                 <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
                 <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
@@ -994,22 +1000,22 @@
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
               <MappingFragment StoreEntitySet="Settings">
-                <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
                 <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
                 <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+                <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="LibraryManagementModel.Student">
               <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
                 <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+                <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

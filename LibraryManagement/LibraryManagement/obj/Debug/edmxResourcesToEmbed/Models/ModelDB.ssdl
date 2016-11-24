@@ -76,6 +76,8 @@
     <Property Name="IDBooksCopyTransfer" Type="int" Nullable="false" />
     <Property Name="IDBooksCopy" Type="int" Nullable="false" />
     <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="IDCooperativeFrom" Type="int" />
+    <Property Name="IDCooperativeTo" Type="int" />
   </EntityType>
   <EntityType Name="BookState">
     <Key>

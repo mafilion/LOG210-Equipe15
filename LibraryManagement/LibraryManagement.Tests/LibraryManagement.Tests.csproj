@@ -85,6 +85,10 @@
       <HintPath>..\packages\Selenium.WebDriver.3.0.1\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WebDriver.Support, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.0.1\lib\net40\WebDriver.Support.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ManagersControllerTest.cs" />
@@ -92,6 +96,10 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\packages\Chromium.ChromeDriver.2.25\content\chromedriver.exe">
+      <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +111,7 @@
       <Name>LibraryManagement</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
