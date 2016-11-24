@@ -316,3 +316,8 @@ C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagemen
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.dll
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.pdb
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\obj\Debug\LibraryManagement.csprojResolveAssemblyReference.cache
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.dll
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.dll
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.xml
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.pdb
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.xml

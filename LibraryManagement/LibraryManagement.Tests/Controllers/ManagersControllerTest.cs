@@ -7,98 +7,32 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LibraryManagement;
 using LibraryManagement.Controllers;
 using LibraryManagement.Models;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.IO;
+using OpenQA.Selenium.Firefox;
 
 namespace LibraryManagement.Tests.Controllers
 {
     [TestClass]
     public class ManagersControllerTest
     {
+        static IWebDriver driverGC;
         ManagersController controller = new ManagersController();
 
-        [TestMethod]
-        public void NullEmail()
+        [AssemblyInitialize]
+        public static void SetUp(TestContext context)
         {
-            ManagersCooperativesViewModels vm = new ManagersCooperativesViewModels();
-            vm.manager.FirstName = "toto";
-            vm.manager.LastName = "toto";
-            vm.cooperative.Name = "totoCoop";
-            vm.cooperative.NoStreet = "22";
-            vm.cooperative.PostalCode = "J8H 2L9";
-            vm.cooperative.Street = "toto";
-
-            // Assert
-            Assert.AreEqual(false, controller.validForm(vm));
+            driverGC = new FirefoxDriver();
         }
 
 
         [TestMethod]
-        public void NullEmail2()
+        public void TestChromeDriver()
         {
-            ManagersCooperativesViewModels vm = new ManagersCooperativesViewModels();
-            vm.manager.FirstName = "toto";
-            vm.manager.LastName = "toto";
-            vm.manager.Email = "";
-            vm.cooperative.Name = "totoCoop";
-            vm.cooperative.NoStreet = "22";
-            vm.cooperative.PostalCode = "J8H 2L9";
-            vm.cooperative.Street = "toto";
-
-
-            // Assert
-            Assert.AreEqual(false, controller.validForm(vm));
+            driverGC.Navigate().GoToUrl("http://www.google.com");
+            driverGC.FindElement(By.Id("lst-ib")).SendKeys("Selenium");
+            driverGC.FindElement(By.Id("lst-ib")).SendKeys(Keys.Enter);
         }
-
-        [TestMethod]
-        public void WrongFormatEmail()
-        {
-            ManagersCooperativesViewModels vm = new ManagersCooperativesViewModels();
-            vm.manager.FirstName = "toto";
-            vm.manager.LastName = "toto";
-            vm.manager.Email = "test";
-            vm.cooperative.Name = "totoCoop";
-            vm.cooperative.NoStreet = "22";
-            vm.cooperative.PostalCode = "J8H 2L9";
-            vm.cooperative.Street = "toto";
-
-
-            // Assert
-            Assert.AreEqual(false, controller.validForm(vm));
-        }
-
-
-        [TestMethod]
-        public void AlreadyExistingEmail()
-        {
-            ManagersCooperativesViewModels vm = new ManagersCooperativesViewModels();
-            vm.manager.FirstName = "toto";
-            vm.manager.LastName = "toto";
-            vm.manager.Email = "test@test.com";
-            vm.cooperative.Name = "totoCoop";
-            vm.cooperative.NoStreet = "22";
-            vm.cooperative.PostalCode = "J8H 2L9";
-            vm.cooperative.Street = "toto";
-
-
-            // Assert
-            Assert.AreEqual(false, controller.validForm(vm));
-        }
-
-        [TestMethod]
-        public void ValidData()
-        {
-            ManagersCooperativesViewModels vm = new ManagersCooperativesViewModels();
-            vm.manager.FirstName = "toto";
-            vm.manager.LastName = "toto";
-            vm.manager.Email = "gabriel.dery20@test.com";
-            vm.cooperative.Name = "totoCoop";
-            vm.cooperative.NoStreet = "22";
-            vm.cooperative.PostalCode = "J8H 2L9";
-            vm.cooperative.Street = "toto";
-
-
-            // Assert
-            Assert.AreEqual(true, controller.validForm(vm));
-        }
-
     }
 }

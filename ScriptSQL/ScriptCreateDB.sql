@@ -6,7 +6,8 @@ BEGIN
     CREATE TABLE Settings
 	(
 		IDSettings INT PRIMARY KEY IDENTITY(1,1),
-		IDLanguage INT not null DEFAULT 1
+		IDLanguage INT not null DEFAULT 1,
+		SendSMS INT not null DEFAULT 0
 	);
 
 	INSERT INTO Settings (IDLanguage) VALUES (1)
@@ -25,7 +26,7 @@ BEGIN
 		LastName VARCHAR (100) NOT NULL,
 		Email VARCHAR(150) NOT NULL,
 		PhoneNumber VARCHAR(12),
-		StudentPassword VARCHAR(1000) NOT NULL
+		StudentPassword VARCHAR(1000) NOT NULL,
 	);
 END
 
@@ -342,7 +343,7 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Information du livre','Book Information')
 
-		INSERT INTO Resources (IDLanguage, TextName, Description)
+	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(1,'Principal','Principal')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
@@ -624,7 +625,6 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Vos réservation','Your booking:')
 
-	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(1,'Transfert de livre entre coopérative','Transfert de livre entre coopérative')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
@@ -743,7 +743,33 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Information Courriel ReceptionLivre2','You have 48 hours to come get it, otherwise it will be available again for the other student.')
-END
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Création d''une réservation','Création d''une réservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Création d''une réservation','Create a reservation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'ResevationComplete',' Votre réservation est complétée. Un transfert de l''exemplaire réservé à votre coopérative est nécessaire. \n Un courriel vous sera envoyé lorsque votre coopérative aura reçu votre exemplaire. \n Suite à la réception de votre exemplaire, un délai de 48H vous sera attribué.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,' ResevationComplete ',' Thanks, your reservation is completed. A transfer under your cooperative is needed for the book’s copy you’ve choose. \n An email will be send to you when the cooperative will have it delivered. \n Then, you will have 48h to pick it up. Otherwise your reservation will be deleted.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'ResevationCompleteNoPickup','Votre réservation est complétée. SVP passer le récupérer d''ici 48h.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'ResevationCompleteNoPickup','Your reservation is compteted. It will be available for pickup for 48h.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Livraison complétée','Livraison complétée')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Livraison complétée','Delivery completed')
+
+		
+END 
 
 /*Table pour les états de livres*/
 IF (NOT EXISTS (SELECT * 
