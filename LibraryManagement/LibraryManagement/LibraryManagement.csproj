@@ -237,6 +237,8 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\BookDeliveryController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\BooksCopyDeliveredController.cs" />
+    <Compile Include="Controllers\BooksCopyTransferController.cs" />
     <Compile Include="Controllers\DeliveriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -275,6 +277,7 @@
     <Compile Include="Models\BooksCopyTransferLine.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BooksCopyTransferViewModel.cs" />
     <Compile Include="Models\BookState.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -397,6 +400,10 @@
     <Content Include="Views\BookDelivery\Create.cshtml" />
     <Content Include="Views\Booking\Create.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\BooksCopyTransfer\Edit.cshtml" />
+    <Content Include="Views\BooksCopyTransfer\Index.cshtml" />
+    <Content Include="Views\BooksCopyDelivered\Edit.cshtml" />
+    <Content Include="Views\BooksCopyDelivered\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

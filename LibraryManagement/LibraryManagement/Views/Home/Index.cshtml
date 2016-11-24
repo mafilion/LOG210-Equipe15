@@ -51,5 +51,21 @@
             </p>
             <p><input type="button" title="Livraison" value="@UtilResources.GetLabel("Demande de livraison")" onclick="location.href='@Url.Action("Index", "Deliveries")'" /></p>
         </div>
+
+        <div class="col-md-4">
+            <h2>@UtilResources.GetLabel("Transfert de livre entre coopérative")</h2>
+            <p>
+                @UtilResources.GetLabel("Information page Transfert de livre entre coopérative")
+            </p>
+            <p><input type="button" title="TransfertLivre" value="@UtilResources.GetLabel("Transfert de livre entre coopérative")" onclick="location.href='@Url.Action("Index", "BooksCopyTransfer")'" /></p>
+        </div>
+        <br />
+        <div class="col-md-4">
+            <h2>@UtilResources.GetLabel("Réception d'un livre entre coopérative")</h2>
+            <p>
+                @UtilResources.GetLabel("Information page Réception d'un livre entre coopérative")
+            </p>
+            <p><input type="button" title="ReceptionLivre" value="@UtilResources.GetLabel("Réception d'un livre entre coopérative")" onclick="location.href='@Url.Action("Index", "BooksCopyDelivered")'" /></p>
+        </div>
     }
 </div>

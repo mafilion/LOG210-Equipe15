@@ -623,7 +623,127 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Vos réservation','Your booking:')
-END 
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Transfert de livre entre coopérative','Transfert de livre entre coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Transfert de livre entre coopérative','Books transfer between cooperative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Réception d''un livre entre coopérative','Réception d''un livre entre coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Réception d''un livre entre coopérative','Books delivery between cooperative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information page Transfert de livre entre coopérative','Page permettant la confirmation des transferts de livre entre coopératives. Les livres seront disponibles pour un transfert lorsqu''un étudiant réservera un exemplaire d''une autre coopérative pour votre coopérative.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information page Transfert de livre entre coopérative','Confirmation of transfer of book between cooperatives. The books will be available for a transfer when a student book a copy from another cooperative for your cooperative.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information page Réception d''un livre entre coopérative','Les réceptions des demande de transfert entre les coopératives. Un courriel sera automatiquement envoyé à l''étudiant ayant réservé le livre pour activer son délai de 48 heures.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information page Réception d''un livre entre coopérative','The deliveries of the request between cooperatives.An email will be sent automaticly to the student who made the booking to activate the 48 hours reservation.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Gestion Coopérative','Gestion Coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Gestion Coopérative','Manage Cooperative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Coopérative Destination','Coopérative Destination')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Coopérative Destination','Cooperative Destination')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Transferer','Transférer')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Transferer','Transfer')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Coopérative','Coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Coopérative','Cooperative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Cooperative','Coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Cooperative','Cooperative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information du livre transferé','Information du livre transféré')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information du livre transféré','Transfered book information')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Votre Coopérative','Votre Coopérative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Votre Coopérative','Your Cooperative')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Destinataire(Coopérative)','Destinataire(Coopérative)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Destinataire(Coopérative)','Receiver(Cooperative)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Confirmer Transfert','Confirmer Transfert')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Confirmer Transfert','Transfer Confirmation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Prix','Prix')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Prix','Price')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Recevoir','Recevoir')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Recevoir','Receive')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Provenance(Coopérative)','Provenance(Coopérative)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Provenance(Coopérative)','From(Cooperative)')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Confirmer Réception','Confirmer Réception')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Confirmer Réception','Receiving Confirmation')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Un courriel sera automatiquement envoyé à l''étudiant pour le notifier de la réception de son livre.','Un courriel sera automatiquement envoyé à l''étudiant pour le notifier de la réception de son livre.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Un courriel sera automatiquement envoyé à l''étudiant pour le notifier de la réception de son livre.','An email will be sent automaticly to the student to notify him of the receiving of his book.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information Courriel ReceptionLivre1','Nous venons de recevoir votre livre en provenance de la coopérative: ')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information Courriel ReceptionLivre1','We received the book you reserved from the cooperative: ')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Information Courriel ReceptionLivre2','Vous avez 48H pour récupérer ce livre, sans quoi celui-ci sera de nouveau disponible pour les autres usagés.')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Information Courriel ReceptionLivre2','You have 48 hours to come get it, otherwise it will be available again for the other student.')
+END
 
 /*Table pour les états de livres*/
 IF (NOT EXISTS (SELECT * 

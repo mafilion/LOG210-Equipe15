@@ -1,4 +1,12 @@
 ﻿@using LibraryManagement.Utils;
+@{
+    List<SelectListItem> selectListCooperatives = new List<SelectListItem>()
+    {
+        new SelectListItem() {Text=UtilResources.GetLabel("Transfert de livre entre coopérative"), Value="BooksCopyTransfer"},
+        new SelectListItem() {Text=UtilResources.GetLabel("Réception d'un livre entre coopérative"), Value="BooksCopyDelivered" }
+    };
+
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +48,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Remise de livre"), "Create", "BookDelivery")</li> 
                     <li>@Html.ActionLink(@UtilResources.GetLabel("Demande de livraison"), "Index", "Deliveries")</li>
+                    <li><a>@Html.DropDownListFor(x => selectListCooperatives, selectListCooperatives, UtilResources.GetLabel("Gestion Coopérative"), new { @id = "Cooperative", @class = "specialeffect" })</a></li>
+                    @Html.Hidden("BooksCopyTransfer", Url.Action("Index", "BooksCopyTransfer"))
+                    @Html.Hidden("BooksCopyDelivered", Url.Action("Index", "BooksCopyDelivered"))
                 </ul>
                 }
                 @Html.Partial("_LoginPartial")
@@ -55,3 +66,20 @@
     </div>
 </body>
 </html>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#Cooperative').change(function () {
+        switch ($(this).val()) {
+            case "BooksCopyTransfer":
+                var url = $("#BooksCopyTransfer").val();
+                location.href = url;
+                break;
+            case "BooksCopyDelivered":
+                var url = $("#BooksCopyDelivered").val();
+                location.href = url;
+                break;
+            default:
+        }
+    });
+});
+</script>

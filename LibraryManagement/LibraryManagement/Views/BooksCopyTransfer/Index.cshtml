@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LibraryManagement.Models.BooksCopyTransferLine>
+@using LibraryManagement.Utils;
+
+<h2>@UtilResources.GetLabel("Livre à transférer")</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @UtilResources.GetLabel("Numero ISBN/EAN/UPC")
+        </th>
+        <th>
+            @UtilResources.GetLabel("Titre")
+        </th>
+        <th>
+            @UtilResources.GetLabel("Prix")
+        </th>
+        <th>
+            @UtilResources.GetLabel("Destinataire(Coopérative)")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BooksCopy.Book.noISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BooksCopy.Book.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BooksCopy.Book.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cooperative1.Name)
+        </td>
+        <td>
+            <input type="button" title="TransfererLivre" value="@UtilResources.GetLabel("Transferer")" onclick="location.href='@Url.Action("Edit", "BooksCopyTransfer", new { id = item.IDBooksCopyTransferLine })'" />
+        </td>
+    </tr>
+}
+
+</table>

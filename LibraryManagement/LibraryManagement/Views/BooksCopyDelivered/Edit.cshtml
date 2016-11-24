@@ -1,0 +1,75 @@
+﻿@model LibraryManagement.Models.BooksCopyTransferViewModel
+@using LibraryManagement.Utils;
+
+
+<h2>@UtilResources.GetLabel("Information livre")</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.bctl.IDBooksCopyTransferLine)
+        @Html.HiddenFor(model => model.bctl.IDBooksCopy)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.booksCopy.Book.noISBN, @UtilResources.GetLabel("Numero ISBN") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.booksCopy.Book.noISBN, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.booksCopy.Book.Title, @UtilResources.GetLabel("Titre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.booksCopy.Book.Title, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aut.Name, @UtilResources.GetLabel("Auteur") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.aut.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => (model.booksCopy.Book.price), @UtilResources.GetLabel("Prix") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.booksCopy.Book.price, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.booksCopy.BookState.Description, @UtilResources.GetLabel("État du livre") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.booksCopy.BookState.Description, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.coopFrom.Name, @UtilResources.GetLabel("Votre Coopérative") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.coopTo.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.coopTo.Name, @UtilResources.GetLabel("Provenance(Coopérative)") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.coopFrom.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            </div>
+        </div>
+        <p>@UtilResources.GetLabel("Un courriel sera automatiquement envoyé à l'étudiant pour le notifier de la réception de son livre.")</p>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@UtilResources.GetLabel("Confirmer réception")" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
+</div>
