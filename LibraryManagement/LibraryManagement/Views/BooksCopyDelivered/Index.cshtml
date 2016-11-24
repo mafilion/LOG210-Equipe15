@@ -37,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.Cooperative.Name)
             </td>
             <td>
-                <input type="button" title="TransfererLivre" value="@UtilResources.GetLabel("Recevoir")" onclick="location.href='@Url.Action("Edit", "BooksCopyTransfer", new { id = item.IDBooksCopyTransferLine })'" />
+                <input type="button" title="TransfererLivre" value="@UtilResources.GetLabel("Recevoir")" onclick="location.href='@Url.Action("Edit", "BooksCopyDelivered", new { id = item.IDBooksCopyTransferLine })'" />
             </td>
         </tr>
     }

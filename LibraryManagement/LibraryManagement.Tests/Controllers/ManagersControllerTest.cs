@@ -11,7 +11,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.IO;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace LibraryManagement.Tests.Controllers

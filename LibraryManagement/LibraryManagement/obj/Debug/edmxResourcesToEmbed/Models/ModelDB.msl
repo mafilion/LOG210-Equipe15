@@ -53,41 +53,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BooksCopy">
-      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopy">
-        <MappingFragment StoreEntitySet="BooksCopy">
-          <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
-          <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
-          <ScalarProperty Name="IDBook" ColumnName="IDBook" />
-          <ScalarProperty Name="IDBookState" ColumnName="IDBookState" />
-          <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
-          <ScalarProperty Name="Available" ColumnName="Available" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BooksCopyTransfer">
-      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransfer">
-        <MappingFragment StoreEntitySet="BooksCopyTransfer">
-          <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
-          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
-          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
-          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
-          <ScalarProperty Name="TransferConfirmation" ColumnName="TransferConfirmation" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BooksCopyTransferLine">
-      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransferLine">
-        <MappingFragment StoreEntitySet="BooksCopyTransferLine">
-          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
-          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
-          <ScalarProperty Name="IDBooksCopyTransferLine" ColumnName="IDBooksCopyTransferLine" />
-          <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
-          <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
-          <ScalarProperty Name="State" ColumnName="State" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="BookState">
       <EntityTypeMapping TypeName="LibraryManagementModel.BookState">
         <MappingFragment StoreEntitySet="BookState">
@@ -131,15 +96,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Settings">
-      <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
-        <MappingFragment StoreEntitySet="Settings">
-          <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
-          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
-          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="LibraryManagementModel.Student">
         <MappingFragment StoreEntitySet="Student">
@@ -149,7 +105,48 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BooksCopyTransfer">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransfer">
+        <MappingFragment StoreEntitySet="BooksCopyTransfer">
+          <ScalarProperty Name="TransferConfirmation" ColumnName="TransferConfirmation" />
+          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+          <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BooksCopyTransferLine">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopyTransferLine">
+        <MappingFragment StoreEntitySet="BooksCopyTransferLine">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="IDCooperativeTo" ColumnName="IDCooperativeTo" />
+          <ScalarProperty Name="IDCooperativeFrom" ColumnName="IDCooperativeFrom" />
+          <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
+          <ScalarProperty Name="IDBooksCopyTransfer" ColumnName="IDBooksCopyTransfer" />
+          <ScalarProperty Name="IDBooksCopyTransferLine" ColumnName="IDBooksCopyTransferLine" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BooksCopy">
+      <EntityTypeMapping TypeName="LibraryManagementModel.BooksCopy">
+        <MappingFragment StoreEntitySet="BooksCopy">
+          <ScalarProperty Name="Available" ColumnName="Available" />
+          <ScalarProperty Name="IDCooperative" ColumnName="IDCooperative" />
+          <ScalarProperty Name="IDBookState" ColumnName="IDBookState" />
+          <ScalarProperty Name="IDBook" ColumnName="IDBook" />
+          <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+          <ScalarProperty Name="IDBooksCopy" ColumnName="IDBooksCopy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
+        <MappingFragment StoreEntitySet="Settings">
           <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

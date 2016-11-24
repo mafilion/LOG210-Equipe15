@@ -190,10 +190,6 @@ namespace LibraryManagement.Controllers
             booking.IDCooperative = Int32.Parse(idCoop);
             db.Booking.Add(booking);
 
-            
-            bookingline.IDBooksCopy =  Int32.Parse(id); // À Changé
-            bookingline.BookingState = -1; // À 48h
-            db.BookingLine.Add(bookingline);
 
             // On indique que le livre n'est plus disponible
             int idlivre = Int32.Parse(id);
@@ -204,6 +200,17 @@ namespace LibraryManagement.Controllers
 
             bookcopy.Available = 0;
             db.Entry(bookcopy).State = EntityState.Modified;
+
+            bookingline.IDBooksCopy = Int32.Parse(id); // À Changé
+            if (booking.IDCooperative != bookcopy.IDCooperative)
+            {
+                bookingline.BookingState = -2; 
+            }
+            else
+            {
+                bookingline.BookingState = -1;
+            }
+            db.BookingLine.Add(bookingline);
 
             Book book =
                 (from b in db.Book

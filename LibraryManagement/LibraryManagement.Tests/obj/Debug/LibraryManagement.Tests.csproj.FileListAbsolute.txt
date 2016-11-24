@@ -140,3 +140,11 @@ C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\chromedriver.exe
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.xml
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\chromedriver.exe
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.dll
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.dll
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Twilio.Api.dll
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.xml
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.xml
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Twilio.Api.pdb
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Twilio.Api.xml

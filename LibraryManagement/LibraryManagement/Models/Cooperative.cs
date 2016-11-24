@@ -18,10 +18,10 @@ namespace LibraryManagement.Models
         public Cooperative()
         {
             this.Booking = new HashSet<Booking>();
-            this.BooksCopy = new HashSet<BooksCopy>();
-            this.BooksCopyTransfer = new HashSet<BooksCopyTransfer>();
-            this.BooksCopyTransfer1 = new HashSet<BooksCopyTransfer>();
             this.Manager = new HashSet<Manager>();
+            this.BooksCopyTransferLine = new HashSet<BooksCopyTransferLine>();
+            this.BooksCopyTransferLine1 = new HashSet<BooksCopyTransferLine>();
+            this.BooksCopy = new HashSet<BooksCopy>();
         }
     
         public int IDCooperative { get; set; }
@@ -34,12 +34,12 @@ namespace LibraryManagement.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Booking { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BooksCopy> BooksCopy { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BooksCopyTransfer> BooksCopyTransfer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BooksCopyTransfer> BooksCopyTransfer1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Manager> Manager { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BooksCopy> BooksCopy { get; set; }
     }
 }

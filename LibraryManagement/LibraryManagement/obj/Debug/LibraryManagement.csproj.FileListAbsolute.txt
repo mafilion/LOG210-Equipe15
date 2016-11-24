@@ -321,3 +321,8 @@ C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.xml
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.pdb
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.xml
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.dll
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.dll
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.xml
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.pdb
+C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.xml

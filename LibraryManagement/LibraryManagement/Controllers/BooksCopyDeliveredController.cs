@@ -125,7 +125,7 @@ namespace LibraryManagement.Controllers
 
         public void sendEmail(BooksCopy bc, Booking bo, Student stu,BooksCopyTransferLine bctl)
         {
-            string EmailContent = UtilResources.GetLabel("Information Courriel ReceptionLivre1") +bctl.BooksCopy;
+            string EmailContent = UtilResources.GetLabel("Information Courriel ReceptionLivre1") +bctl.BooksCopy.Cooperative.Name;
             EmailContent = EmailContent + "\n" + "------------------------------------------------------------------------------------------------------";
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Titre") + ": " + bc.Book.Title;
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Numero ISBN/EAN/UPC") + " :" + bc.Book.noISBN;
@@ -133,7 +133,7 @@ namespace LibraryManagement.Controllers
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("État du livre") + " :" + bc.BookState.Description;
             EmailContent = EmailContent + " \n" + UtilResources.GetLabel("Prix") + " :" + (bc.Book.price * bc.BookState.PricePercentage) + "$";
             EmailContent = EmailContent + " \n";
-            EmailContent = EmailContent + "------------------------------------------------------------------------------------------------------";
+            EmailContent = EmailContent + "------------------------------------------------------------------------------------------------------\n";
             EmailContent = EmailContent + UtilResources.GetLabel("Information Courriel ReceptionLivre2");
 
             UtilResources.SendMail(stu.Email, UtilResources.GetLabel("Confirmation réception de livre pour la réservation") + " #" + bo.IDBooking, UtilResources.GetLabel("Bonjour") + " " + stu.FirstName + " " + stu.LastName + ", \n\n" + EmailContent);
