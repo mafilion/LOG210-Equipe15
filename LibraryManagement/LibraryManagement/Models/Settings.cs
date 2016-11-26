@@ -16,6 +16,6 @@ namespace LibraryManagement.Models
     {
         public int IDSettings { get; set; }
         public int IDLanguage { get; set; }
-        public bool SendSMS { get; set; }
+        public Nullable<int> SendSMS { get; set; }
     }
 }

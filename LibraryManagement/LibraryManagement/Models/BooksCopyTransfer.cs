@@ -21,10 +21,14 @@ namespace LibraryManagement.Models
         }
     
         public int IDBooksCopyTransfer { get; set; }
+        public int IDCooperativeFrom { get; set; }
+        public int IDCooperativeTo { get; set; }
         public Nullable<System.DateTime> TransferDate { get; set; }
         public bool TransferConfirmation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
+        public virtual Cooperative Cooperative { get; set; }
+        public virtual Cooperative Cooperative1 { get; set; }
     }
 }

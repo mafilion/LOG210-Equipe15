@@ -30,14 +30,14 @@ namespace LibraryManagement.Models
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<BookingLine> BookingLine { get; set; }
         public virtual DbSet<BooksAuthors> BooksAuthors { get; set; }
+        public virtual DbSet<BooksCopy> BooksCopy { get; set; }
+        public virtual DbSet<BooksCopyTransfer> BooksCopyTransfer { get; set; }
+        public virtual DbSet<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
         public virtual DbSet<BookState> BookState { get; set; }
         public virtual DbSet<Cooperative> Cooperative { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
         public virtual DbSet<Resources> Resources { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<BooksCopyTransfer> BooksCopyTransfer { get; set; }
-        public virtual DbSet<BooksCopyTransferLine> BooksCopyTransferLine { get; set; }
-        public virtual DbSet<BooksCopy> BooksCopy { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
     }
 }

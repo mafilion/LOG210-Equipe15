@@ -102,7 +102,6 @@ C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Twilio.Api.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\EntityFramework.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Google.Apis.Books.v1.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Google.Apis.dll
 C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
@@ -148,3 +147,7 @@ C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\Libra
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\WebDriver.Support.xml
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Twilio.Api.pdb
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Twilio.Api.xml
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\EntityFramework.dll
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\pc\Documents\GitHub\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\fr\EntityFramework.SqlServer.resources.dll

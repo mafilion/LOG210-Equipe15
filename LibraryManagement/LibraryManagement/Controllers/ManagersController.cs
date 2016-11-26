@@ -71,6 +71,12 @@ namespace LibraryManagement.Controllers
         {
             bool valid = true;
 
+            if(managerCoop.manager.FirstName == null || managerCoop.manager.LastName == null)
+            {
+                valid = false;
+                ModelState.AddModelError("", UtilResources.GetLabel("Tous les champs doivent contenir une valeur"));
+            }
+
             //validation si les mots de passes sont pareils
             if (Request.Form["password1"] == "" || Request.Form["password2"] == "" || (Request.Form["password2"] != Request.Form["password1"]))
             {
