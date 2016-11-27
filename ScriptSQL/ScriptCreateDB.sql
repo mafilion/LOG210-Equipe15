@@ -625,6 +625,7 @@ BEGIN
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Vos réservation','Your booking:')
 
+	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(1,'Transfert de livre entre coopérative','Transfert de livre entre coopérative')
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)

@@ -99,11 +99,16 @@ namespace LibraryManagement.Controllers
                     ModelState.AddModelError("", UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
                 }
             }
+            else
+            {
+                valid = false;
+                ModelState.AddModelError("", UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
+            }
 
             // Email validation
             string strEmail = Request.Form["Email"];
 
-            if (strEmail != "" || strEmail != null)
+            if (strEmail != "")
             {
                 try
                 {
