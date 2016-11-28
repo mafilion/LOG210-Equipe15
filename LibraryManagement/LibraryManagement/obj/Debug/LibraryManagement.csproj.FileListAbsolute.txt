@@ -326,3 +326,15 @@ C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\Libra
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.xml
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.pdb
 C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.xml
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.dll
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.dll
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\RestSharp.xml
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.xml
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\BouncyCastle.Crypto.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Google.Apis.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Google.Apis.Auth.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Google.Apis.Auth.PlatformServices.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Google.Apis.Books.v1.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Google.Apis.Core.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Google.Apis.PlatformServices.pdb
+C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement\bin\Twilio.Api.pdb

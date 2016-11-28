@@ -768,6 +768,12 @@ BEGIN
 
 	INSERT INTO Resources (IDLanguage, TextName, Description)
 	VALUES(2,'Livraison complétée','Delivery completed')
+	
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(1,'Vous devez remplir tous les champs','Vous devez remplir tous les champs')
+
+	INSERT INTO Resources (IDLanguage, TextName, Description)
+	VALUES(2,'Vous devez remplir tous les champs','You must fill every the fields')
 
 		
 END 

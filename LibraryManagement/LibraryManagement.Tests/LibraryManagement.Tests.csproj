@@ -129,6 +129,8 @@
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ManagersControllerTest.cs" />
+    <Compile Include="Controllers\StudentsConnexionTest.cs" />
+    <Compile Include="Controllers\StudentsControllerTest.cs" />
     <Compile Include="Cooperative.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
