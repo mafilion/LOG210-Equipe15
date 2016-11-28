@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="LibraryManagementModel.Cooperative" Width="1.5" PointX="0.75" PointY="4.875" />
         <EntityTypeShape EntityType="LibraryManagementModel.Manager" Width="1.5" PointX="3" PointY="13" />
         <EntityTypeShape EntityType="LibraryManagementModel.Resources" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="LibraryManagementModel.Student" Width="1.5" PointX="0.75" PointY="1.25" />
         <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDAut__73852659" />
         <AssociationConnector Association="LibraryManagementModel.FK__BooksAuth__IDBoo__74794A92" />
@@ -35,6 +34,7 @@
         <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__69C6B1F5" />
         <AssociationConnector Association="LibraryManagementModel.FK__BooksCopy__IDCoo__6ABAD62E" />
         <AssociationConnector Association="LibraryManagementModel.FK__Manager__IDCoope__690797E6" />
+        <EntityTypeShape EntityType="LibraryManagementModel.Settings" Width="1.5" PointX="7.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

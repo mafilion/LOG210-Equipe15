@@ -13,7 +13,6 @@
     <EntitySet Name="Cooperative" EntityType="LibraryManagementModel.Cooperative" />
     <EntitySet Name="Manager" EntityType="LibraryManagementModel.Manager" />
     <EntitySet Name="Resources" EntityType="LibraryManagementModel.Resources" />
-    <EntitySet Name="Settings" EntityType="LibraryManagementModel.Settings" />
     <EntitySet Name="Student" EntityType="LibraryManagementModel.Student" />
     <AssociationSet Name="FK__BooksAuth__IDAut__73852659" Association="LibraryManagementModel.FK__BooksAuth__IDAut__73852659">
       <End Role="Author" EntitySet="Author" />
@@ -79,6 +78,7 @@
       <End Role="Cooperative" EntitySet="Cooperative" />
       <End Role="Manager" EntitySet="Manager" />
     </AssociationSet>
+    <EntitySet Name="Settings" EntityType="LibraryManagementModel.Settings" />
   </EntityContainer>
   <EntityType Name="Author">
     <Key>
@@ -225,14 +225,6 @@
     <Property Name="IDLanguage" Type="Int32" Nullable="false" />
     <Property Name="TextName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="Settings">
-    <Key>
-      <PropertyRef Name="IDSettings" />
-    </Key>
-    <Property Name="IDSettings" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDLanguage" Type="Int32" Nullable="false" />
-    <Property Name="SendSMS" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -439,4 +431,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="IDSettings" />
+    </Key>
+    <Property Name="IDSettings" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDLanguage" Type="Int32" Nullable="false" />
+    <Property Name="SendSMS" Type="Int32" />
+  </EntityType>
 </Schema>

@@ -129,15 +129,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Settings">
-      <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
-        <MappingFragment StoreEntitySet="Settings">
-          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
-          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
-          <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Student">
       <EntityTypeMapping TypeName="LibraryManagementModel.Student">
         <MappingFragment StoreEntitySet="Student">
@@ -147,6 +138,15 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="IDStudent" ColumnName="IDStudent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="LibraryManagementModel.Settings">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="SendSMS" ColumnName="SendSMS" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="IDSettings" ColumnName="IDSettings" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
