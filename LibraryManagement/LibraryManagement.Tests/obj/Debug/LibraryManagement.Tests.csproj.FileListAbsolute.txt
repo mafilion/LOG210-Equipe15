@@ -228,6 +228,3 @@ C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagemen
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Google.Apis.Books.v1.pdb
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Google.Apis.pdb
 C:\Users\marca\Documents\GitHub\Log210_Lab_Eq15\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\Google.Apis.Core.pdb
-C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Utilisateur\Desktop\ÉTS\Log210\Log210_Lab_Eq15\LibraryManagement\LibraryManagement.Tests\bin\Debug\fr\EntityFramework.SqlServer.resources.dll
