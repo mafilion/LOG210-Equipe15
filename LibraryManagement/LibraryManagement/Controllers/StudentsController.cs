@@ -63,8 +63,16 @@ namespace LibraryManagement.Controllers
         {
             bool valid = true;
 
+            //validation s'il n'y a pas de champs vide
+            if (Request.Form["FirstName"] == "" || Request.Form["LastName"] == "" || Request.Form["Email"] == "" || Request.Form["PhoneNumber"] == "" || Request.Form["password1"] == "" || Request.Form["password2"] == "")
+            {
+                valid = false;
+                ModelState.AddModelError("", UtilResources.GetLabel("Vous devez remplir tous les champs"));
+            }
+
+
             //validation si les mots de passes sont pareils
-            if (Request.Form["password1"] == null || Request.Form["password2"] == null || (Request.Form["password2"] != Request.Form["password1"]))
+            if (Request.Form["password1"] == "" || Request.Form["password2"] == "" || (Request.Form["password2"] != Request.Form["password1"]))
             {
                 valid = false;
                 ModelState.AddModelError("", UtilResources.GetLabel("Les mots de passe ne correspondent pas"));
@@ -99,11 +107,16 @@ namespace LibraryManagement.Controllers
                     ModelState.AddModelError("", UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
                 }
             }
+            else
+            {
+                valid = false;
+                ModelState.AddModelError("", UtilResources.GetLabel("Numéro de téléphone doit être sous le format: xxx-xxx-xxxx"));
+            }
 
             // Email validation
             string strEmail = Request.Form["Email"];
 
-            if (strEmail != "" || strEmail != null)
+            if (strEmail != "")
             {
                 try
                 {
