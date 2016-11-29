@@ -28,7 +28,7 @@ namespace LibraryManagement.Tests.Controllers
         {
             driverGC = new ChromeDriver();
             nbManagers = db.Manager.Count();
-            enterManagersPage();
+            // enterManagersPage();
         }
 
         public static void enterManagersPage()
