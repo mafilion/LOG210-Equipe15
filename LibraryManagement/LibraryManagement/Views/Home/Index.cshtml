@@ -41,7 +41,7 @@
             <p>
                 @UtilResources.GetLabel("Information page Remise de livre")
             </p>
-            <p><input type="button" title="RemiseLivre" value="@UtilResources.GetLabel("Remise de livre")" onclick="location.href='@Url.Action("Create", "BookDelivery")'" /></p>
+            <p><input type="button" title="RemiseLivre" id="RemiseLivre" value="@UtilResources.GetLabel("Remise de livre")" onclick="location.href='@Url.Action("Create", "BookDelivery")'" /></p>
         </div>
 
         <div class="col-md-4">
@@ -49,7 +49,7 @@
             <p>
                 @UtilResources.GetLabel("Information page Demande de livraison")
             </p>
-            <p><input type="button" title="Livraison" value="@UtilResources.GetLabel("Demande de livraison")" onclick="location.href='@Url.Action("Index", "Deliveries")'" /></p>
+            <p><input type="button"  id="LivraisonLivre" title="Livraison" value="@UtilResources.GetLabel("Demande de livraison")" onclick="location.href='@Url.Action("Index", "Deliveries")'" /></p>
         </div>
 
         <div class="col-md-4">

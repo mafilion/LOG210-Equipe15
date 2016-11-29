@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using LibraryManagement.Models;
 using LibraryManagement.Utils;
+using System.Text.RegularExpressions;
 
 namespace LibraryManagement.Controllers
 {
@@ -71,10 +72,10 @@ namespace LibraryManagement.Controllers
         {
             bool valid = true;
 
-            if(managerCoop.manager.FirstName == null || managerCoop.manager.LastName == null)
+            if(managerCoop.manager.FirstName == null || managerCoop.manager.LastName == null || managerCoop.cooperative.Name == null || managerCoop.cooperative.NoStreet == null || managerCoop.cooperative.PostalCode == null || managerCoop.cooperative.Street == null || managerCoop.cooperative.City == null)
             {
-                valid = false;
                 ModelState.AddModelError("", UtilResources.GetLabel("Tous les champs doivent contenir une valeur"));
+                return false;
             }
 
             //validation si les mots de passes sont pareils
@@ -114,6 +115,23 @@ namespace LibraryManagement.Controllers
             else
             {
                 ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel n'est pas valide."));
+                valid = false;
+            }
+
+            //validation pour le code postal
+            bool FoundMatch = false;
+            try
+            {
+                FoundMatch = Regex.IsMatch(managerCoop.cooperative.PostalCode, @"^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ])\ {0,1}(\d[ABCEGHJKLMNPRSTVWXYZ]\d)$");
+            }
+            catch (ArgumentException ex)
+            {
+                // Syntax error in the regular expression
+            }
+
+            if(FoundMatch == false)
+            {
+                ModelState.AddModelError("", UtilResources.GetLabel("Le format du code postal est invalide veuillez respecter le format X0X 0X0"));
                 valid = false;
             }
 

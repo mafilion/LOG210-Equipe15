@@ -62,7 +62,7 @@
                     @UtilResources.GetLabel("Incomplète")
                 </td>
                 <td>
-                    <input type="button" title="LivrerLivre" value="@UtilResources.GetLabel("Livrer")" onclick="location.href='@Url.Action("Edit", "Deliveries", new { id = item.IDBooking })'" />
+                    <input type="button" id="@item.IDBooking" title="LivrerLivre" value="@UtilResources.GetLabel("Livrer")" onclick="location.href='@Url.Action("Edit", "Deliveries", new { id = item.IDBooking })'" />
                 </td>
             }
         </tr>
