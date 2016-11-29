@@ -41,8 +41,11 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LoginStudents(StudentsManagersViewModels model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            
+
+            if (model.student.Email == null || model.student.StudentPassword == null || model.student.Email == "" || model.student.StudentPassword == "")
             {
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
                 return View(model);
             }
 
