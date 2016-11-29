@@ -128,8 +128,11 @@
     <Compile Include="BookState.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BookingControllerTest.cs" />
+    <Compile Include="Controllers\BooksCopyDeliveredControllerTest.cs" />
+    <Compile Include="Controllers\BooksCopyTransferControllerTest.cs" />
+    <Compile Include="Controllers\DeliveriesControllerTest.cs" />
     <Compile Include="Controllers\ManagersControllerTest.cs" />
-    <Compile Include="Controllers\StudentsConnexionTest.cs" />
     <Compile Include="Controllers\StudentsControllerTest.cs" />
     <Compile Include="Cooperative.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
