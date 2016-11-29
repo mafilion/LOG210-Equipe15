@@ -5,49 +5,45 @@
 <link rel="stylesheet" type="text/css" href="~/Content/BookDeliveries.css">
 
 @Html.AntiForgeryToken()
-    
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div class="researchForm">
-        <div class="form-horizontal">
-            <h2>@UtilResources.GetLabel("Création d'une réservation")</h2>
-            <hr />
-            <div class="form-group">
-                @Html.LabelFor(model => model.coop.IDCooperative, @UtilResources.GetLabel("Cooperative") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("IDCooperative", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.coop.IDCooperative, "", new { @class = "text-danger" })
-                </div>
+<div class="researchForm">
+    <div class="form-horizontal">
+        <h2>@UtilResources.GetLabel("Création d'une réservation")</h2>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.coop.IDCooperative, @UtilResources.GetLabel("Cooperative") + " :", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDCooperative", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.coop.IDCooperative, "", new { @class = "text-danger" })
             </div>
-            <hr />
-            <h3>@UtilResources.GetLabel("Rechercher livre")</h3>
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input type="text" id="BookInfo" name="BookInfo" placeholder="@UtilResources.GetLabel("Auteur, Titre, ISBN, UPC, etc")" class="form-control">
-                    <br />
-                    <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
-                </div>
-                <table id="book" class="table">
-                    <tr>
-                        <th>@UtilResources.GetLabel("Numero ISBN/EAN/UPC")</th>
-                        <th>@UtilResources.GetLabel("Titre")</th>
-                        <th>@UtilResources.GetLabel("Auteur")</th>
-                        <th>@UtilResources.GetLabel("Etudiant")</th>
-                        <th>@UtilResources.GetLabel("État du livre")</th>
-                        <th>@UtilResources.GetLabel("Prix neuf")</th>
-                        <th>@UtilResources.GetLabel("Cooperative")</th>
-                    </tr>
-                </table>
+        </div>
+        <hr />
+        <h3>@UtilResources.GetLabel("Rechercher livre")</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="text" id="BookInfo" name="BookInfo" placeholder="@UtilResources.GetLabel("Auteur, Titre, ISBN, UPC, etc")" class="form-control">
+                <br />
+                <button type="button" id="SearchBooks" name="SearchBooks" class="btn btn-default" onclick="findLivre()">@UtilResources.GetLabel("Rechercher")</button>
             </div>
+            <table id="book" class="table">
+                <tr>
+                    <th>@UtilResources.GetLabel("Numero ISBN/EAN/UPC")</th>
+                    <th>@UtilResources.GetLabel("Titre")</th>
+                    <th>@UtilResources.GetLabel("Auteur")</th>
+                    <th>@UtilResources.GetLabel("Etudiant")</th>
+                    <th>@UtilResources.GetLabel("État du livre")</th>
+                    <th>@UtilResources.GetLabel("Prix neuf")</th>
+                    <th>@UtilResources.GetLabel("Cooperative")</th>
+                </tr>
+            </table>
+        </div>
 
             
 
-            <hr />
-        </div>
+        <hr />
     </div>
-}
+</div>
 
         <div>
             @Html.ActionLink(@UtilResources.GetLabel("Retour"), "Index")
