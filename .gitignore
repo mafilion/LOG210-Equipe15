@@ -28,3 +28,8 @@ LibraryManagement/LibraryManagement/Web.config
 *.cs
 LibraryManagement/LibraryManagement/bin/LibraryManagement.dll.config
 *.config
+LibraryManagement/LibraryManagement.Tests/Controllers/ManagersControllerTest.cs
+*.pdb
+LibraryManagement/LibraryManagement.Tests/obj/Debug/LibraryManagement.Tests.csprojResolveAssemblyReference.cache
+LibraryManagement/LibraryManagement.Tests/Controllers/ManagersControllerTest.cs
+*.exe

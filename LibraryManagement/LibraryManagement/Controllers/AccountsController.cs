@@ -41,8 +41,11 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LoginStudents(StudentsManagersViewModels model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            
+
+            if (model.student.Email == null || model.student.StudentPassword == null || model.student.Email == "" || model.student.StudentPassword == "")
             {
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
                 return View(model);
             }
 
@@ -138,6 +141,12 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LoginManagers(StudentsManagersViewModels model, string returnUrl)
         {
+            if (model.manager.Email == null || model.manager.ManagerPassword== null || model.manager.Email == "" || model.manager.ManagerPassword == "")
+            {
+                ModelState.AddModelError("", UtilResources.GetLabel("L'adresse courriel et le mot de passe ne correspondent pas"));
+                return View(model);
+            }
+
             string url = this.Request.UrlReferrer.AbsolutePath;
 
             if (!ModelState.IsValid)

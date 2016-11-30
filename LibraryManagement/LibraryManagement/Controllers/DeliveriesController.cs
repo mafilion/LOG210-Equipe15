@@ -35,7 +35,11 @@ namespace LibraryManagement.Controllers
                     {
                         if (BookingList.Where(b => b.IDBooking == element.IDBooking).SingleOrDefault() == null)
                         {
-                            BookingList.Add(db.Booking.Where(b => b.IDBooking == element.IDBooking && b.IDCooperative == man.IDCooperative).Include(b => b.Student).Single());
+                            Booking booking = db.Booking.Where(b => b.IDBooking == element.IDBooking && b.IDCooperative == man.IDCooperative).Include(b => b.Student).FirstOrDefault();
+                            if (booking != null)
+                            {
+                                BookingList.Add(booking);
+                            }
                         }
                     }
                     return View(BookingList);

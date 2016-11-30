@@ -37,7 +37,7 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li id="isconnected" value="true">
             @Html.ActionLink(UtilResources.GetLabel("Bonjour") + " " +  AccountManagement.getNomUtilisateur(), "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="@Url.Action("LogOff","Accounts")">@UtilResources.GetLabel("Déconnexion")</a></li>
