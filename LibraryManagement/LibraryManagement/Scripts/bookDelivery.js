@@ -24,7 +24,7 @@ function findLivre() {
             if (data.length != 0)
             {
                 $.each(data, function (index, value) {
-                    $('#book tr:last').after('<tr onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.AuthorName + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price + ' $</td><td>' + this.CoopName + '</td></tr>');
+                    $('#book tr:last').after('<tr id="book' + index  + '"onClick="showBook(' + this.IDBooksCopy + ')"><td>' + this.noISBN + '</td><td>' + this.Title + '</td><td>' + this.AuthorName + '</td><td>' + this.FirstName + ' ' + this.LastName + '</td><td>' + this.Description + '</td><td>' + this.price + ' $</td><td>' + this.CoopName + '</td></tr>');
                 });
                 $("table").addClass("show");
             } else {

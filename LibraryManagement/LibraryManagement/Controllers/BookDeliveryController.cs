@@ -80,6 +80,9 @@ namespace LibraryManagement.Controllers
                                 join BS in db.BookState on BC.IDBookState equals BS.IDBookState
                                 where (B.noISBN == Value || B.noUPC == Value || B.noEAN == Value || B.Title.Contains(Value) || S.FirstName + " " + S.LastName == Value || A.Name.Contains(Value)) && BC.Available == -1
                                 select new {BC.IDBooksCopy,B.noISBN, B.Title, AuthorName = A.Name, S.FirstName, S.LastName, BS.Description,B.price, BS.PricePercentage,C.IDCooperative, CoopName = C.Name }).ToList();
+            if(Value == "" || Value == null){
+                Books = null;
+            }
 
             //Récupérer les informations et les retourner en json
             return Json(Books, JsonRequestBehavior.AllowGet);
@@ -111,9 +114,10 @@ namespace LibraryManagement.Controllers
             BooksCopy book = db.BooksCopy.Where(c => c.IDBooksCopy == idBookCopy).FirstOrDefault();
             Settings settings = db.Settings.FirstOrDefault();
 
+            BookState bookState = db.BookState.Where(c => c.IDBookState == idBookState).FirstOrDefault();
             if (book.IDBookState != idBookState)
             {
-                string msg = "L'état du livre: " + book.Book.Title + " a été changé pour usagé";
+                string msg = "L'état du livre: " + book.Book.Title + " a été changé pour " + bookState.Description;
                 Utils.UtilResources.sendSMS(book.Student.PhoneNumber, msg);
             }
 

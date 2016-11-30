@@ -121,17 +121,17 @@ namespace LibraryManagement.Utils
             Settings settings = db.Settings.FirstOrDefault();
             if (settings.SendSMS != 0 && phoneNumber != null)
             {
+                string phone = phoneNumber.Substring(0, 3) + phoneNumber.Substring(4, 3) + phoneNumber.Substring(8, 4);
                 string AccountSid = "ACf9d4a41255a5fc42fcc78c7580904685";
                 string AuthToken = "cf15c831f9fdecd9e35761737db642df";
 
                 var twilio = new TwilioRestClient(AccountSid, AuthToken);
 
-                var test = twilio.SendMessage("+16137049807", "+1" + phoneNumber, message);
+                var test = twilio.SendMessage("+16137049807", "+1" + phone, message);
 
                 Console.WriteLine(test.Sid);
                 return true;
             }
-
             return false;
         }
     }

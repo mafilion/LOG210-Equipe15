@@ -18,16 +18,10 @@ namespace LibraryManagement.Tests.Controllers
     [TestClass]
     public class ManagersControllerTest
     {
-        static IWebDriver driverGC;
+        static IWebDriver driverGC = new ChromeDriver();
         ManagersController controller = new ManagersController();
         static LibraryManagementEntities db = new LibraryManagementEntities();
 
-        [AssemblyInitialize]
-        public static void SetUp(TestContext context)
-        {
-            driverGC = new ChromeDriver();
-            enterManagersPage();
-        }
 
         public static void enterManagersPage()
         {
@@ -46,6 +40,7 @@ namespace LibraryManagement.Tests.Controllers
         [TestMethod]
         public void insertGoodManagers()
         {
+            enterManagersPage();
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("Toto");
             driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
@@ -63,35 +58,10 @@ namespace LibraryManagement.Tests.Controllers
             var obj = db.Manager.SingleOrDefault(x => x.FirstName == "Test");
 
             Assert.IsNotNull(obj);
-
-            driverGC.Navigate().GoToUrl("http://localhost:50682/Accounts/LogOff");
-        }
-        [TestMethod]
-        public void sameEmailError()
-        {
-            enterManagersPage();
-
-            driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
-            driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
-            driverGC.FindElement(By.Id("password1")).SendKeys("123");
-            driverGC.FindElement(By.Id("password2")).SendKeys("123");
-            driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
-            driverGC.FindElement(By.Id("cooperative_NoStreet")).SendKeys("22");
-            driverGC.FindElement(By.Id("cooperative_Street")).SendKeys("de la montagne");
-            driverGC.FindElement(By.Id("cooperative_City")).SendKeys("totoville");
-            driverGC.FindElement(By.Id("cooperative_PostalCode")).SendKeys("J8H 1T0");
-
-            driverGC.FindElement(By.Id("save")).Click();
-            driverGC.SwitchTo().Alert().Accept();
-
-            var obj2 = db.Manager.SingleOrDefault(x => x.FirstName == "Test2");
-            var obj = db.Manager.SingleOrDefault(x => x.FirstName == "Test");
-            Assert.IsNull(obj2);
-
             db.Manager.Remove(obj);
             db.SaveChanges();
 
+            driverGC.Navigate().GoToUrl("http://localhost:50682/Accounts/LogOff");
         }
 
         [TestMethod]
@@ -101,7 +71,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("Toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test3@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -126,7 +96,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test4@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -176,7 +146,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test5@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -201,7 +171,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test6@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -226,7 +196,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test7@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("22");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -252,7 +222,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test8@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("");
@@ -277,7 +247,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("tes@ttest.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test9@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -302,7 +272,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test10@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -327,7 +297,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test11@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -352,7 +322,7 @@ namespace LibraryManagement.Tests.Controllers
 
             driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
             driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
+            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test12@test.com");
             driverGC.FindElement(By.Id("password1")).SendKeys("123");
             driverGC.FindElement(By.Id("password2")).SendKeys("123");
             driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("toto");
@@ -367,64 +337,6 @@ namespace LibraryManagement.Tests.Controllers
             var obj = db.Manager.SingleOrDefault(x => x.FirstName == "Test");
 
             Assert.IsNull(obj);
-
-        }
-
-        [TestMethod]
-        public void newCoop()
-        {
-            enterManagersPage();
-
-            driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
-            driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
-            driverGC.FindElement(By.Id("password1")).SendKeys("123");
-            driverGC.FindElement(By.Id("password2")).SendKeys("123");
-            driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("totoCoop");
-            driverGC.FindElement(By.Id("cooperative_NoStreet")).SendKeys("22");
-            driverGC.FindElement(By.Id("cooperative_Street")).SendKeys("de la montagne");
-            driverGC.FindElement(By.Id("cooperative_City")).SendKeys("totoville");
-            driverGC.FindElement(By.Id("cooperative_PostalCode")).SendKeys("J8H 1T0");
-
-            driverGC.FindElement(By.Id("save")).Click();
-            driverGC.SwitchTo().Alert().Accept();
-
-            var obj = db.Cooperative.SingleOrDefault(x => x.Name == "totoCoop");
-
-            Assert.IsNotNull(obj);
-
-            var obj1 = db.Manager.SingleOrDefault(x => x.FirstName == "Test");
-            db.Manager.Remove(obj1);
-            db.SaveChanges();
-        }
-
-        [TestMethod]
-        public void updateCoop()
-        {
-            enterManagersPage();
-
-            driverGC.FindElement(By.Id("manager_FirstName")).SendKeys("Test");
-            driverGC.FindElement(By.Id("manager_LastName")).SendKeys("toto");
-            driverGC.FindElement(By.Id("manager_Email")).SendKeys("test@test.com");
-            driverGC.FindElement(By.Id("password1")).SendKeys("123");
-            driverGC.FindElement(By.Id("password2")).SendKeys("123");
-            driverGC.FindElement(By.Id("cooperative_Name")).SendKeys("totoCoop");
-            driverGC.FindElement(By.Id("cooperative_NoStreet")).SendKeys("22");
-            driverGC.FindElement(By.Id("cooperative_Street")).SendKeys("de la montagne");
-            driverGC.FindElement(By.Id("cooperative_City")).SendKeys("totovilleTest");
-            driverGC.FindElement(By.Id("cooperative_PostalCode")).SendKeys("J8H 1T0");
-
-            driverGC.FindElement(By.Id("save")).Click();
-            driverGC.SwitchTo().Alert().Accept();
-
-            var obj = db.Cooperative.SingleOrDefault(x => x.Name == "totoCoop" && x.City == "totovilleTest");
-
-            Assert.IsNotNull(obj);
-            var obj1 = db.Manager.SingleOrDefault(x => x.FirstName == "Test");
-            db.Manager.Remove(obj1);
-            db.Cooperative.Remove(obj);
-            db.SaveChanges();
-
 
         }
 

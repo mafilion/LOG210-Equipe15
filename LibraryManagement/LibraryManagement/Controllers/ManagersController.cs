@@ -52,10 +52,8 @@ namespace LibraryManagement.Controllers
                 AccountManagement.setNomUtilisateur(managerCoop.manager.FirstName);
                 return RedirectToAction("Index","Home");
             }
-            if(!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", UtilResources.GetLabel("Tous les champs doivent contenir une valeur"));
-            }
+       
+
             return View(managerCoop);
         }
 
